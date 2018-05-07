@@ -1,0 +1,128 @@
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\observeTest.exe.config
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest.exe
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest.pdb
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\observeTest.exe
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\observeTest.pdb
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\EntityFramework.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\EntityFramework.xml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.xml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest.csprojResolveAssemblyReference.cache
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\MainWindow.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\IncorrectFormat.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\NewTaskDialog.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\stopwatch.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\TabCloseButton.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\App.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest_Content.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest_MarkupCompile.cache
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest_MarkupCompile.lref
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\MainWindow.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\IncorrectFormat.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\NewTaskDialog.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\stopwatch.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\TabCloseButton.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest.g.resources
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest.Properties.Resources.resources
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\observeTest.csproj.GenerateResource.Cache
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\observeTest.exe.config
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\observeTest.exe
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\observeTest.pdb
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\EntityFramework.dll
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.dll
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\EntityFramework.xml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\System.Data.SQLite.xml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\MainWindow.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\IncorrectFormat.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\NewTaskDialog.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\stopwatch.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\TabCloseButton.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Windows\Task_Home.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\App.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest_Content.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest_MarkupCompile.cache
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest_MarkupCompile.lref
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\MainWindow.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\IncorrectFormat.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\NewTaskDialog.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\stopwatch.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\TabCloseButton.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Windows\Task_Home.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest.g.resources
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest.Properties.Resources.resources
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest.csproj.GenerateResource.Cache
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest.exe
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest.pdb
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Pages\Logs_Page.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Pages\Tasks_Page.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Pages\Logs_Page.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Pages\Tasks_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Pages\Logs_Page.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Pages\Tasks_Page.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Windows\Task_Home.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Pages\Logs_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Pages\Tasks_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Windows\Task_Home.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\Data.db
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\observeTest.csprojResolveAssemblyReference.cache
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Pages\Settings_Page.g.cs
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\obj\Debug\Pages\Settings_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\Data.db
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Pages\Settings_Page.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\obj\Debug\Pages\Settings_Page.baml
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\packages.config
+C:\Users\Marcus\documents\visual studio 2015\Projects\observeTest\bin\Debug\SQLite.Interop.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\SQLite.Interop.dll
+C:\Users\mbeaty\Documents\Visual Studio 2015\Projects\observeTest\bin\Debug\packages.config
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\SQLite.Interop.dll
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\Data.db
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\packages.config
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\observeTest.exe.config
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\observeTest.exe
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\observeTest.pdb
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\EntityFramework.dll
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\System.Data.SQLite.dll
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\EntityFramework.xml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\System.Data.SQLite.xml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.csprojResolveAssemblyReference.cache
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\MainWindow.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\IncorrectFormat.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\NewTaskDialog.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Pages\Logs_Page.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Pages\Settings_Page.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Pages\Tasks_Page.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\stopwatch.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\TabCloseButton.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Windows\Task_Home.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\App.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest_Content.g.cs
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest_MarkupCompile.cache
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest_MarkupCompile.lref
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\MainWindow.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\IncorrectFormat.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\NewTaskDialog.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Pages\Logs_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Pages\Settings_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Pages\Tasks_Page.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\stopwatch.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\TabCloseButton.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\Windows\Task_Home.baml
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.g.resources
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.Properties.Resources.resources
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.csproj.GenerateResource.Cache
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.csproj.CoreCompileInputs.cache
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.exe
+C:\Users\mbeaty\Documents\Visual Studio 2017\Projects\observeTest - Copy\obj\Debug\observeTest.pdb

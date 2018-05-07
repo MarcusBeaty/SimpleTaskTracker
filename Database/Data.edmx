@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\Marcus\Documents\Visual Studio 2015\Projects\observeTest\Data.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Task" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="ClockIn" Type="datetime" />
+          <Property Name="ClockOut" Type="datetime" />
+          <Property Name="Total" Type="real" />
+          <Property Name="LastClosed" Type="datetime" />
+          <Property Name="Selected" Type="real" />
+          <Property Name="Hours" Type="int" />
+          <Property Name="Minutes" Type="int" />
+          <Property Name="Seconds" Type="int" />
+        </EntityType>
+        <EntityContainer Name="DataModelStoreContainer">
+          <EntitySet Name="Properties" EntityType="Self.Properties" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClockIn" Type="DateTime" />
+          <Property Name="ClockOut" Type="DateTime" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="LastClosed" Type="DateTime" />
+          <Property Name="Selected" Type="Double" />
+          <Property Name="Hours" Type="Int32" />
+          <Property Name="Minutes" Type="Int32" />
+          <Property Name="Seconds" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="DataEntities">
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="DataModel.Property">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Task" ColumnName="Task" />
+                <ScalarProperty Name="ClockIn" ColumnName="ClockIn" />
+                <ScalarProperty Name="ClockOut" ColumnName="ClockOut" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="LastClosed" ColumnName="LastClosed" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+                <ScalarProperty Name="Seconds" ColumnName="Seconds" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
