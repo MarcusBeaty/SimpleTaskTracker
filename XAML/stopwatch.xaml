@@ -7,7 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="auto"
     Height="353.176"
+    FocusVisualStyle="{x:Null}"
     d:DesignWidth="704"
+    Focusable="True"
+    KeyDown="UserControl_KeyDown"
     mc:Ignorable="d">
 
     <Grid HorizontalAlignment="Center" Background="White">

@@ -113,5 +113,16 @@ namespace SimpleTaskTracker.XAML
             about_button.Background = (Brush)bc.ConvertFrom("#2e3135");
             sel_panel.SetValue(Grid.RowProperty, 5);
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(Main.Content == tk)
+            {
+                if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    tk.OnPlusTabClick(sender, e);
+                }
+            }
+        }
     }
 }

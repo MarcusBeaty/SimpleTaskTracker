@@ -106,6 +106,12 @@ namespace SimpleTaskTracker.XAML
             {
                 Rename_Click(sender, e);
             }
+
+            if(e.Key == Key.Escape)
+            {
+                this.Close();
+                Owner.Opacity = 1;
+            }
         }
     }
 }

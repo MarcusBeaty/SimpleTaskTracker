@@ -119,6 +119,12 @@ namespace SimpleTaskTracker.XAML
             {
                 Submit(sender,e);
             }
+
+            if (e.Key == Key.Escape)
+            {
+                this.Close();
+                Owner.Opacity = 1;
+            }
         }
     }
 }

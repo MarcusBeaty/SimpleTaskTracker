@@ -311,5 +311,13 @@ namespace SimpleTaskTracker.XAML
                 // Set SW Text to New Name
             }
         }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                _tsks.OnPlusTabClick(sender, e);
+            }
+        }
     }
 }

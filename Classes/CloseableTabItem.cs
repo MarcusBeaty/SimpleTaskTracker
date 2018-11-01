@@ -20,7 +20,23 @@ namespace SimpleTaskTracker
         public CloseableTabItem(Tasks_Page tp)
         {
             _tp = tp;
+            Focusable = true;
+            KeyDown += OnKeyDown;
+            FocusVisualStyle = null;
             this.SetResourceReference(StyleProperty, typeof(TabItem));
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                _tp.OnPlusTabClick(sender, e);
+            }
+
+            if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                CloseTb(sender,e);
+            }
         }
 
         public StringCollection list = Properties.Settings.Default.TabNames;
@@ -37,59 +53,44 @@ namespace SimpleTaskTracker
             
             // Close button to remove the tab
             var closeButton = new TabCloseButton();
-            var f = (this);
-            closeButton.Click +=
-                (sender, e) =>
-                {
-                    // If user has the Warning Setting enabled
+            closeButton.Click += CloseTb;
 
-                    if (Properties.Settings.Default.Warnings)
-                    {
-                        MessageBoxResult UserSelection = MessageBox.Show("Are you sure you would like to remove this tab?", "Simple Task Tracker", MessageBoxButton.YesNo);
-                        switch (UserSelection)
-                        {
-                            case MessageBoxResult.Yes:
-                                break;
-
-                            case MessageBoxResult.No:
-                                return;
-                        }
-                    }
-
-                    var tabControl = (TabControl)Parent;
-                    var total = tabControl.Items.Count;
-                    var thisIndex = tabControl.SelectedIndex;
-
-                    list.Remove(TbName);
-
-                    tabControl.Items.Remove(this);
-
-                    var newIndex = (thisIndex - 1);
-
-                    if (newIndex != -1)
-                    {
-                        tabControl.SelectedIndex = newIndex;
-                    }
-                };
-
-
-            //new
-            //if (_tp.tabCtrl.Items.Count > 4)
-           // {
-              //  foreach (TabItem t in _tp.tabCtrl.Items)
-             //   {
-            //        if (t.Name != "addTabItm") t.Width = 128;
-                    
-                  //  header.Width = 
-
-
-              //  }
-         //   }
-            //
             dockPanel.ToolTip = TbName;
             dockPanel.Children.Add(closeButton);
             // Set the header
             Header = dockPanel;
+        }
+
+        public void CloseTb(object sender, EventArgs e)
+        {
+            // If user has the Warning Setting enabled
+            if (Properties.Settings.Default.Warnings)
+            {
+                MessageBoxResult UserSelection = MessageBox.Show("Are you sure you would like to remove this tab?", "Simple Task Tracker", MessageBoxButton.YesNo);
+                switch (UserSelection)
+                {
+                    case MessageBoxResult.Yes:
+                        break;
+
+                    case MessageBoxResult.No:
+                        return;
+                }
+            }
+
+            var tabControl = (TabControl)Parent;
+            var total = tabControl.Items.Count;
+            var thisIndex = tabControl.SelectedIndex;
+
+            list.Remove(TbName);
+
+            tabControl.Items.Remove(this);
+
+            var newIndex = (thisIndex - 1);
+
+            if (newIndex != -1)
+            {
+                tabControl.SelectedIndex = newIndex;
+            }
         }
     }
 }

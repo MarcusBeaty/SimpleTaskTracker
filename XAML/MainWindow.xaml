@@ -11,6 +11,7 @@
     Background="White"
     Closing="Window_Closing"
     ResizeMode="CanMinimize"
+    KeyDown="Window_KeyDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>

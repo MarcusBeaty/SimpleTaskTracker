@@ -129,6 +129,10 @@ namespace SimpleTaskTracker.XAML
                 // Adding to TabControl
                 // Inserting before (+) button
                 tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, tab);
+
+                // Focusing first tab - i < list.Count - 1 to focus last tab
+                if (i == 0)
+                    tab.Focus();
             }
         }
 
@@ -173,8 +177,9 @@ namespace SimpleTaskTracker.XAML
                 // Add to TabControl
                 // inserting before (+) button
                 tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, tab);
-                tab.Focus();
                 Keyboard.ClearFocus();
+                tab.Focus();
+                
 
                 // Adding new entry to Database
                 using (var db = new DataEntities())
@@ -184,6 +189,14 @@ namespace SimpleTaskTracker.XAML
                     await db.SaveChangesAsync();
                     LoadItems();
                 }
+            }
+        }
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                OnPlusTabClick(sender, e);
             }
         }
     }
