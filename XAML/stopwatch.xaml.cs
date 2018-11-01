@@ -29,6 +29,7 @@ namespace SimpleTaskTracker.XAML
         public static bool recreate { get; set; }
         private bool tsRec = false;
         private ObservableCollection<Property> _collection;
+        MainWindow _mw;
         Stopwatch sw = new Stopwatch();
         DispatcherTimer dpTimer = new DispatcherTimer();
         private Tasks_Page _tsks;
@@ -38,13 +39,15 @@ namespace SimpleTaskTracker.XAML
         int minutes;
         int seconds;
 
-        public stopwatch(Tasks_Page tsks, ObservableCollection<Property> collection)
+        public stopwatch(Tasks_Page tsks, ObservableCollection<Property> collection, MainWindow mw)
         {
             InitializeComponent();
             DataContext = this;
             this.Loaded += Stopwatch_Loaded;
             _tsks = tsks;
             _collection = collection;
+            _mw = mw;
+
 
             if (_tsks.isRecreated)
             {
@@ -130,13 +133,15 @@ namespace SimpleTaskTracker.XAML
             // Getting parent window and assigning closing event handler
             Window sw_Window = Window.GetWindow(this);
             sw_Window.Closing += (Exiting);
+
+
         }
 
         void setTime()
         {
             ts = new TimeSpan(hours, minutes, seconds).Add(sw.Elapsed);
             //Formating Display of time
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds,ts.Milliseconds);
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
             //Outputting to WPF Textbox
             Time.Text = elapsedTime;
         }
@@ -155,7 +160,7 @@ namespace SimpleTaskTracker.XAML
             }
 
             //Formating Display of time
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds,ts.Milliseconds);
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
             //Outputting Time to Textbox
             Time.Text = elapsedTime;
         }
@@ -165,14 +170,14 @@ namespace SimpleTaskTracker.XAML
             ClockOut.IsEnabled = true;
             ClockIn.IsEnabled = false;
             StartBreak.IsEnabled = true;
-            
+
             // Assigning value to database
             using (var db = new DataEntities())
             {
-               var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
+                var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
                 _current.ClockIn = DateTime.Now;
                 await db.SaveChangesAsync();
-                Tasks_Page.loadItems();
+                Tasks_Page.LoadItems();
             }
             // Starting StopWatch
             dpTimer.Start();
@@ -185,7 +190,7 @@ namespace SimpleTaskTracker.XAML
             EndBreak.IsEnabled = false;
             StartBreak.IsEnabled = false;
             ClockOut.IsEnabled = false;
-         
+
             // Assigning value to database
             using (var db = new DataEntities())
             {
@@ -195,9 +200,9 @@ namespace SimpleTaskTracker.XAML
                 _current.Minutes = ts.Minutes;
                 _current.Seconds = ts.Seconds;
                 _current.Total = Math.Round(ts.TotalHours, 4);
-                
+
                 await db.SaveChangesAsync();
-                Tasks_Page.loadItems();
+                Tasks_Page.LoadItems();
             }
 
             //Stoping StopWatch
@@ -222,7 +227,7 @@ namespace SimpleTaskTracker.XAML
                 _current.Seconds = ts.Seconds;
                 _current.Total = Math.Round(ts.TotalHours, 4);
                 await db.SaveChangesAsync();
-                Tasks_Page.loadItems();
+                Tasks_Page.LoadItems();
             }
         }
 
@@ -250,7 +255,7 @@ namespace SimpleTaskTracker.XAML
             {
                 var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
 
-                if(_current != null)
+                if (_current != null)
                 {
                     _current.Hours = ts.Hours;
                     _current.Minutes = ts.Minutes;
@@ -258,6 +263,52 @@ namespace SimpleTaskTracker.XAML
                     _current.Total = Math.Round(ts.TotalHours, 4);
                     await db.SaveChangesAsync();
                 }
+            }
+        }
+
+        private void EditTaskName_Click(object sender, RoutedEventArgs e)
+        {
+            _mw.Opacity = 0.3;
+            var dg = new RenameTaskDialog { Owner = _mw };
+            dg.ShowDialog();
+
+            // If user pressed "Rename New Task"
+            if (dg.DialogResult is true)
+            {
+                var newName = dg.Input;
+
+                // Changing corresponding Task Name in DB to new Task Name
+                using (var db = new DataEntities())
+                {
+                    var propInDb = db.Properties.Single(n => n.Task == _taskName);
+                    propInDb.Task = newName;
+                    db.SaveChanges();
+                }
+
+                // Changing corresponding Task Name in Observable Collection to new Task Name
+                var propInCollection = Tasks_Page.col.Single(n => n.Task == _taskName);
+                propInCollection.Task = newName;
+                Tasks_Page.LoadItems();
+
+                // Changing corresponding Task Name in Tab List to new Task Name
+                var propInList = Tasks_Page.list;
+                propInList.Remove(_taskName);
+                propInList.Add(newName);
+
+                // Updating parent elements to reflect new Task Name
+                var parent = this.Parent as CloseableTabItem;
+                parent.TbName = newName;
+                parent.Uid = newName;
+                parent.Header = newName;
+
+                SW_Name.Text = newName;
+                _taskName = newName;
+
+                // Change DB Name to New Name
+                // Change Collection Name to New Name
+                // Change List to New Name
+                // Set Header to New Name
+                // Set SW Text to New Name
             }
         }
     }

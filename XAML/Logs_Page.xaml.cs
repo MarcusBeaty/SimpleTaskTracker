@@ -99,7 +99,7 @@ namespace SimpleTaskTracker.XAML
                     var dbSelected = db.Properties.Where(x => x.Selected == 1);
                     db.Properties.RemoveRange(dbSelected);
                     await db.SaveChangesAsync();
-                    Tasks_Page.loadItems();
+                    Tasks_Page.LoadItems();
                 }
             }
         }

@@ -23,7 +23,7 @@ namespace SimpleTaskTracker.XAML
     /// </summary>
     public partial class Tasks_Page : Page
     {
-        private StringCollection list = Properties.Settings.Default.TabNames;
+        public static StringCollection list = Properties.Settings.Default.TabNames;
         public static ObservableCollection<Property> col = new ObservableCollection<Property>();
         public string TaskName { get; set; }
         public string ReTaskName { get; set; }
@@ -44,7 +44,7 @@ namespace SimpleTaskTracker.XAML
                 exists = db.Properties.Any();
                 if (exists)
                 {
-                    loadItems();
+                    LoadItems();
 
                     if (list.Count != 0)
                     {
@@ -58,13 +58,13 @@ namespace SimpleTaskTracker.XAML
                     list.Clear();
                     Properties.Settings.Default.AutoDate = false;
                     Properties.Settings.Default.Warnings = true;
-                    loadItems();
+                    LoadItems();
                 }
             }
   
         }
 
-        public static void loadItems()
+        public static void LoadItems()
         {
             using (var db = new DataEntities())
             {
@@ -100,7 +100,7 @@ namespace SimpleTaskTracker.XAML
                 };
 
                 // Loading StopWatch into Tab Content
-                var content = new stopwatch(this, col);
+                var content = new stopwatch(this, col, _mw);
                 stopwatch.recreate = true;
 
                 // Creating Tab
@@ -123,7 +123,7 @@ namespace SimpleTaskTracker.XAML
                         var task = db.Properties.SingleOrDefault(x => x.Task == ReTaskName);
                         task.LastClosed = Properties.Settings.Default.LastClosed;
                         await db.SaveChangesAsync();
-                        loadItems();
+                        LoadItems();
                     }
                 }
                 // Adding to TabControl
@@ -153,7 +153,7 @@ namespace SimpleTaskTracker.XAML
                     Padding = new Thickness(2, 2, 10, 2)
                 };
 
-                var content = new stopwatch(this, col);
+                var content = new stopwatch(this, col, _mw);
                 stopwatch.recreate = false;
 
 
@@ -182,7 +182,7 @@ namespace SimpleTaskTracker.XAML
                     var newProp = new Property() { Task = TaskName };
                     db.Properties.Add(newProp);
                     await db.SaveChangesAsync();
-                    loadItems();
+                    LoadItems();
                 }
             }
         }

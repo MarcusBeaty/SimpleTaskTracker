@@ -62,13 +62,28 @@ namespace SimpleTaskTracker.XAML
                     var name = prop.Task;
 
                     // If input name exists
-                    if(input == name || input + date == name)
+                    if (Properties.Settings.Default.AutoDate)
                     {
-                        MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                        taskEntry.Clear();
-                        taskEntry.Focus();
-                        return;
+                        if (input + date == name)
+                        {
+                            MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
+                            taskEntry.Clear();
+                            taskEntry.Focus();
+                            return;
+                        }
                     }
+
+                    else
+                    {
+                        if (input == name)
+                        {
+                            MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
+                            taskEntry.Clear();
+                            taskEntry.Focus();
+                            return;
+                        }
+                    }
+                    
                 }
             }
                 // If input is empty

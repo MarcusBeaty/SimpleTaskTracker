@@ -124,6 +124,9 @@
     <Compile Include="XAML\Logs_Page.xaml.cs">
       <DependentUpon>Logs_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XAML\RenameTaskDialog.xaml.cs">
+      <DependentUpon>RenameTaskDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML\Settings_Page.xaml.cs">
       <DependentUpon>Settings_Page.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="XAML\Logs_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\RenameTaskDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
