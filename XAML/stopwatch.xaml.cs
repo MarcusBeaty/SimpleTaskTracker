@@ -269,7 +269,7 @@ namespace SimpleTaskTracker.XAML
         private void EditTaskName_Click(object sender, RoutedEventArgs e)
         {
             _mw.Opacity = 0.3;
-            var dg = new RenameTaskDialog { Owner = _mw };
+            var dg = new RenameTaskDialog(SW_Name.Text) { Owner = _mw };
             dg.ShowDialog();
 
             // If user pressed "Rename New Task"
@@ -299,16 +299,32 @@ namespace SimpleTaskTracker.XAML
                 var parent = this.Parent as CloseableTabItem;
                 parent.TbName = newName;
                 parent.Uid = newName;
-                parent.Header = newName;
+                parent.SetHeader(newName);
 
                 SW_Name.Text = newName;
                 _taskName = newName;
+            }
+        }
 
-                // Change DB Name to New Name
-                // Change Collection Name to New Name
-                // Change List to New Name
-                // Set Header to New Name
-                // Set SW Text to New Name
+        private void SW_Name_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (SW_Name.ActualHeight <= 28)
+            {
+                SW_Name.Margin = new Thickness(0, 0, 4, 15);
+            }
+                
+
+            if(SW_Name.ActualHeight > 28 && SW_Name.ActualHeight < 47)
+            {
+                SW_Name.Margin = new Thickness(0, 0, 4, 35);
+                SW_Name.FontSize = 20;
+            }
+                
+
+            if (SW_Name.ActualHeight > 47)
+            {
+                SW_Name.Margin = new Thickness(0, 0, 4, 50);
+                SW_Name.FontSize = 18;
             }
         }
 

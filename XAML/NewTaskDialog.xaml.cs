@@ -67,7 +67,7 @@ namespace SimpleTaskTracker.XAML
                         if (input + date == name)
                         {
                             MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                            taskEntry.Clear();
+                            //taskEntry.Clear();
                             taskEntry.Focus();
                             return;
                         }
@@ -78,7 +78,7 @@ namespace SimpleTaskTracker.XAML
                         if (input == name)
                         {
                             MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                            taskEntry.Clear();
+                            //taskEntry.Clear();
                             taskEntry.Focus();
                             return;
                         }
@@ -90,16 +90,16 @@ namespace SimpleTaskTracker.XAML
                 if (input == "")
                 {
                     MessageBox.Show("Task Name is required, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                    taskEntry.Clear();
+                    //taskEntry.Clear();
                     taskEntry.Focus();
                     return;
                 }
 
                 // If input char length is longer than 20
-                else if (input.Length > 30)
+                else if (input.Length > 75)
                 {
-                    MessageBox.Show("Character limit of 30 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
-                    taskEntry.Clear();
+                    MessageBox.Show("Character limit of 75 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
+                    //taskEntry.Clear();
                     taskEntry.Focus();
                     return;
                 }

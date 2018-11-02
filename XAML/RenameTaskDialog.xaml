@@ -42,7 +42,7 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="15"
             Foreground="#FF212121"
-            Text="Enter Task Name:"
+            Text="New Task Name:"
             TextAlignment="Center" />
         <TextBox
             Name="taskEntry"

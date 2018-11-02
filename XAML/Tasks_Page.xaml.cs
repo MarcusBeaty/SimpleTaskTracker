@@ -86,18 +86,10 @@ namespace SimpleTaskTracker.XAML
         {
             for (var i = 0; i < list.Count; i++)
             {
-                // Creating header for Tab
+                
                 ReTaskName = list[i];
                 isRecreated = true;
-                var header = new TextBlock
-                {
-                    Text = list[i],
-                    FontSize = 13,
-                    Width = 120,
-                    TextAlignment = TextAlignment.Left,
-                    TextWrapping = TextWrapping.NoWrap,
-                    Padding = new Thickness(2, 2, 10, 2)
-                };
+
 
                 // Loading StopWatch into Tab Content
                 var content = new stopwatch(this, col, _mw);
@@ -110,8 +102,9 @@ namespace SimpleTaskTracker.XAML
                     Content = content,
                     Uid = list[i]
                 };
-               
-                tab.SetHeader(header);
+
+                // Creating header for Tab
+                tab.SetHeader(list[i]);
 
                 using (var db = new DataEntities())
                 {
@@ -146,17 +139,6 @@ namespace SimpleTaskTracker.XAML
             // If user pressed "Create New Task"
             if (dg.DialogResult == true)
             {
-                // Creating header for Tab
-                var header = new TextBlock
-                {
-                    Text = TaskName,
-                    FontSize = 13,
-                    Width = 120,
-                    TextAlignment = TextAlignment.Left,
-                    TextWrapping = TextWrapping.NoWrap,
-                    Padding = new Thickness(2, 2, 10, 2)
-                };
-
                 var content = new stopwatch(this, col, _mw);
                 stopwatch.recreate = false;
 
@@ -169,7 +151,8 @@ namespace SimpleTaskTracker.XAML
                     Content = content
                 };
 
-                tab.SetHeader(header);
+                // Creating header for Tab
+                tab.SetHeader(TaskName);
 
                 // Adding to String Collection
                 list.Add(TaskName);

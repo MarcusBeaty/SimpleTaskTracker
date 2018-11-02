@@ -16,6 +16,8 @@ namespace SimpleTaskTracker
     class CloseableTabItem : TabItem
     {
         private Tasks_Page _tp;
+        public StringCollection list = Properties.Settings.Default.TabNames;
+        public string TbName { get; set; }
 
         public CloseableTabItem(Tasks_Page tp)
         {
@@ -39,14 +41,25 @@ namespace SimpleTaskTracker
             }
         }
 
-        public StringCollection list = Properties.Settings.Default.TabNames;
-
-        public string TbName { get; set; }
-        public void SetHeader(TextBlock header)
+        public void SetHeader(string name)
         {
-            
+            var header = new TextBlock
+            {
+                Text = name,
+                TextTrimming = TextTrimming.CharacterEllipsis,
+                TextWrapping = TextWrapping.NoWrap,
+                TextAlignment = TextAlignment.Left,
+                FontSize = 13,
+                Width = 120,
+                Padding = new Thickness(2,2,10,2)
+            };
+
             // Container for header controls
-            var dockPanel = new DockPanel();
+            var dockPanel = new DockPanel
+            {
+                ToolTip = TbName
+            };
+
             dockPanel.Children.Add(header);
             Height = 30;
             Width = 160;
@@ -55,7 +68,6 @@ namespace SimpleTaskTracker
             var closeButton = new TabCloseButton();
             closeButton.Click += CloseTb;
 
-            dockPanel.ToolTip = TbName;
             dockPanel.Children.Add(closeButton);
             // Set the header
             Header = dockPanel;
