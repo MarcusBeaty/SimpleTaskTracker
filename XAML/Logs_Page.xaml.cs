@@ -23,6 +23,7 @@ namespace SimpleTaskTracker.XAML
     public partial class Logs_Page : Page
     {
         private Tasks_Page _tskpg;
+        private CheckBox checkBoxHeader;
         private StringCollection list = Properties.Settings.Default.TabNames;
 
         public Logs_Page() { }
@@ -36,7 +37,7 @@ namespace SimpleTaskTracker.XAML
 
 
 
-        public async void remove_Selected(object sender, RoutedEventArgs e)
+        public async void Remove_Selected(object sender, RoutedEventArgs e)
         {
             // Storing every item that is Selected ( value of 1 )
             var selected = Tasks_Page.col.Where(x => x.Selected == 1);
@@ -100,12 +101,14 @@ namespace SimpleTaskTracker.XAML
                     db.Properties.RemoveRange(dbSelected);
                     await db.SaveChangesAsync();
                     Tasks_Page.LoadItems();
+                    Delete_Btn.IsEnabled = false;
+                    checkBoxHeader.IsChecked = false;
                 }
             }
         }
 
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void CheckBoxHeader_Checked(object sender, RoutedEventArgs e)
         {
             foreach (var prop in Tasks_Page.col)
             {
@@ -113,11 +116,43 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBoxHeader_Unchecked(object sender, RoutedEventArgs e)
         {
             foreach (var prop in Tasks_Page.col)
             {
                 prop.Selected = 0;
+            }
+        }
+    
+
+        private void CheckBoxHeader_Loaded(object sender, RoutedEventArgs e)
+        {
+            checkBoxHeader = (CheckBox)sender;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Tasks_Page.col.Any(x => x.Selected == 1))
+            {
+                Delete_Btn.IsEnabled = true;
+            }
+
+            else
+            {
+                Delete_Btn.IsEnabled = false;
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Tasks_Page.col.Any(x => x.Selected == 1))
+            {
+                Delete_Btn.IsEnabled = true;
+            }
+
+            else
+            {
+                Delete_Btn.IsEnabled = false;
             }
         }
     }

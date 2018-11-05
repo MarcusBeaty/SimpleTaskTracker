@@ -43,16 +43,17 @@
             </TextBlock.RenderTransform>
         </TextBlock>
         <Button
+            Name="Delete_Btn"
             Grid.Row="1"
+            IsEnabled="False"
             Margin="245,0,243,1.667"
             Background="#FFE86048"
             BorderBrush="#FF707070"
-            Click="remove_Selected"
+            Click="Remove_Selected"
             Content="Delete"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White" />
-
 
         <DataGrid
             x:Name="dataGrid"
@@ -66,18 +67,25 @@
             CanUserAddRows="False"
             ColumnWidth="*"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
-            RowHeaderWidth="0"
+            RowHeaderWidth="0"        
             SelectionUnit="Cell">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="SelectAll"></MenuItem>
+                    <MenuItem Command="Copy"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <CheckBox
+                                Loaded="CheckBoxHeader_Loaded"
                                 x:Name="checkBoxHeader"
-                                Checked="CheckBox_Checked"
+                                Checked="CheckBoxHeader_Checked"
                                 IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Unchecked="CheckBox_Unchecked" />
+                                Unchecked="CheckBoxHeader_Unchecked" />
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
@@ -85,6 +93,8 @@
                             <CheckBox
                                 x:Name="checkBox"
                                 HorizontalAlignment="Center"
+                                Checked="CheckBox_Checked"
+                                Unchecked="CheckBox_Unchecked"
                                 IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 IsThreeState="False" />
                         </DataTemplate>
