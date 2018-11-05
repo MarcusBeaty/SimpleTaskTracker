@@ -54,7 +54,7 @@
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"
             Foreground="#FF444444"
-            Text="Version 1.0"
+            Text="Version 1.1"
             TextWrapping="Wrap" />
         <TextBlock
             x:Name="Copyright"
