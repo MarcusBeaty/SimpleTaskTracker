@@ -36,14 +36,20 @@ namespace SimpleTaskTracker.XAML
             var initialInput = taskEntry.Text;
 
             var currentDate = DateTime.Now;
-            var date = currentDate.ToString(" M-d-y");
+            var date = currentDate.ToString("M-d-y");
 
             // If AutoDate setting is checked - Date is appended to Name
             if (Properties.Settings.Default.AutoDate)
             {
                 currentDate = DateTime.Now;
-                date = currentDate.ToString(" M-d-y");
-                initialInput += date;
+                date = currentDate.ToString("M-d-y");
+
+
+                // If User has appended date to name, do not add Data
+                if(!initialInput.Contains("Date:"))
+                {
+                    initialInput += ($" | Date: {date}");
+                }
             }
             
             // Validation Checks
@@ -84,10 +90,10 @@ namespace SimpleTaskTracker.XAML
                 return false;
             }
 
-            // If input char length is longer than 20
-            else if (name.Length > 75)
+            // If input char length is longer than 90
+            else if (name.Length > 90)
             {
-                MessageBox.Show("Character limit of 75 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
+                MessageBox.Show("Character limit of 90 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
                 //taskEntry.Clear();
                 taskEntry.Focus();
                 return false;

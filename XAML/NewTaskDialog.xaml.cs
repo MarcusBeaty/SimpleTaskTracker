@@ -42,14 +42,14 @@ namespace SimpleTaskTracker.XAML
             using (var db = new DataEntities())
             {               
                 DateTime currentDate = DateTime.Now;
-                String date = currentDate.ToString(" M-d-y");
+                var date = currentDate.ToString("M-d-y");
 
                 // If AutoDate setting is checked
                 if (Properties.Settings.Default.AutoDate)
                 {
                     currentDate = DateTime.Now;
-                    date = currentDate.ToString(" M-d-y");
-                    _tsks.TaskName = input + date;
+                    date = currentDate.ToString("M-d-y");
+                    _tsks.TaskName = input + ($" | Date: {date}");
                 }
 
                 else
@@ -95,10 +95,10 @@ namespace SimpleTaskTracker.XAML
                     return;
                 }
 
-                // If input char length is longer than 20
-                else if (input.Length > 75)
+                // If input char length is longer than 90
+                else if (input.Length > 90)
                 {
-                    MessageBox.Show("Character limit of 75 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
+                    MessageBox.Show("Character limit of 90 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
                     //taskEntry.Clear();
                     taskEntry.Focus();
                     return;
