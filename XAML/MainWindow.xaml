@@ -86,9 +86,7 @@
             Background="#00000000"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             Foreground="White"
-            TextAlignment="Center">
-            Version 1.0
-        </TextBlock>
+            TextAlignment="Center" Text="Version 1.1"/>
 
         <DockPanel
             Grid.RowSpan="5"

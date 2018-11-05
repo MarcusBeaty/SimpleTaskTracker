@@ -13,7 +13,7 @@
     KeyDown="UserControl_KeyDown"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center" Background="White">
+    <Grid HorizontalAlignment="Center" Background="White" Width="704">
 
 
         <Grid.ColumnDefinitions>
@@ -57,17 +57,14 @@
         <Button
             x:Name="ClockIn"
             Grid.Row="5"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Width="158"
-            Margin="1,0,0,0"
+            Grid.Column="2"
             Padding="1"
             Background="#FF00C770"
             Click="ClockIn_Click"
             Content="Clock-In"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontWeight="Bold"
-            Foreground="White" />
+            Foreground="White" Grid.ColumnSpan="2" />
         <Button
             x:Name="Resume"
             Grid.Row="5"
@@ -84,8 +81,7 @@
             x:Name="ClockOut"
             Grid.Row="5"
             Grid.Column="5"
-            Grid.ColumnSpan="4"
-            Margin="0,0,66,0"
+            Grid.ColumnSpan="2"
             Background="#FFFF5E5E"
             Click="ClockOut_Click"
             Content="Clock-Out"
@@ -96,9 +92,7 @@
         <Button
             x:Name="StartBreak"
             Grid.Row="7"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Width="158"
+            Grid.Column="2"
             Padding="1"
             Background="#FFF3C13B"
             Click="Start_Break"
@@ -106,13 +100,12 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontWeight="Bold"
             Foreground="White"
-            IsEnabled="False" />
+            IsEnabled="False" Grid.ColumnSpan="2" />
         <Button
             x:Name="EndBreak"
             Grid.Row="7"
             Grid.Column="5"
-            Grid.ColumnSpan="4"
-            Margin="0,0,66,0"
+            Grid.ColumnSpan="2"
             Background="#FFF3C13B"
             Click="End_Break"
             Content="End Break"
@@ -156,13 +149,14 @@
             TextDecorations="{x:Null}"
             TextWrapping="Wrap" />
         <Button 
-            Click="EditTaskName_Click"
-            Grid.ColumnSpan="2" Margin="67,78,1.3,9.4" Content="Rename Task">
-
+            Click="EditTaskName_Click" Margin="22,83,50,4"  Background="White" BorderBrush="#FF707070" Grid.Column="8">
+            <StackPanel Width="134" HorizontalAlignment="Center">
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="42,0,41,0" TextDecorations="{x:Null}" FontSize="10"><Run Text="Edit"/></TextBlock>
+            </StackPanel>
         </Button>
         <Rectangle
             Grid.ColumnSpan="9"
-            Margin="0,76,0,40"
+            Margin="50,76,50,40"
             Fill="#FF56CD4D" />
 
     </Grid>

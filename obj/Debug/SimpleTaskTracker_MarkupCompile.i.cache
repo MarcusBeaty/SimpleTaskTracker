@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\mbeaty\source\repos\simpletasktracker\obj\Debug\
+C:\Users\Marcu\source\repos\SimpleTaskTracker\obj\Debug\
 SimpleTaskTracker
 none
 false
 DEBUG;TRACE
-C:\Users\mbeaty\source\repos\simpletasktracker\App.xaml
+C:\Users\Marcu\source\repos\SimpleTaskTracker\App.xaml
 101871443672
 5-1474599545
-24-301744051
-221979184131
+24-456594805
+22-595139318
 XAML\About_Page.xaml;XAML\MainWindow.xaml;XAML\NewTaskDialog.xaml;XAML\Logs_Page.xaml;XAML\RenameTaskDialog.xaml;XAML\Settings_Page.xaml;XAML\Tasks_Page.xaml;XAML\stopwatch.xaml;XAML\TabCloseButton.xaml;XAML\Task_Home.xaml;
 
-True
+False
 
