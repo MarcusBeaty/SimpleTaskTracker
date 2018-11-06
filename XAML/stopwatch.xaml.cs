@@ -55,6 +55,9 @@ namespace SimpleTaskTracker.XAML
                 tsRec = true;
                 _taskName = _tsks.ReTaskName;
 
+                // Using recreated tick
+                dpTimer.Tick += new EventHandler(RecreatedTick);
+
                 using (var db = new DataEntities())
                 {
                     // using exist check for error: when clearing database but leaving tab open
@@ -122,9 +125,11 @@ namespace SimpleTaskTracker.XAML
                 };
 
                 _collection.Add(newTask);
+                // Using standard tick
+                dpTimer.Tick += new EventHandler(Tick);
             }
             setTime();
-            dpTimer.Tick += new EventHandler(Tick);
+           
             dpTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
 
@@ -133,8 +138,6 @@ namespace SimpleTaskTracker.XAML
             // Getting parent window and assigning closing event handler
             Window sw_Window = Window.GetWindow(this);
             sw_Window.Closing += (Exiting);
-
-
         }
 
         void setTime()
@@ -148,19 +151,21 @@ namespace SimpleTaskTracker.XAML
 
         void Tick(object sender, EventArgs e)
         {
-            // If tab is being recreated, add database values for timespan to elapsed
-            if (tsRec)
-            {
-                ts = new TimeSpan(hours, minutes, seconds).Add(sw.Elapsed);
-            }
-
-            else
-            {
-                ts = sw.Elapsed;
-            }
+            ts = sw.Elapsed;
 
             //Formating Display of time
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+            //Outputting Time to Textbox
+            Time.Text = elapsedTime;
+        }
+
+        void RecreatedTick(object sender, EventArgs e)
+        {
+            ts = new TimeSpan(hours, minutes, seconds).Add(sw.Elapsed);
+
+            //Formating Display of time
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+
             //Outputting Time to Textbox
             Time.Text = elapsedTime;
         }

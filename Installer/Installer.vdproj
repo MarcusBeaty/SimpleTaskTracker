@@ -544,7 +544,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Simple Task Tracker"
         "ProductCode" = "8:{E748ED97-CA52-4C84-A3AE-D5AE0ECB17DF}"
-        "PackageCode" = "8:{6C75BB86-A829-4706-9B0D-96CF36412512}"
+        "PackageCode" = "8:{054888DD-7C3C-4E28-B381-45BC54AE5D69}"
         "UpgradeCode" = "8:{8C52A01F-8C14-4534-92DE-D8A096233D6F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\mbeaty\source\repos\simpletasktracker\obj\Release\
+C:\Users\mbeaty\source\repos\SimpleTaskTracker\obj\Release\
 SimpleTaskTracker
 none
 false
 TRACE
-C:\Users\mbeaty\source\repos\simpletasktracker\App.xaml
+C:\Users\mbeaty\source\repos\SimpleTaskTracker\App.xaml
 10-211028443
 5-1474599545
 20693144404
-221979184131
+22-1997843177
 XAML\About_Page.xaml;XAML\MainWindow.xaml;XAML\NewTaskDialog.xaml;XAML\Logs_Page.xaml;XAML\RenameTaskDialog.xaml;XAML\Settings_Page.xaml;XAML\Tasks_Page.xaml;XAML\Stopwatch.xaml;XAML\TabCloseButton.xaml;XAML\Task_Home.xaml;
 
 False

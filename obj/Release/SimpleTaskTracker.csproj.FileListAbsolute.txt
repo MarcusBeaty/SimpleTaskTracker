@@ -87,3 +87,4 @@ C:\Users\mbeaty\source\repos\simpletasktracker\obj\Release\SimpleTaskTracker.csp
 C:\Users\mbeaty\source\repos\simpletasktracker\obj\Release\SimpleTaskTracker.csproj.CopyComplete
 C:\Users\mbeaty\source\repos\simpletasktracker\obj\Release\SimpleTaskTracker.exe
 C:\Users\mbeaty\source\repos\simpletasktracker\obj\Release\SimpleTaskTracker.pdb
+C:\Users\mbeaty\source\repos\simpletasktracker\obj\Release\SimpleTaskTracker.csprojAssemblyReference.cache
