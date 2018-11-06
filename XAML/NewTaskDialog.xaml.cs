@@ -49,7 +49,7 @@ namespace SimpleTaskTracker.XAML
                 {
                     currentDate = DateTime.Now;
                     date = currentDate.ToString("M-d-y");
-                    _tsks.TaskName = input + ($" | Date: {date}");
+                    _tsks.TaskName = input + ($" | {date}");
                 }
 
                 else

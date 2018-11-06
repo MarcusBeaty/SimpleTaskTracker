@@ -168,8 +168,11 @@ namespace SimpleTaskTracker.XAML
         private async void ClockIn_Click(object sender, RoutedEventArgs e)
         {
             ClockOut.IsEnabled = true;
+            ClockOut.Visibility = Visibility.Visible;
             ClockIn.IsEnabled = false;
+            ClockIn.Visibility = Visibility.Hidden;
             StartBreak.IsEnabled = true;
+            StartBreak.Visibility = Visibility.Visible;
 
             // Assigning value to database
             using (var db = new DataEntities())
@@ -214,8 +217,11 @@ namespace SimpleTaskTracker.XAML
         private async void Start_Break(object sender, RoutedEventArgs e)
         {
             StartBreak.IsEnabled = false;
+            StartBreak.Visibility = Visibility.Hidden;
             EndBreak.IsEnabled = true;
+            EndBreak.Visibility = Visibility.Visible;
             //Stoping StopWatch and Dispatch Timer
+
             sw.Stop();
             dpTimer.Stop();
 
@@ -234,7 +240,9 @@ namespace SimpleTaskTracker.XAML
         private void End_Break(object sender, RoutedEventArgs e)
         {
             EndBreak.IsEnabled = false;
+            EndBreak.Visibility = Visibility.Hidden;
             StartBreak.IsEnabled = true;
+            StartBreak.Visibility = Visibility.Visible;
             //Resuming StopWatch and DispatcherTimer
             dpTimer.Start();
             sw.Start();
@@ -243,6 +251,8 @@ namespace SimpleTaskTracker.XAML
         private void Resume_Click(object sender, RoutedEventArgs e)
         {
             Resume.IsEnabled = false;
+            Resume.Visibility = Visibility.Hidden;
+            ClockOut.Visibility = Visibility.Visible;
             EndBreak.IsEnabled = false;
             StartBreak.IsEnabled = true;
             dpTimer.Start();

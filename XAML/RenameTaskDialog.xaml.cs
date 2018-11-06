@@ -25,7 +25,7 @@ namespace SimpleTaskTracker.XAML
         public RenameTaskDialog(string TabName)
         {
             InitializeComponent();
-            taskEntry.Text = TabName;
+            //taskEntry.Text = TabName;
             taskEntry.CaretIndex = TabName.Count();
             taskEntry.Focus();
         }
@@ -43,13 +43,7 @@ namespace SimpleTaskTracker.XAML
             {
                 currentDate = DateTime.Now;
                 date = currentDate.ToString("M-d-y");
-
-
-                // If User has appended date to name, do not add Data
-                if(!initialInput.Contains("Date:"))
-                {
-                    initialInput += ($" | Date: {date}");
-                }
+                initialInput += ($" | {date}");
             }
             
             // Validation Checks

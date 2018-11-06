@@ -81,7 +81,7 @@
         <Button
             x:Name="ClockOut"
             Grid.Row="5"
-            Grid.Column="5"
+            Grid.Column="2"
             Grid.ColumnSpan="2"
             Background="#FFFF5E5E"
             Click="ClockOut_Click"
@@ -89,11 +89,12 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontWeight="Bold"
             Foreground="White"
+            Visibility="Hidden"
             IsEnabled="False" />
         <Button
             x:Name="StartBreak"
-            Grid.Row="7"
-            Grid.Column="2"
+            Grid.Row="5"
+            Grid.Column="5"
             Padding="1"
             Background="#FFF3C13B"
             Click="Start_Break"
@@ -104,9 +105,10 @@
             IsEnabled="False" Grid.ColumnSpan="2" />
         <Button
             x:Name="EndBreak"
-            Grid.Row="7"
+            Grid.Row="5"
             Grid.Column="5"
             Grid.ColumnSpan="2"
+            Visibility="Hidden"
             Background="#FFF3C13B"
             Click="End_Break"
             Content="End Break"
@@ -150,7 +152,7 @@
             TextDecorations="{x:Null}"
             TextWrapping="Wrap" />
         <Button 
-            Click="EditTaskName_Click" FocusVisualStyle="{x:Null}" Content="Edit" Margin="15.4,83,50,4.4"  FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic" Background="White" BorderBrush="#FF707070" Grid.Column="8" FontSize="11">
+            Click="EditTaskName_Click" FocusVisualStyle="{x:Null}" Content="Edit" Margin="15.4,83,50,15.4"  FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic" Background="#FF3D4147" BorderBrush="#FF707070" Grid.Column="8" FontSize="11" Foreground="#FFEDEDED">
         </Button>
         <Rectangle
             Grid.ColumnSpan="9"
