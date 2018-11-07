@@ -11,6 +11,7 @@
     Background="White"
     Closing="Window_Closing"
     ResizeMode="CanMinimize"
+    UseLayoutRounding="True"
     KeyDown="Window_KeyDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -264,6 +265,8 @@
 
         <Frame
             x:Name="Main"
+            Width="704"
+            Height="545.6"
             Grid.RowSpan="6"
             Grid.Column="1"
             Margin="0"
