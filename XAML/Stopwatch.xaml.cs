@@ -92,7 +92,7 @@ namespace SimpleTaskTracker.XAML
                                 ClockIn.Visibility = Visibility.Hidden;
                                 Resume.Visibility = Visibility.Visible;
                                 Resume.IsEnabled = true;
-                                ClockOut.IsEnabled = true;
+                                ClockOut.IsEnabled = false;
                                 ClockIn.IsEnabled = false;
                                 StartBreak.IsEnabled = false;
                                 EndBreak.IsEnabled = false;
@@ -100,6 +100,9 @@ namespace SimpleTaskTracker.XAML
                                 if (property.ClockOut.HasValue)
                                 {
                                     Resume.IsEnabled = false;
+                                    Edit_Btn.IsEnabled = false;
+                                    ClockOut.Visibility = Visibility.Visible;
+                                    Resume.Visibility = Visibility.Hidden;
                                     EndBreak.IsEnabled = false;
                                     StartBreak.IsEnabled = false;
                                     ClockIn.IsEnabled = false;
@@ -170,9 +173,16 @@ namespace SimpleTaskTracker.XAML
             Time.Text = elapsedTime;
         }
 
+        // Method to be called to prevent accidental hit of
+        // Clock-Out button after Clocking In / Resuming 
+        private async void Delay(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(500);
+            ClockOut.IsEnabled = true; 
+        }
+
         private async void ClockIn_Click(object sender, RoutedEventArgs e)
         {
-            ClockOut.IsEnabled = true;
             ClockOut.Visibility = Visibility.Visible;
             ClockIn.IsEnabled = false;
             ClockIn.Visibility = Visibility.Hidden;
@@ -190,6 +200,8 @@ namespace SimpleTaskTracker.XAML
             // Starting StopWatch
             dpTimer.Start();
             sw.Start();
+
+            Delay(sender, e);  
         }
 
         private async void ClockOut_Click(object sender, RoutedEventArgs e)
@@ -262,6 +274,8 @@ namespace SimpleTaskTracker.XAML
             StartBreak.IsEnabled = true;
             dpTimer.Start();
             sw.Start();
+
+            Delay(sender, e);
         }
 
         public async void Exiting(object sender, global::System.ComponentModel.CancelEventArgs e)

@@ -80,7 +80,7 @@
             VerticalAlignment="Center"
             Panel.ZIndex="1"
             MouseUp="Help_Btn_Click"
-            Source="/SimpleTaskTracker;component/Graphics/icons8-help-50.png" />
+            Source="/SimpleTaskTracker;component/Graphics/icons8-help-50.png" Cursor="Hand" />
         <TextBlock
             Name="helpTxt"
             Grid.Row="3"
@@ -91,7 +91,7 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"
             FontSize="18"
             Foreground="#FF196EB2"
-            MouseUp="Help_Btn_Click"><Run Text="Help" /></TextBlock>
+            MouseUp="Help_Btn_Click" Cursor="Hand"><Run Text="Help" /></TextBlock>
 
         <Button
             x:Name="Donate_Btn"
@@ -110,7 +110,7 @@
                 Width="178"
                 Margin="0"
                 FlowDirection="LeftToRight"
-                Orientation="Horizontal">
+                Orientation="Horizontal" Cursor="Hand">
                 <Image
                     Width="25"
                     Height="25"

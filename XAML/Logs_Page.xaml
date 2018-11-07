@@ -49,6 +49,7 @@
             Margin="245,0,243,1.667"
             Background="#FFE86048"
             BorderBrush="#FF707070"
+             Cursor="Hand"
             Click="Remove_Selected"
             Content="Delete"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"

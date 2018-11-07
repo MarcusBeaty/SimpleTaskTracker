@@ -127,11 +127,12 @@
             Click="Tasks_Click"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
+             Cursor="Hand"
             Foreground="White">
 
 
 
-            <StackPanel Width="175" Height="50">
+            <StackPanel Width="175" Height="50" Cursor="Hand">
                 <TextBlock
                     Width="41.016"
                     Height="16.5"
@@ -156,6 +157,7 @@
         <Button
             x:Name="reports_button"
             Grid.Row="2"
+             Cursor="Hand"
             Grid.RowSpan="3"
             Padding="1"
             VerticalAlignment="Top"
@@ -166,7 +168,7 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White">
-            <StackPanel Width="175" Height="50">
+            <StackPanel Width="175" Height="50" Cursor="Hand">
 
                 <TextBlock
                     Width="72.516"
@@ -195,6 +197,7 @@
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             BorderBrush="{x:Null}"
+             Cursor="Hand"
             BorderThickness="0"
             Click="Settings_Click"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
@@ -227,6 +230,7 @@
             Height="50"
             Margin="0"
             Padding="1"
+             Cursor="Hand"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             BorderBrush="{x:Null}"

@@ -54,6 +54,7 @@
             SelectionBrush="#FF252525" />
         <Button
             Grid.Row="3"
+             Cursor="Hand"
             Grid.Column="3"
             Margin="1,0,5,0"
             Background="White"
@@ -64,6 +65,7 @@
         <Button
             Grid.Row="3"
             Grid.Column="4"
+             Cursor="Hand"
             Margin="5,0,0,0"
             Background="#00F1F1F1"
             BorderThickness="1"
