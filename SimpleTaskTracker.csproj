@@ -130,6 +130,9 @@
     <Compile Include="XAML\Settings_Page.xaml.cs">
       <DependentUpon>Settings_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XAML\Stopwatch.xaml.cs">
+      <DependentUpon>Stopwatch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML\Tasks_Page.xaml.cs">
       <DependentUpon>Tasks_Page.xaml</DependentUpon>
     </Compile>
@@ -137,9 +140,6 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Settings.cs" />
-    <Compile Include="XAML\Stopwatch.xaml.cs">
-      <DependentUpon>Stopwatch.xaml</DependentUpon>
-    </Compile>
     <Compile Include="XAML\TabCloseButton.xaml.cs">
       <DependentUpon>TabCloseButton.xaml</DependentUpon>
     </Compile>
@@ -178,11 +178,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="XAML\Tasks_Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="XAML\Stopwatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="XAML\Tasks_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
