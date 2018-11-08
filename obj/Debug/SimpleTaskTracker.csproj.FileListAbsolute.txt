@@ -223,3 +223,5 @@ C:\Users\Marcu\source\repos\SimpleTaskTracker\obj\Debug\SimpleTaskTracker.csproj
 C:\Users\Marcu\source\repos\SimpleTaskTracker\obj\Debug\SimpleTaskTracker.csproj.CopyComplete
 C:\Users\Marcu\source\repos\SimpleTaskTracker\obj\Debug\SimpleTaskTracker.exe
 C:\Users\Marcu\source\repos\SimpleTaskTracker\obj\Debug\SimpleTaskTracker.pdb
+C:\Users\mbeaty\source\repos\simpletasktracker\obj\Debug\XAML\Help_About.g.cs
+C:\Users\mbeaty\source\repos\simpletasktracker\obj\Debug\XAML\Help_About.baml

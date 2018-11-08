@@ -15,24 +15,27 @@
     d:DesignWidth="704"
     mc:Ignorable="d">
 
-    <Grid Height="545.6" Width="704">
+    <Grid Height="545.6" Width="704" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="248*"/>
         </Grid.RowDefinitions>
-        <Rectangle Visibility="Hidden" UseLayoutRounding="True" Fill="#FFD32D2D" Margin="0,0,0,0"></Rectangle>
+        <Rectangle Visibility="Hidden" UseLayoutRounding="True" Fill="#FFB06F6F" Margin="0,0,0,495.6" Grid.ColumnSpan="4" Grid.RowSpan="2"></Rectangle>
         <TabControl
             x:Name="tabCtrl"
-            Grid.RowSpan="5"
-            Grid.ColumnSpan="5"
-            Margin="0,24,0,0"
             FocusVisualStyle="{x:Null}"
             Padding="0"
             VerticalAlignment="Top"
-            HorizontalContentAlignment="Stretch"
+            HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             BorderThickness="0"
-            UseLayoutRounding="True">
+            UseLayoutRounding="True" Height="522"  Margin="0,24,0,-0.4" Grid.RowSpan="2" Grid.ColumnSpan="4" Width="704" Grid.Column="0" HorizontalAlignment="Center">
 
             <TabControl.Resources>
 
@@ -49,10 +52,12 @@
                                     Name="Border"
                                     Background="Transparent"
                                     BorderBrush="DarkGray"
+                                    
                                     BorderThickness="0,1,1,0">
                                     <ContentPresenter
                                         x:Name="ContentSite"
-                                        Margin="10,2"
+                                        Margin="0"
+                                        
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         ContentSource="Header" />
@@ -94,15 +99,15 @@
                         </Grid.RowDefinitions>
 
                         <ScrollViewer
-                            Grid.Column="1"
-                            Grid.ColumnSpan="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="4"
                             Width="Auto"
                             Height="auto"
                             Margin="0,-5,0,0"
                             Padding="0"
                             FocusVisualStyle="{x:Null}"
                             HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Left"
+                            HorizontalContentAlignment="Center"
                             Grid.IsSharedSizeScope="True"
                             HorizontalScrollBarVisibility="Auto"
                             UseLayoutRounding="True"
@@ -110,19 +115,21 @@
                             <TabPanel
                                 x:Name="HeaderPanel"
                                 Margin="0"
+                                
                                 IsItemsHost="True" />
                         </ScrollViewer>
                         <ContentPresenter
                             Grid.Row="1"
-                            Margin="20"
+                            Margin="0"
+                            
                             ContentSource="SelectedContent" />
                     </Grid>
                 </ControlTemplate>
             </TabControl.Template>
             <TabItem Header="Help" Width="160" Height="30">Help</TabItem>
             <TabItem Header="Release Notes" Width="160" Height="30">Help</TabItem>
-            <TabItem Header="About" Width="160" Height="30"></TabItem>
-            
+            <TabItem Name="About" Padding="0" Header="About" Width="160" Height="30" HorizontalContentAlignment="Center" Background="#FF217C39" VerticalContentAlignment="Stretch" HorizontalAlignment="Center" />
+
         </TabControl>
     </Grid>
 </Page>

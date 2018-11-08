@@ -23,6 +23,7 @@ namespace SimpleTaskTracker.XAML
         public About_Page()
         {
             InitializeComponent();
+            About.Content = new Help_About();
         }
 
         private void Donate_Btn_Click(object sender, RoutedEventArgs e)

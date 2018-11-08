@@ -118,6 +118,9 @@
     <Compile Include="XAML\About_Page.xaml.cs">
       <DependentUpon>About_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XAML\Help_About.xaml.cs">
+      <DependentUpon>Help_About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML\NewTaskDialog.xaml.cs">
       <DependentUpon>NewTaskDialog.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <DependentUpon>Task_Home.xaml</DependentUpon>
     </Compile>
     <Page Include="XAML\About_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Help_About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
