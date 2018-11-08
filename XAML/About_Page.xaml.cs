@@ -24,7 +24,7 @@ namespace SimpleTaskTracker.XAML
         {
             InitializeComponent();
             
-           // About.Content = new Help_About();
+            About.Content = new Help_About();
         }
 
         
