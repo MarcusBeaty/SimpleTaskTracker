@@ -115,11 +115,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.edmx</DependentUpon>
     </Compile>
-    <Compile Include="XAML\About_Page.xaml.cs">
-      <DependentUpon>About_Page.xaml</DependentUpon>
+    <Compile Include="XAML\Help_Page.xaml.cs">
+      <DependentUpon>Help_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="XAML\Help_About.xaml.cs">
       <DependentUpon>Help_About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Help_ReleaseNotes.xaml.cs">
+      <DependentUpon>Help_ReleaseNotes.xaml</DependentUpon>
     </Compile>
     <Compile Include="XAML\NewTaskDialog.xaml.cs">
       <DependentUpon>NewTaskDialog.xaml</DependentUpon>
@@ -149,11 +152,15 @@
     <Compile Include="XAML\Task_Home.xaml.cs">
       <DependentUpon>Task_Home.xaml</DependentUpon>
     </Compile>
-    <Page Include="XAML\About_Page.xaml">
+    <Page Include="XAML\Help_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="XAML\Help_About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Help_ReleaseNotes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

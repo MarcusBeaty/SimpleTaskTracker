@@ -109,6 +109,7 @@
         <Rectangle
             x:Name="sel_panel"
             Grid.Row="1"
+           
             Width="6"
             Height="50"
             Margin="0"
@@ -212,7 +213,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    RenderTransformOrigin="0.366,1.75"><Run Text="Settings" /></TextBlock>
+                    Text="Settings"></TextBlock>
                 <Image
                     Width="35"
                     Height="36.25"
@@ -226,7 +227,7 @@
         </Button>
 
         <Button
-            x:Name="about_button"
+            x:Name="help_button"
             Grid.Row="5"
             Height="50"
             Margin="0"
@@ -236,7 +237,7 @@
             HorizontalContentAlignment="Center"
             BorderBrush="{x:Null}"
             BorderThickness="0"
-            Click="about_button_Click"
+            Click="help_button_Click"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White">
@@ -248,7 +249,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    RenderTransformOrigin="0.366,1.75"><Run Text="About" /></TextBlock>
+                    RenderTransformOrigin="0.366,1.75"><Run Text="Help" /></TextBlock>
                 <Image
                     Width="35"
                     Height="36.25"

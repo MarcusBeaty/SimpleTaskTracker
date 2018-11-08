@@ -28,27 +28,28 @@
             <ColumnDefinition Width="245*" />
             <ColumnDefinition Width="216*" />
         </Grid.ColumnDefinitions>
+        <Image Name="Logo" Source="/SimpleTaskTracker;component/Graphics/icon.ico" Margin="-1,8.2,101.8,10" Grid.Row="1" Grid.RowSpan="2" OpacityMask="Black"/>
         <TextBlock
-            x:Name="Titfle"
+            x:Name="Title"
             Grid.Row="1"
             Width="205"
             Height="25"
             Padding="10,0,0,0"
-            Margin="0"
+            Margin="63,3.2,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"
             FontSize="18"
             Foreground="#FF444444"
             Text="Simple Task Tracker"
-            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.RowSpan="2" />
 
         <TextBlock
             x:Name="Version"
             Grid.Row="2"
             Width="101"
             Height="18"
-            Margin="0,10,0,0"
+            Margin="63,12.2,0,0"
                         Padding="10,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -62,7 +63,7 @@
             Grid.ColumnSpan="3"
             Width="248"
             Height="18"
-            Margin="0,31,0,0"
+            Margin="63,30.2,0,0"
                         Padding="10,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"

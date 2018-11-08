@@ -30,7 +30,7 @@ namespace SimpleTaskTracker.XAML
         private Tasks_Page tk;
         private Logs_Page lgs;
         private Settings_Page set;
-        private About_Page abt;
+        private Help_Page hlp;
 
         public MainWindow()
         {
@@ -42,7 +42,7 @@ namespace SimpleTaskTracker.XAML
             tk = new Tasks_Page(this);
             lgs = new Logs_Page(tk);
             set = new Settings_Page();
-            abt = new About_Page();
+            hlp = new Help_Page();
             Main.Content = tk;
         }
 
@@ -71,7 +71,7 @@ namespace SimpleTaskTracker.XAML
             tasks_button.Background = (Brush)bc.ConvertFrom("#2e3135");
             reports_button.ClearValue(BackgroundProperty);
             settings_button.ClearValue(BackgroundProperty);
-            about_button.ClearValue(BackgroundProperty);
+            help_button.ClearValue(BackgroundProperty);
             sel_panel.SetValue(Grid.RowProperty, 1);
         }
 
@@ -84,7 +84,7 @@ namespace SimpleTaskTracker.XAML
             tasks_button.ClearValue(BackgroundProperty);
             reports_button.Background = (Brush)bc.ConvertFrom("#2e3135");
             settings_button.ClearValue(BackgroundProperty);
-            about_button.ClearValue(BackgroundProperty);
+            help_button.ClearValue(BackgroundProperty);
             sel_panel.SetValue(Grid.RowProperty, 2);
         }
 
@@ -96,21 +96,21 @@ namespace SimpleTaskTracker.XAML
             //tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");
             tasks_button.ClearValue(BackgroundProperty);
             reports_button.ClearValue(BackgroundProperty);
-            about_button.ClearValue(BackgroundProperty);
+            help_button.ClearValue(BackgroundProperty);
             settings_button.Background = (Brush)bc.ConvertFrom("#2e3135");
             sel_panel.SetValue(Grid.RowProperty, 3);
         }
 
-        private void about_button_Click(object sender, RoutedEventArgs e)
+        private void help_button_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = abt;
+            Main.Content = hlp;
             var bc = new BrushConverter();
             // tasks_panel.Visibility = Visibility.Hidden;
             //tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");
             tasks_button.ClearValue(BackgroundProperty);
             reports_button.ClearValue(BackgroundProperty);
             settings_button.ClearValue(BackgroundProperty);
-            about_button.Background = (Brush)bc.ConvertFrom("#2e3135");
+            help_button.Background = (Brush)bc.ConvertFrom("#2e3135");
             sel_panel.SetValue(Grid.RowProperty, 5);
         }
 

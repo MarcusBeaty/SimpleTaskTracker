@@ -18,13 +18,14 @@ namespace SimpleTaskTracker.XAML
     /// <summary>
     /// Interaction logic for About_Page.xaml
     /// </summary>
-    public partial class About_Page : Page
+    public partial class Help_Page : Page
     {
-        public About_Page()
+        public Help_Page()
         {
             InitializeComponent();
             
             About.Content = new Help_About();
+            ReleaseNotes.Content = new Help_ReleaseNotes();
         }
 
         
