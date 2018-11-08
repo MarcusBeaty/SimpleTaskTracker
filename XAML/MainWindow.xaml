@@ -270,8 +270,8 @@
             Grid.RowSpan="6"
             Grid.Column="1"
             Margin="0"
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Top"
-            NavigationUIVisibility="Hidden" />
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            NavigationUIVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Window>

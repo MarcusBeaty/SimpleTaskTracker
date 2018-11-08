@@ -23,17 +23,10 @@ namespace SimpleTaskTracker.XAML
         public About_Page()
         {
             InitializeComponent();
-            About.Content = new Help_About();
+            
+           // About.Content = new Help_About();
         }
 
-        private void Donate_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.paypal.me/MarcusBeaty");
-        }
-
-        private void Help_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://drive.google.com/file/d/1x0L-HiZkMyExT4Y2T9BVTw7xTtv31Kq1/view?usp=sharing");
-        }
+        
     }
 }
