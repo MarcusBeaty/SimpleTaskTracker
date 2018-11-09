@@ -14,9 +14,9 @@
     VerticalAlignment="Top"
     d:DesignHeight="410"
     d:DesignWidth="698"
-    Grid.IsSharedSizeScope="True"
+    
     KeepAlive="True"
-    UseLayoutRounding="True"
+    
     mc:Ignorable="d">
 
 
@@ -37,6 +37,7 @@
         <TabControl
             x:Name="tabCtrl"
             Grid.RowSpan="5"
+            
             Grid.ColumnSpan="5"
             Margin="0,-20,0,2"
             FocusVisualStyle="{x:Null}"

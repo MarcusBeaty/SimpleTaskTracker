@@ -11,7 +11,6 @@
     Background="White"
     Closing="Window_Closing"
     ResizeMode="CanMinimize"
-    UseLayoutRounding="True"
     KeyDown="Window_KeyDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -80,6 +79,7 @@
         <TextBlock
             Width="177"
             Height="22"
+            UseLayoutRounding="True"
             Margin="0,28,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -97,6 +97,7 @@
                 x:Name="tasks_panel"
                 Width="734"
                 Height="50"
+                UseLayoutRounding="True"
                 Margin="30,0,0,-5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -104,12 +105,12 @@
         </DockPanel>
 
         <DockPanel Grid.RowSpan="6">
-            <WrapPanel Margin="0,0,0,-6" Background="#FF3D4147" />
+            <WrapPanel Margin="0,0,0,-6" UseLayoutRounding="True" Background="#FF3D4147" />
         </DockPanel>
         <Rectangle
             x:Name="sel_panel"
             Grid.Row="1"
-           
+           SnapsToDevicePixels="True"
             Width="6"
             Height="50"
             Margin="0"
@@ -269,6 +270,7 @@
             Width="704"
             Height="545.6"
             Grid.RowSpan="6"
+            UseLayoutRounding="True"
             Grid.Column="1"
             Margin="0"
             HorizontalContentAlignment="Center"
