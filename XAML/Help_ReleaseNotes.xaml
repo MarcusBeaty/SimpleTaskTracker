@@ -31,10 +31,10 @@
         <TextBlock x:Name="myTextBox" Padding="25,5"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
          ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" VerticalAlignment="Top" Width="701" Height="490"  Grid.RowSpan="6" TextWrapping="Wrap" Grid.ColumnSpan="4" Margin="0,50,0,0"  FontSize="20">
-            <Bold>Release Notes - November 9,2018</Bold><LineBreak/>
-            Fixes:<LineBreak/>
-                -Test <LineBreak/>
-            Improvements:
+            <Label><Bold FontSize="36">Release Notes - November 9,2018</Bold></Label><LineBreak/>
+            <Label FontSize="27">Fixes:</Label><LineBreak/>
+            <Label>   -Test</Label><LineBreak/>
+            <Label FontSize="27">Improvements:</Label>
             <LineBreak/>
                 -Test
         </TextBlock>
