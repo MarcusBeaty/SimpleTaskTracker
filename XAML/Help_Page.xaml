@@ -8,13 +8,14 @@
     Title="Help_Page"
     Width="704"
     Height="545.6"
-    Margin="0"
+    SnapsToDevicePixels="True"
+    Margin="0,3,0,0"
     UseLayoutRounding="True"
     d:DesignHeight="545.6"
     d:DesignWidth="704"
-    mc:Ignorable="d">
+    mc:Ignorable="d" VerticalAlignment="Top">
 
-    <Grid>
+    <Grid VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -25,14 +26,14 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="248*"/>
         </Grid.RowDefinitions>
-        <Rectangle Visibility="Hidden" UseLayoutRounding="True" Fill="#FFB06F6F" Margin="0,0,0,495.6" Grid.ColumnSpan="4" Grid.RowSpan="2"></Rectangle>
+        <Rectangle Visibility="Hidden" UseLayoutRounding="False" Fill="#FFB06F6F" Margin="0" Grid.ColumnSpan="4" Height="50" VerticalAlignment="Top"/>
         <TabControl
             x:Name="tabCtrl"
             FocusVisualStyle="{x:Null}"
             Padding="0"
-            VerticalContentAlignment="Center"
+            VerticalContentAlignment="Top"
             BorderThickness="0"
-            UseLayoutRounding="True" Height="522"  Margin="0,24,0,-0.4" Grid.RowSpan="2" Grid.ColumnSpan="4" Width="704" Grid.Column="0" HorizontalContentAlignment="Center">
+            UseLayoutRounding="True" Height="522"  Margin="0,21,0,0" Grid.RowSpan="2" Grid.ColumnSpan="4" Width="704" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Top">
 
             <TabControl.Resources>
 

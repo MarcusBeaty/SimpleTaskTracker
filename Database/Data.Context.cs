@@ -16,7 +16,7 @@ namespace SimpleTaskTracker.Database
     public partial class DataEntities : DbContext
     {
         public DataEntities()
-            : base("name=DataEntitiesTest")
+            : base("name=DB")
         {
         }
     

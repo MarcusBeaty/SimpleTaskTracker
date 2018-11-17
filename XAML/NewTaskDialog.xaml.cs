@@ -64,7 +64,7 @@ namespace SimpleTaskTracker.XAML
                     // If input name exists
                     if (Properties.Settings.Default.AutoDate)
                     {
-                        if (input + date == name)
+                        if ((input + ($" | {date}")) == name)
                         {
                             MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
                             //taskEntry.Clear();

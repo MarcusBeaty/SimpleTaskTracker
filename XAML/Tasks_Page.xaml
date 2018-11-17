@@ -10,7 +10,8 @@
     KeyDown="Page_KeyDown"
     Width="Auto"
     Height="410"
-    Margin="0,48,0,0"
+    SnapsToDevicePixels="True"
+    Margin="0,25,0,0"
     VerticalAlignment="Top"
     d:DesignHeight="410"
     d:DesignWidth="698"
@@ -39,7 +40,7 @@
             Grid.RowSpan="5"
             
             Grid.ColumnSpan="5"
-            Margin="0,-20,0,2"
+            Margin="0,0,0,0"
             FocusVisualStyle="{x:Null}"
             Padding="0"
             VerticalAlignment="Top"
@@ -112,7 +113,7 @@
                             Grid.ColumnSpan="3"
                             Width="Auto"
                             Height="auto"
-                            Margin="0,-5,0,0"
+                            Margin="0,0,0,0"
                             Padding="0"
                             FocusVisualStyle="{x:Null}"
                             HorizontalAlignment="Stretch"
@@ -183,6 +184,7 @@
                     </Style>
                 </TabItem.Style>
             </TabItem>
+           
         </TabControl>
     </Grid>
 </Page>

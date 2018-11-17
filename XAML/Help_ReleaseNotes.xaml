@@ -33,15 +33,15 @@
             <StackPanel Margin="15,15,15,0">
 
 
-                <TextBlock FontSize="50" FontFamily="Tw Cen MT Condensed" FontWeight="Bold" FontStretch="Condensed" Foreground="#FF3F3F3F">Release Notes - November 9,2018</TextBlock>
+                <TextBlock FontSize="50" FontFamily="/SimpleTaskTracker;component/Fonts/#Tw Cen MT Condensed" FontWeight="Bold" FontStretch="Condensed" Foreground="#FF3F3F3F">Release Notes - November 9,2018</TextBlock>
                 <TextBlock HorizontalAlignment="Center" Width="607" Foreground="#FF3F3F3F" Margin="0,0,93,0">__________________________________________________________________________________________________________________<LineBreak/></TextBlock>
 
-                <TextBlock FontSize="32" FontFamily="Tw Cen MT Condensed" Foreground="#FF3F3F3F" FontStretch="Condensed" FontWeight="Bold">Fixes<LineBreak/></TextBlock>
+                <TextBlock FontSize="32" FontFamily="Tw Cen MT Condensed" Foreground="#FF3F3F3F" FontStretch="Condensed">[ Fixes ]<LineBreak/></TextBlock>
                 <TextBlock FontFamily="Yu Gothic" Foreground="#FF3F3F3F" FontSize="18" Padding="25,5,5,5"> • Added ability to blah blah blah</TextBlock>
                 <TextBlock FontFamily="Yu Gothic" Foreground="#FF3F3F3F" FontSize="18" Padding="25,5,5,5"> • Added ability to blah blah blah</TextBlock>
                 <TextBlock FontFamily="Yu Gothic" Foreground="#FF3F3F3F" FontSize="18" Padding="25,5,5,5"> • Added ability to blah blah blah<LineBreak/></TextBlock>
 
-                <TextBlock FontSize="27" FontFamily="Tw Cen MT Condensed" Foreground="#FF3F3F3F">Improvements<LineBreak/>
+                <TextBlock FontSize="27" FontFamily="Tw Cen MT Condensed" Foreground="#FF3F3F3F">[ Improvements ]<LineBreak/>
                 </TextBlock>
                 <TextBlock Foreground="#FF3F3F3F" FontFamily="Yu Gothic" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Testing release notes page blah blah blah I hope this wraps perfectly but I have a feeling it wontfdgdfgdfgfdgfdgdfgdsfgfdgfgsdgdsfgdfgdg</TextBlock>
                 <TextBlock Foreground="#FF3F3F3F" FontFamily="Yu Gothic" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Testing release notes page blah blah blah I hope this wraps perfectly but I have a feeling it wontfdgdfgdfgfdgfdgdfgdsfgfdgfgsdgdsfgdfgdg</TextBlock>

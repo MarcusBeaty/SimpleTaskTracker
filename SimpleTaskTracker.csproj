@@ -254,6 +254,10 @@
     <Resource Include="Fonts\AdobeArabic-Regular.otf" />
     <Resource Include="Fonts\GOTHIC.TTF" />
     <Resource Include="Fonts\l_10646.ttf" />
+    <Resource Include="Fonts\TCB____.TTF" />
+    <Resource Include="Fonts\TCCEB.TTF" />
+    <Resource Include="Fonts\TCCM___.TTF" />
+    <Resource Include="Fonts\Tw Cen MT_0.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
