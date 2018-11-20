@@ -62,6 +62,7 @@
             Grid.RowSpan="2"
             Height="50"
             Margin="0"
+            UseLayoutRounding="True"
             VerticalAlignment="Top"
             Panel.ZIndex="2"
             Fill="#FF4CB944" />
@@ -91,13 +92,14 @@
 
         <DockPanel
             Grid.RowSpan="5"
+            UseLayoutRounding="True"
             Grid.ColumnSpan="2"
-            Margin="143,0,0,162">
+            Margin="143,0,0,0" Height="50" VerticalAlignment="Top">
             <WrapPanel
                 x:Name="tasks_panel"
                 Width="734"
                 Height="50"
-                UseLayoutRounding="True"
+                
                 Margin="30,0,0,-5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -268,13 +270,12 @@
         <Frame
             x:Name="Main"
             Width="704"
-            Height="545.6"
+            Height="545"
             Grid.RowSpan="6"
             UseLayoutRounding="True"
             Grid.Column="1"
             Margin="0"
             HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            NavigationUIVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            NavigationUIVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Top" />
     </Grid>
 </Window>

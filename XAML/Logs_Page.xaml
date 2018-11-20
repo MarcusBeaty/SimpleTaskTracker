@@ -8,7 +8,6 @@
     Title="Logs_Page"
     Width="704"
     Height="545"
-    SnapsToDevicePixels="True"
     Margin="0"
     HorizontalAlignment="Center"
     VerticalAlignment="Top"
@@ -16,7 +15,7 @@
     KeepAlive="True"
     mc:Ignorable="d">
 
-    <Grid Width="704" HorizontalAlignment="Center">
+    <Grid Width="704" HorizontalAlignment="Center" Height="545" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="476*" />
             <RowDefinition Height="37*" />
@@ -56,12 +55,14 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White" HorizontalAlignment="Center" Width="160" />
-
+        <Rectangle UseLayoutRounding="True" Visibility="Hidden" Fill="#FF3D4147" Height="495" VerticalAlignment="Top" Margin="0,50,0,0"></Rectangle>
         <DataGrid
             x:Name="dataGrid"
             Width="700"
             Height="358"
-            Margin="0,55,0,0"
+            Margin="0,50,0,0"
+            Visibility="Visible"
+            UseLayoutRounding="True"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
