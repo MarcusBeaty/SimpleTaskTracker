@@ -35,7 +35,7 @@ namespace SimpleTaskTracker
                 _tp.OnPlusTabClick(sender, e);
             }
 
-            if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (e.Key == Key.W && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 CloseTb(sender,e);
             }

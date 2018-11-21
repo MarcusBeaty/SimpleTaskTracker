@@ -13,7 +13,7 @@
              Height="545.6"
              BorderBrush="White"
              d:DesignHeight="545.6" d:DesignWidth="704" HorizontalAlignment="Center" VerticalAlignment="Top">
-    <Grid Width="704" Margin="0,-50,0,0" HorizontalAlignment="Left" Background="White">
+    <Grid Width="704" Margin="0,-50,0,0" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="53*" />
             <RowDefinition Height="16*" />
@@ -29,31 +29,31 @@
             <ColumnDefinition Width="245*" />
             <ColumnDefinition Width="216*" />
         </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FF56CD4D" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Height="2.4" Margin="52,37.6,52,10.4" Grid.Row="2" Grid.ColumnSpan="4"/>
+        <TextBlock FontSize="32" FontFamily="Arial" FontWeight="Bold"  Foreground="#FF4B4B4B" Grid.RowSpan="3" Grid.ColumnSpan="7" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Center">Release Notes | November 20,2018</TextBlock>
 
-        <TextBlock FontSize="48" FontFamily="/SimpleTaskTracker;component/Fonts/#Tw Cen MT Condensed" FontWeight="Bold" FontStretch="Condensed" Foreground="#FF26789C" Grid.RowSpan="3" Grid.ColumnSpan="7" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Center">Release Notes | November 20,2018</TextBlock>
-        <TextBlock Width="600" Foreground="#FF277090" Margin="0,40,0,0" VerticalAlignment="Top" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Center" TextDecorations="Underline">__________________________________________________________________________________________________________________________<LineBreak/></TextBlock>
 
         <ScrollViewer Width="698" Grid.RowSpan="5" Grid.ColumnSpan="4" Margin="3,0,3,54.2" VerticalAlignment="Bottom" Height="407" Padding="0" PanningMode="VerticalOnly" Grid.Row="2">
             <StackPanel Margin="15,15,15,0">
 
-                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF277090" FontWeight="Bold">[ What's New ]
+                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B" FontWeight="Bold">[ Improvements ] <LineBreak/>
                 </TextBlock>
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added the ability to edit open Task names from the Tasks section.</TextBlock>
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added new page "Help" - Contains Release Notes, About, and Help sections.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added the ability to edit open Task names from the Tasks section.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added new page "Help" - Contains Release Notes, About, and Help sections.</TextBlock>
 
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Changed the formatting of Date when applied to Task name to improve readability.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Changed the formatting of Date when applied to Task name to improve readability.</TextBlock>
 
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added the ability to right click and select and copy cell(s) from the Reports section.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added the ability to right click and select and copy cell(s) from the Reports section.</TextBlock>
 
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added HotKeys to add (Ctrl+T) and remove (Ctrl+W) Task tabs.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added HotKeys to add (Ctrl+T) and remove (Ctrl+W) Task tabs.</TextBlock>
 
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Esc Key now closes "New Task" / "Rename Task" prompt windows.</TextBlock>
-                <TextBlock Foreground="#FF3F3F3F" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Increased Task Name character limit to 90 characters.<LineBreak></LineBreak></TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Esc Key now closes "New Task" / "Rename Task" prompt windows.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Increased Task Name character limit to 90 characters.<LineBreak></LineBreak></TextBlock>
 
-                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic" Foreground="#FF4CB944" FontStretch="Condensed" FontWeight="Bold">[ Bug Fixes ]</TextBlock>
-                <TextBlock FontFamily="Yu Gothic" Foreground="#FF3F3F3F" FontSize="18" Padding="25,5,5,5"> • Fixed validation error for Task names when Auto Date setting is enabled.</TextBlock>
-                <TextBlock FontFamily="Yu Gothic" Foreground="#FF3F3F3F" FontSize="18" Padding="25,5,5,5"> • Invalid input no longer cleared when creating / editing Task names.</TextBlock>
-                <TextBlock FontFamily="Yu Gothic" Foreground="#FF3F3F3F" FontSize="18" Padding="25,5,5,5"> • Select All checkox in the Reports section is now properly unchecked<LineBreak/>after deleting all tabs.<LineBreak></LineBreak></TextBlock>
+                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B"  FontWeight="Bold">[ Bug Fixes ]<LineBreak/></TextBlock>
+                <TextBlock FontFamily="Arial" Foreground="#FF4B4B4B" FontSize="18" Padding="25,5,5,5"> • Fixed validation error for Task names when Auto Date setting is enabled.</TextBlock>
+                <TextBlock FontFamily="Arial" Foreground="#FF4B4B4B" FontSize="18" Padding="25,5,5,5"> • Invalid input no longer cleared when creating / editing Task names.</TextBlock>
+                <TextBlock FontFamily="Arial" Foreground="#FF4B4B4B" FontSize="18" Padding="25,5,5,5"> • The Select All checkbox in the Reports section is now properly unchecked<LineBreak/>after deleting all tabs.<LineBreak></LineBreak></TextBlock>
 
 
             </StackPanel>
