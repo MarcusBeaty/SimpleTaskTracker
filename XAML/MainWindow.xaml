@@ -269,13 +269,11 @@
 
         <Frame
             x:Name="Main"
-            Width="704"
-            Height="545"
             Grid.RowSpan="6"
             UseLayoutRounding="True"
             Grid.Column="1"
             Margin="0"
             HorizontalContentAlignment="Center"
-            NavigationUIVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

@@ -6,12 +6,12 @@
     xmlns:local="clr-namespace:SimpleTaskTracker.XAML"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Help_Page"
-    Width="704"
-    Height="545"
+    Width="Auto"
+    Height="Auto"
     Margin="0"
     d:DesignHeight="545"
     d:DesignWidth="704"
-    mc:Ignorable="d" VerticalAlignment="Top">
+    mc:Ignorable="d" UseLayoutRounding="True">
 
     <Grid VerticalAlignment="Top" Height="545">
         <Grid.ColumnDefinitions>
@@ -106,7 +106,7 @@
                             Grid.ColumnSpan="4"
                             Width="Auto"
                             Height="auto"
-                            Margin="0,-1,0,0"
+                            Margin="0"
                             Padding="0"
                             FocusVisualStyle="{x:Null}"
                             HorizontalAlignment="Center"
