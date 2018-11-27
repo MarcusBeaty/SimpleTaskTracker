@@ -29,11 +29,11 @@
             <ColumnDefinition Width="245*" />
             <ColumnDefinition Width="216*" />
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF56CD4D" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Height="2.4" Margin="52,37.6,52,10.4" Grid.Row="2" Grid.ColumnSpan="4"/>
-        <TextBlock FontSize="32" FontFamily="Arial" FontWeight="Bold"  Foreground="#FF4B4B4B" Grid.RowSpan="3" Grid.ColumnSpan="7" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Center">Release Notes | November 20,2018</TextBlock>
+        <Rectangle Fill="#FF56CD4D" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Height="2.4" Margin="52,54,52,26" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+        <TextBlock FontSize="32" FontFamily="Arial" FontWeight="Bold"  Foreground="#FF4B4B4B" Grid.RowSpan="3" Grid.ColumnSpan="7" VerticalAlignment="Top" Margin="0,75,0,0" HorizontalAlignment="Center">Release Notes | November 20,2018</TextBlock>
 
 
-        <ScrollViewer Width="698" Grid.RowSpan="5" Grid.ColumnSpan="4" Margin="3,0,3,54.2" VerticalAlignment="Bottom" Height="407" Padding="0" PanningMode="VerticalOnly" Grid.Row="2">
+        <ScrollViewer Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="3,0,3,20" VerticalAlignment="Bottom" Padding="0" PanningMode="VerticalOnly" Grid.Row="3">
             <StackPanel Margin="15,15,15,0">
 
                 <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B" FontWeight="Bold">[ Improvements ] <LineBreak/>

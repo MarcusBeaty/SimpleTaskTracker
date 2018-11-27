@@ -10,7 +10,7 @@
     KeyDown="Page_KeyDown"
     Width="Auto"
     Height="575"
-    Margin="0,20,0,0"
+    Margin="0,0,0,0"
     UseLayoutRounding="True"
     VerticalAlignment="Top"
     d:DesignHeight="410"
@@ -22,7 +22,7 @@
 
 
 
-    <Grid VerticalAlignment="Top">
+    <Grid VerticalAlignment="Top" Height="545" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -30,23 +30,19 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TabControl
             x:Name="tabCtrl"
-            Grid.RowSpan="5"
-            
             Grid.ColumnSpan="5"
-            Margin="0"
+            Margin="0,-30,0,0"
             FocusVisualStyle="{x:Null}"
             Padding="0"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Center"
             BorderThickness="0"
-            UseLayoutRounding="True">
+            UseLayoutRounding="True" VerticalAlignment="Top" Height="545" Grid.Row="1">
 
             <TabControl.Resources>
 
