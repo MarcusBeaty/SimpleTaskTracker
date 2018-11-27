@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="SimpleTaskTracker.XAML.Help_Documentation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleTaskTracker.XAML"
+             mc:Ignorable="d" 
+              BorderThickness="0"
+             Padding="0"
+             Margin="0"
+             Width="704"
+             Height="545.6"
+             BorderBrush="White"
+             d:DesignHeight="545.6" d:DesignWidth="704" HorizontalAlignment="Center" VerticalAlignment="Top">
+    <Grid Width="704" Margin="0,-50,0,0" HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="55*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="63*" />
+            <RowDefinition Height="269*" />
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="177*" />
+            <ColumnDefinition Width="66*"/>
+            <ColumnDefinition Width="245*" />
+            <ColumnDefinition Width="216*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FF56CD4D" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Height="2.4" Margin="52,54,52,26" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+        <TextBlock FontSize="32" FontFamily="Arial" FontWeight="Bold"  Foreground="#FF4B4B4B" Grid.RowSpan="3" Grid.ColumnSpan="7" VerticalAlignment="Top" Margin="0,75,0,0" HorizontalAlignment="Center">Simple Task Tracker Documentation</TextBlock>
+
+
+        <ScrollViewer Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="3,0,3,20" VerticalAlignment="Bottom" Padding="0" PanningMode="VerticalOnly" Grid.Row="3">
+            <StackPanel Margin="15,15,15,0">
+
+                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B" FontWeight="Bold">[ Tasks ] <LineBreak/>
+                </TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap"> 1.	Click the “+” tab at the top-left corner of the Tasks page, or click the Create New Task button, to create a new task.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">2.	Write the name of the task (you can also set today’s date to be automatically affixed to the task name in Settings).</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">3.	Click the Clock-In button when you are ready to start your timeclock for the selected task.</TextBlock>
+
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">4.	The format of the timeclock is HH:MM:SS.ms.</TextBlock>
+
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">5.	To begin a break, click the Start Break	 button.</TextBlock>
+
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">6.	To end a break, click the End Break	 button.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">7.	To clock out, click the Clock-Out button. Warning: When you clock out, your timeclock is no longer editable and you cannot resume the task! </TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">8.	If you close Simple Task Tracker with task tabs still open, you will see the Resume	 button illuminated when you reopen the program. Click Resume to resume your timeclock.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">9.	Timeclocks do not continue running when you close Simple Task Tracker. Instead, the current elapsed time displayed on each task tab you have open will be saved and restored when you reopen the program.<LineBreak/></TextBlock>
+
+
+                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B"  FontWeight="Bold">[ Reports ]<LineBreak/></TextBlock>
+                <TextBlock FontFamily="Arial" Foreground="#FF4B4B4B" FontSize="18" Padding="25,5,5,5"> • Fixed validation error for Task names when Auto Date setting is enabled.</TextBlock>
+                <TextBlock FontFamily="Arial" Foreground="#FF4B4B4B" FontSize="18" Padding="25,5,5,5"> • Invalid input no longer cleared when creating / editing Task names.</TextBlock>
+                <TextBlock FontFamily="Arial" Foreground="#FF4B4B4B" FontSize="18" Padding="25,5,5,5"> • The Select All checkbox in the Reports section is now properly unchecked<LineBreak/></TextBlock>
+               
+                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B"  FontWeight="Bold">[ Settings ]<LineBreak/></TextBlock>
+                <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B"  FontWeight="Bold">[ Help ]<LineBreak/></TextBlock>
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+        <TextBlock
+            x:Name="Title"
+            Grid.Row="1"
+            Visibility="Hidden"
+            Width="205"
+            Height="25"
+            Padding="10,0,0,0"
+            Margin="63,3.2,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"
+            FontSize="18"
+            Foreground="#FF444444"
+            Text="Simple Task Tracker"
+            TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+        <Rectangle Width="704" Height="50" UseLayoutRounding="True" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Fill="#FFFFAB12" Grid.ColumnSpan="4"/>
+    </Grid>
+</UserControl>

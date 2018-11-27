@@ -70,6 +70,7 @@
             x:Name="SaveSettings"
             Width="180"
             Height="35"
+            Cursor="Hand"
             Margin="232,259,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
