@@ -10,8 +10,8 @@
     Height="350"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    mc:Ignorable="d">
-    <Grid Background="White">
+    mc:Ignorable="d" VerticalAlignment="Top">
+    <Grid Background="White" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="4*" />
@@ -38,11 +38,11 @@
             Cursor="Hand"
             Grid.Column="1"
             Margin="66,3,67,3"
-            Background="#FF005473"
+            Background="{x:Null}"
             Click="Button_Click"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
-            Foreground="White">
+            Foreground="#FF4E4E4E">
             Create New Task
         </Button>
     </Grid>

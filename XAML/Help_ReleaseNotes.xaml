@@ -39,7 +39,7 @@
                 <TextBlock FontSize="22" FontFamily="Arial" Foreground="#FF4B4B4B" FontWeight="Bold">[ Improvements ] <LineBreak/>
                 </TextBlock>
                 <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added the ability to edit open Task names from the Tasks section.</TextBlock>
-                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added new page "Help" - Contains Release Notes, About, and Help sections.</TextBlock>
+                <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Added new page "Help" - Contains Release Notes, About, and Documentation sections.</TextBlock>
 
                 <TextBlock Foreground="#FF4B4B4B" FontFamily="Arial" Padding="25,5,5,5" FontSize="18" TextWrapping="Wrap">• Changed the formatting of Date when applied to Task name to improve readability.</TextBlock>
 

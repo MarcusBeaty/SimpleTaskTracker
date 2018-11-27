@@ -116,6 +116,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.edmx</DependentUpon>
     </Compile>
+    <Compile Include="XAML\Help_Documentation.xaml.cs">
+      <DependentUpon>Help_Documentation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML\Help_Page.xaml.cs">
       <DependentUpon>Help_Page.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
     <Compile Include="XAML\Task_Home.xaml.cs">
       <DependentUpon>Task_Home.xaml</DependentUpon>
     </Compile>
+    <Page Include="XAML\Help_Documentation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="XAML\Help_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

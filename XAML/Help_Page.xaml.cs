@@ -26,6 +26,7 @@ namespace SimpleTaskTracker.XAML
             
             About.Content = new Help_About();
             ReleaseNotes.Content = new Help_ReleaseNotes();
+            Documentation.Content = new Help_Documentation();
         }
 
         
