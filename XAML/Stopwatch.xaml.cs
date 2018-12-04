@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using SimpleTaskTracker.XAML;
 using SimpleTaskTracker.Database;
 
 namespace SimpleTaskTracker.XAML
@@ -26,9 +16,6 @@ namespace SimpleTaskTracker.XAML
     public partial class stopwatch : UserControl
     {
         public string _taskName { get; set; }
-        public static bool recreate { get; set; }
-        private bool tsRec = false;
-        private ObservableCollection<Property> _collection;
         MainWindow _mw;
         Stopwatch sw = new Stopwatch();
         DispatcherTimer dpTimer = new DispatcherTimer();
@@ -39,101 +26,27 @@ namespace SimpleTaskTracker.XAML
         int minutes;
         int seconds;
 
-        public stopwatch(Tasks_Page tsks, ObservableCollection<Property> collection, MainWindow mw)
+        bool _newTab;
+
+        public stopwatch(Tasks_Page tsks, MainWindow mw, bool NewTab)
         {
             InitializeComponent();
             DataContext = this;
-            this.Loaded += Stopwatch_Loaded;
             _tsks = tsks;
-            _collection = collection;
             _mw = mw;
+            _newTab = NewTab;
+            this.Loaded += Stopwatch_Loaded;
+            Startup();
+        }
 
-
-            if (_tsks.isRecreated)
-            {
-                // Recreated Timespan activated 
-                tsRec = true;
-                _taskName = _tsks.ReTaskName;
-
-                // Using recreated tick
-                dpTimer.Tick += new EventHandler(RecreatedTick);
-
-                using (var db = new DataEntities())
-                {
-                    // using exist check for error: when clearing database but leaving tab open
-                    bool exists = db.Properties.Any(x => x.Task == _taskName);
-
-                    if (exists)
-                    {
-                        var property = db.Properties.Single(x => x.Task == _taskName);
-
-                        // null handling 
-                        if (property.Hours.HasValue)
-                        {
-                            hours = property.Hours.Value;
-                        }
-
-                        if (property.Minutes.HasValue)
-                        {
-                            minutes = property.Minutes.Value;
-                        }
-
-                        if (property.Seconds.HasValue)
-                        {
-                            seconds = property.Seconds.Value;
-                        }
-                        // end null handling
-
-                        // catching HasValue exception
-                        try
-                        {
-                            if (property.ClockIn.HasValue)
-                            {
-                                ClockIn.Visibility = Visibility.Hidden;
-                                Resume.Visibility = Visibility.Visible;
-                                Resume.IsEnabled = true;
-                                ClockOut.IsEnabled = false;
-                                ClockIn.IsEnabled = false;
-                                StartBreak.IsEnabled = false;
-                                EndBreak.IsEnabled = false;
-
-                                if (property.ClockOut.HasValue)
-                                {
-                                    Resume.IsEnabled = false;
-                                    Edit_Btn.IsEnabled = false;
-                                    ClockOut.Visibility = Visibility.Visible;
-                                    Resume.Visibility = Visibility.Hidden;
-                                    EndBreak.IsEnabled = false;
-                                    StartBreak.IsEnabled = false;
-                                    ClockIn.IsEnabled = false;
-                                    ClockOut.IsEnabled = false;
-                                }
-                            }
-                        }
-
-                        catch (InvalidCastException e)
-                        {
-                            Console.WriteLine(e);
-                        }
-                    }
-                }
-            }
-
+        private void Startup()
+        {
+            if (_newTab)
+                NewTabSetup();
             else
-            {
-                _taskName = _tsks.TaskName;
-                Property newTask = new Property()
-                {
-                    Task = _taskName
-                };
+                ExistingTabSetup();
 
-                _collection.Add(newTask);
-                // Using standard tick
-                dpTimer.Tick += new EventHandler(Tick);
-            }
-            setTime();
-           
-            dpTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            SetTime();
         }
 
         private void Stopwatch_Loaded(object sender, RoutedEventArgs e)
@@ -143,11 +56,82 @@ namespace SimpleTaskTracker.XAML
             sw_Window.Closing += (Exiting);
         }
 
-        void setTime()
+        private void NewTabSetup()
         {
+            _taskName = _tsks.TaskName;
+
+            // Using standard tick
+            dpTimer.Tick += new EventHandler(Tick);
+        }
+
+        private void ExistingTabSetup()
+        {
+            _taskName = _tsks.ReTaskName;
+
+            // Using recreated tick
+            dpTimer.Tick += new EventHandler(RecreatedTick);
+
+            using (var db = new DataEntities())
+            {
+                // using exist check for error: when clearing database but leaving tab open
+                bool exists = db.Properties.Any(x => x.Task == _taskName);
+
+                if (exists)
+                {
+                    var Property = db.Properties.First(x => x.Task == _taskName);
+                    
+                    // null handling 
+                    if(Property != null)
+                    { 
+                        hours = Property.Hours.Value;
+                        minutes = Property.Minutes.Value;
+                        seconds = Property.Seconds.Value;
+                    }
+
+                    // catching HasValue exception
+                    try
+                    {
+                        if (Property.ClockIn.HasValue)
+                        {
+                            ClockIn.Visibility = Visibility.Hidden;
+                            Resume.Visibility = Visibility.Visible;
+                            Resume.IsEnabled = true;
+                            ClockOut.IsEnabled = false;
+                            ClockIn.IsEnabled = false;
+                            StartBreak.IsEnabled = false;
+                            EndBreak.IsEnabled = false;
+
+                            if (Property.ClockOut.HasValue)
+                            {
+                                Resume.IsEnabled = false;
+                                Edit_Btn.IsEnabled = false;
+                                ClockOut.Visibility = Visibility.Visible;
+                                Resume.Visibility = Visibility.Hidden;
+                                EndBreak.IsEnabled = false;
+                                StartBreak.IsEnabled = false;
+                                ClockIn.IsEnabled = false;
+                                ClockOut.IsEnabled = false;
+                            }
+                        }
+                    }
+
+                    catch (InvalidCastException e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+            }
+        }
+
+
+        void SetTime()
+        {
+            dpTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             ts = new TimeSpan(hours, minutes, seconds).Add(sw.Elapsed);
+
             //Formating Display of time
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+
             //Outputting to WPF Textbox
             Time.Text = elapsedTime;
         }
@@ -158,6 +142,7 @@ namespace SimpleTaskTracker.XAML
 
             //Formating Display of time
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+
             //Outputting Time to Textbox
             Time.Text = elapsedTime;
         }
@@ -192,7 +177,7 @@ namespace SimpleTaskTracker.XAML
             // Assigning value to database
             using (var db = new DataEntities())
             {
-                var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
+                var _current = db.Properties.First(x => x.Task == _taskName);
                 _current.ClockIn = DateTime.Now;
                 await db.SaveChangesAsync();
                 Tasks_Page.LoadItems();
@@ -210,11 +195,12 @@ namespace SimpleTaskTracker.XAML
             EndBreak.IsEnabled = false;
             StartBreak.IsEnabled = false;
             ClockOut.IsEnabled = false;
+            Edit_Btn.IsEnabled = false;
 
             // Assigning value to database
             using (var db = new DataEntities())
             {
-                var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
+                var _current = db.Properties.First(x => x.Task == _taskName);
                 _current.ClockOut = DateTime.Now;
                 _current.Hours = ts.Hours;
                 _current.Minutes = ts.Minutes;
@@ -244,7 +230,7 @@ namespace SimpleTaskTracker.XAML
 
             using (var db = new DataEntities())
             {
-                var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
+                var _current = db.Properties.First(x => x.Task == _taskName);
                 _current.Hours = ts.Hours;
                 _current.Minutes = ts.Minutes;
                 _current.Seconds = ts.Seconds;
@@ -282,7 +268,7 @@ namespace SimpleTaskTracker.XAML
         {
             using (var db = new DataEntities())
             {
-                var _current = db.Properties.SingleOrDefault(x => x.Task == _taskName);
+                var _current = db.Properties.First(x => x.Task == _taskName);
 
                 if (_current != null)
                 {
@@ -304,35 +290,59 @@ namespace SimpleTaskTracker.XAML
             // If user pressed "Rename New Task"
             if (dg.DialogResult is true)
             {
-                var newName = dg.Input;
-
-                // Changing corresponding Task Name in DB to new Task Name
-                using (var db = new DataEntities())
-                {
-                    var propInDb = db.Properties.Single(n => n.Task == _taskName);
-                    propInDb.Task = newName;
-                    db.SaveChanges();
-                }
-
-                // Changing corresponding Task Name in Observable Collection to new Task Name
-                var propInCollection = Tasks_Page.col.Single(n => n.Task == _taskName);
-                propInCollection.Task = newName;
-                Tasks_Page.LoadItems();
-
-                // Changing corresponding Task Name in Tab List to new Task Name
-                var propInList = Tasks_Page.list;
-                propInList.Remove(_taskName);
-                propInList.Add(newName);
-
-                // Updating parent elements to reflect new Task Name
-                var parent = this.Parent as CloseableTabItem;
-                parent.TbName = newName;
-                parent.Uid = newName;
-                parent.SetHeader(newName);
-
-                SW_Name.Text = newName;
-                _taskName = newName;
+                RenameTask(dg.Input);
             }
+        }
+
+        private void RenameTask(string NewName)
+        {
+            // Changing corresponding Task Name in DB to new Task Name
+            using (var db = new DataEntities())
+            {
+                var propInDb = db.Properties.SingleOrDefault(n => n.Task == _taskName);
+                propInDb.Task = NewName;
+                db.SaveChanges();
+            }
+
+            // Changing corresponding Task Name in Observable Collection to new Task Name
+            UpdateObservableCollection(NewName);
+
+            // Changing corresponding Task Name in Tab List to new Task Name
+            UpdateTabList(NewName);
+
+            // Updating parent elements to reflect new Task Name
+            UpdateParentElements(NewName);
+
+            // Updates the current Tab : Needs to happen last due to previous TaskName being used in other calls
+            UpdateCurrentTab(NewName);
+        }
+
+        private void UpdateCurrentTab(string NewName)
+        {
+            SW_Name.Text = NewName;
+            _taskName = NewName;
+        }
+
+        private void UpdateParentElements(string NewName)
+        {
+            var parent = this.Parent as CloseableTabItem;
+            parent.TbName = NewName;
+            parent.Uid = NewName;
+            parent.SetHeader(NewName);
+        }
+
+        private void UpdateTabList(string NewName)
+        {
+            var propInList = Tasks_Page.list;
+            propInList.Remove(_taskName);
+            propInList.Add(NewName);
+        }
+
+        private void UpdateObservableCollection(string NewName)
+        {
+            var propInCollection = Tasks_Page.col.First(n => n.Task == _taskName);
+            propInCollection.Task = NewName;
+            Tasks_Page.LoadItems();
         }
 
         private void SW_Name_SizeChanged(object sender, SizeChangedEventArgs e)

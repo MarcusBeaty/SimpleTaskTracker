@@ -240,7 +240,7 @@
             HorizontalContentAlignment="Center"
             BorderBrush="{x:Null}"
             BorderThickness="0"
-            Click="help_button_Click"
+            Click="Help_button_Click"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White">

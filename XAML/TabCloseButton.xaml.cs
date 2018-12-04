@@ -30,10 +30,7 @@ namespace SimpleTaskTracker
         private void OnClick(object sender, RoutedEventArgs e)
         {
             if (Click != null)
-            {
-                
                 Click(sender, e);
-            }
         }
 
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)

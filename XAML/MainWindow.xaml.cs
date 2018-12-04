@@ -101,7 +101,7 @@ namespace SimpleTaskTracker.XAML
             sel_panel.SetValue(Grid.RowProperty, 3);
         }
 
-        private void help_button_Click(object sender, RoutedEventArgs e)
+        private void Help_button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = hlp;
             var bc = new BrushConverter();

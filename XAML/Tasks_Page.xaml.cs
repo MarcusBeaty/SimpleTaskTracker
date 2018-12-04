@@ -27,7 +27,6 @@ namespace SimpleTaskTracker.XAML
         public static ObservableCollection<Property> col = new ObservableCollection<Property>();
         public string TaskName { get; set; }
         public string ReTaskName { get; set; }
-        public bool isRecreated { get; set; }
         private MainWindow _mw;
 
         public Tasks_Page(MainWindow mw)
@@ -35,22 +34,25 @@ namespace SimpleTaskTracker.XAML
             InitializeComponent();
 
             _mw = mw;
+
             addTabItm.Content = new Task_Home(this);
 
+            CheckForExistingTabs();
+        }
 
+        private void CheckForExistingTabs()
+        {
             using (var db = new DataEntities())
-            {
-                bool exists = true;
-                exists = db.Properties.Any();
+            { 
+                bool exists = db.Properties.Any();
+
                 if (exists)
                 {
                     LoadItems();
 
                     if (list.Count != 0)
-                    {
                         // No need to use await here
                         RecreateTabs();
-                    }
                 }
 
                 else
@@ -61,7 +63,6 @@ namespace SimpleTaskTracker.XAML
                     LoadItems();
                 }
             }
-  
         }
 
         public static void LoadItems()
@@ -86,14 +87,10 @@ namespace SimpleTaskTracker.XAML
         {
             for (var i = 0; i < list.Count; i++)
             {
-                
                 ReTaskName = list[i];
-                isRecreated = true;
-
 
                 // Loading StopWatch into Tab Content
-                var content = new stopwatch(this, col, _mw);
-                stopwatch.recreate = true;
+                var content = new stopwatch(this, _mw, false);
 
                 // Creating Tab
                 var tab = new CloseableTabItem(this)
@@ -131,17 +128,14 @@ namespace SimpleTaskTracker.XAML
 
         public async void OnPlusTabClick(object sender, RoutedEventArgs e)
         {
-            isRecreated = false;
             _mw.Opacity = 0.3;
             NewTaskDialog dg = new NewTaskDialog(this) { Owner = _mw };
             dg.ShowDialog();
 
-            // If user pressed "Create New Task"
             if (dg.DialogResult == true)
             {
-                var content = new stopwatch(this, col, _mw);
-                stopwatch.recreate = false;
 
+                var content = new stopwatch(this, _mw, true);
 
                 // Creating Tab
                 var tab = new CloseableTabItem(this)
@@ -150,7 +144,7 @@ namespace SimpleTaskTracker.XAML
                     Uid = TaskName,
                     Content = content
                 };
-
+                
                 // Creating header for Tab
                 tab.SetHeader(TaskName);
 
@@ -168,6 +162,7 @@ namespace SimpleTaskTracker.XAML
                 using (var db = new DataEntities())
                 {
                     var newProp = new Property() { Task = TaskName };
+                    col.Add(newProp);
                     db.Properties.Add(newProp);
                     await db.SaveChangesAsync();
                     LoadItems();
