@@ -48,11 +48,13 @@ namespace SimpleTaskTracker.XAML
 
                 if (exists)
                 {
-                    LoadItems();
+                    RefreshObservableCollection();
 
                     if (list.Count != 0)
+                    {
                         // No need to use await here
                         RecreateTabs();
+                    }
                 }
 
                 else
@@ -60,17 +62,18 @@ namespace SimpleTaskTracker.XAML
                     list.Clear();
                     Properties.Settings.Default.AutoDate = false;
                     Properties.Settings.Default.Warnings = true;
-                    LoadItems();
+                    RefreshObservableCollection();
                 }
             }
         }
 
-        public static void LoadItems()
+        public static void RefreshObservableCollection()
         {
+            // This method is called whenever there is a modification to the database || Populating DataGrid from Recreated Tabs
             using (var db = new DataEntities())
             {
                 col.Clear();
-                // iterating through database and adding entries to obseravable collection
+                // Iterating through database and adding entries to obseravable collection
                 foreach (var itm in db.Properties)
                 {
                     col.Add(itm);
@@ -90,7 +93,7 @@ namespace SimpleTaskTracker.XAML
                 ReTaskName = list[i];
 
                 // Loading StopWatch into Tab Content
-                var content = new stopwatch(this, _mw, false);
+                var content = new Stopwatch(this, _mw, false);
 
                 // Creating Tab
                 var tab = new CloseableTabItem(this)
@@ -113,7 +116,7 @@ namespace SimpleTaskTracker.XAML
                         var task = db.Properties.SingleOrDefault(x => x.Task == ReTaskName);
                         task.LastClosed = Properties.Settings.Default.LastClosed;
                         await db.SaveChangesAsync();
-                        LoadItems();
+                        RefreshObservableCollection();
                     }
                 }
                 // Adding to TabControl
@@ -126,49 +129,67 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        public async void OnPlusTabClick(object sender, RoutedEventArgs e)
+        public void OnPlusTabClick(object sender, RoutedEventArgs e)
         {
             _mw.Opacity = 0.3;
             NewTaskDialog dg = new NewTaskDialog(this) { Owner = _mw };
             dg.ShowDialog();
 
+            
             if (dg.DialogResult == true)
             {
-
-                var content = new stopwatch(this, _mw, true);
-
-                // Creating Tab
-                var tab = new CloseableTabItem(this)
-                {
-                    TbName = TaskName,
-                    Uid = TaskName,
-                    Content = content
-                };
-                
-                // Creating header for Tab
-                tab.SetHeader(TaskName);
-
-                // Adding to String Collection
-                list.Add(TaskName);
-
-                // Add to TabControl
-                // inserting before (+) button
-                tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, tab);
-                Keyboard.ClearFocus();
-                tab.Focus();
-                
-
-                // Adding new entry to Database
-                using (var db = new DataEntities())
-                {
-                    var newProp = new Property() { Task = TaskName };
-                    col.Add(newProp);
-                    db.Properties.Add(newProp);
-                    await db.SaveChangesAsync();
-                    LoadItems();
-                }
+                // Create new Tab
+                CreateNewTab();
             }
         }
+
+        private void CreateNewTab()
+        {
+            // Pass arguments to Stopwatch class
+            var content = new Stopwatch(this, _mw, true);
+
+            // Creating TabItem
+            var tab = new CloseableTabItem(this)
+            {
+                TbName = TaskName,
+                Uid = TaskName,
+                Content = content
+            };
+
+            // Creating header for Tab
+            tab.SetHeader(TaskName);
+
+            // Adding to TabControl : Inserting TB before (+) button
+            tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, tab);
+            Keyboard.ClearFocus();
+            tab.Focus();
+
+            var newProperty = new Property() { Task = TaskName };
+            PopulateCollections(newProperty);
+        }
+
+        private void PopulateCollections(Property property)
+        {
+            AddToTabCollection(property.Task);
+            AddDatabaseEntry(property);
+        }
+
+        private async void AddDatabaseEntry(Property property)
+        {
+            // Adding new entry to Database
+            using (var db = new DataEntities())
+            {
+                db.Properties.Add(property);
+                int save = await db.SaveChangesAsync();
+                RefreshObservableCollection();
+            }
+        }
+
+        public void AddToTabCollection(string tabName)
+        {
+            list.Add(tabName);
+        }
+
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {

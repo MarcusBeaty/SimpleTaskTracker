@@ -100,7 +100,7 @@ namespace SimpleTaskTracker.XAML
                     var dbSelected = db.Properties.Where(x => x.Selected == 1);
                     db.Properties.RemoveRange(dbSelected);
                     await db.SaveChangesAsync();
-                    Tasks_Page.LoadItems();
+                    Tasks_Page.RefreshObservableCollection();
                     Delete_Btn.IsEnabled = false;
                     checkBoxHeader.IsChecked = false;
                 }

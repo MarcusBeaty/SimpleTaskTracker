@@ -13,11 +13,11 @@ namespace SimpleTaskTracker.XAML
     /// <summary>
     /// Interaction logic for stopwatch.xaml
     /// </summary>
-    public partial class stopwatch : UserControl
+    public partial class Stopwatch : UserControl
     {
         public string _taskName { get; set; }
         MainWindow _mw;
-        Stopwatch sw = new Stopwatch();
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
         DispatcherTimer dpTimer = new DispatcherTimer();
         private Tasks_Page _tsks;
         TimeSpan ts;
@@ -28,7 +28,7 @@ namespace SimpleTaskTracker.XAML
 
         bool _newTab;
 
-        public stopwatch(Tasks_Page tsks, MainWindow mw, bool NewTab)
+        public Stopwatch(Tasks_Page tsks, MainWindow mw, bool NewTab)
         {
             InitializeComponent();
             DataContext = this;
@@ -88,41 +88,37 @@ namespace SimpleTaskTracker.XAML
                         seconds = Property.Seconds.Value;
                     }
 
-                    // catching HasValue exception
-                    try
-                    {
-                        if (Property.ClockIn.HasValue)
-                        {
-                            ClockIn.Visibility = Visibility.Hidden;
-                            Resume.Visibility = Visibility.Visible;
-                            Resume.IsEnabled = true;
-                            ClockOut.IsEnabled = false;
-                            ClockIn.IsEnabled = false;
-                            StartBreak.IsEnabled = false;
-                            EndBreak.IsEnabled = false;
-
-                            if (Property.ClockOut.HasValue)
-                            {
-                                Resume.IsEnabled = false;
-                                Edit_Btn.IsEnabled = false;
-                                ClockOut.Visibility = Visibility.Visible;
-                                Resume.Visibility = Visibility.Hidden;
-                                EndBreak.IsEnabled = false;
-                                StartBreak.IsEnabled = false;
-                                ClockIn.IsEnabled = false;
-                                ClockOut.IsEnabled = false;
-                            }
-                        }
-                    }
-
-                    catch (InvalidCastException e)
-                    {
-                        Console.WriteLine(e);
-                    }
+                    // Recreated Tab Button Handling
+                    RecreatedButtonConfig(Property);
                 }
             }
         }
 
+        private void RecreatedButtonConfig(Property property)
+        {
+            if (property.ClockIn.HasValue)
+            {
+                ClockIn.Visibility = Visibility.Hidden;
+                Resume.Visibility = Visibility.Visible;
+                Resume.IsEnabled = true;
+                ClockOut.IsEnabled = false;
+                ClockIn.IsEnabled = false;
+                StartBreak.IsEnabled = false;
+                EndBreak.IsEnabled = false;
+
+                if (property.ClockOut.HasValue)
+                {
+                    Resume.IsEnabled = false;
+                    Edit_Btn.IsEnabled = false;
+                    ClockOut.Visibility = Visibility.Visible;
+                    Resume.Visibility = Visibility.Hidden;
+                    EndBreak.IsEnabled = false;
+                    StartBreak.IsEnabled = false;
+                    ClockIn.IsEnabled = false;
+                    ClockOut.IsEnabled = false;
+                }
+            }
+        }
 
         void SetTime()
         {
@@ -180,7 +176,7 @@ namespace SimpleTaskTracker.XAML
                 var _current = db.Properties.First(x => x.Task == _taskName);
                 _current.ClockIn = DateTime.Now;
                 await db.SaveChangesAsync();
-                Tasks_Page.LoadItems();
+                Tasks_Page.RefreshObservableCollection();
             }
             // Starting StopWatch
             dpTimer.Start();
@@ -208,7 +204,7 @@ namespace SimpleTaskTracker.XAML
                 _current.Total = Math.Round(ts.TotalHours, 4);
 
                 await db.SaveChangesAsync();
-                Tasks_Page.LoadItems();
+                Tasks_Page.RefreshObservableCollection();
             }
 
             //Stoping StopWatch
@@ -236,7 +232,7 @@ namespace SimpleTaskTracker.XAML
                 _current.Seconds = ts.Seconds;
                 _current.Total = Math.Round(ts.TotalHours, 4);
                 await db.SaveChangesAsync();
-                Tasks_Page.LoadItems();
+                Tasks_Page.RefreshObservableCollection();
             }
         }
 
@@ -264,20 +260,30 @@ namespace SimpleTaskTracker.XAML
             Delay(sender, e);
         }
 
-        public async void Exiting(object sender, global::System.ComponentModel.CancelEventArgs e)
+        public async void Exiting(object sender, global::System.ComponentModel.CancelEventArgs exeception)
         {
             using (var db = new DataEntities())
             {
-                var _current = db.Properties.First(x => x.Task == _taskName);
-
-                if (_current != null)
+                try
                 {
-                    _current.Hours = ts.Hours;
-                    _current.Minutes = ts.Minutes;
-                    _current.Seconds = ts.Seconds;
-                    _current.Total = Math.Round(ts.TotalHours, 4);
-                    await db.SaveChangesAsync();
+                    var _current = db.Properties.FirstOrDefault(x => x.Task == _taskName);
+
+                    if (_current != null)
+                    {
+                        _current.Hours = ts.Hours;
+                        _current.Minutes = ts.Minutes;
+                        _current.Seconds = ts.Seconds;
+                        _current.Total = Math.Round(ts.TotalHours, 4);
+                        await db.SaveChangesAsync();
+                    }
                 }
+
+                catch(InvalidOperationException exception)
+                {
+                    Debug.WriteLine("Error: " + exception);
+                    throw;
+                }
+                
             }
         }
 
@@ -294,14 +300,14 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        private void RenameTask(string NewName)
+        private async void RenameTask(string NewName)
         {
             // Changing corresponding Task Name in DB to new Task Name
             using (var db = new DataEntities())
             {
-                var propInDb = db.Properties.SingleOrDefault(n => n.Task == _taskName);
+                var propInDb = db.Properties.First(n => n.Task == _taskName);
                 propInDb.Task = NewName;
-                db.SaveChanges();
+                var save = await db.SaveChangesAsync();
             }
 
             // Changing corresponding Task Name in Observable Collection to new Task Name
@@ -334,15 +340,17 @@ namespace SimpleTaskTracker.XAML
         private void UpdateTabList(string NewName)
         {
             var propInList = Tasks_Page.list;
+            // Getting index so that Tab order can be saved
+            var indexOfTab = propInList.IndexOf(_taskName);
+            propInList.Insert(indexOfTab, NewName);
             propInList.Remove(_taskName);
-            propInList.Add(NewName);
         }
 
         private void UpdateObservableCollection(string NewName)
         {
             var propInCollection = Tasks_Page.col.First(n => n.Task == _taskName);
             propInCollection.Task = NewName;
-            Tasks_Page.LoadItems();
+            Tasks_Page.RefreshObservableCollection();
         }
 
         private void SW_Name_SizeChanged(object sender, SizeChangedEventArgs e)
