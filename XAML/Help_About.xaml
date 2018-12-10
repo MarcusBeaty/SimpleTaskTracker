@@ -9,16 +9,18 @@
              Padding="0"
              Margin="0"
              Width="704"
+             
              Height="545.6"
              BorderBrush="White"
              d:DesignHeight="545.6" d:DesignWidth="704" HorizontalAlignment="Center">
-    <Grid Height="545.6" Width="704"  HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top">
+    <Grid ShowGridLines="False" Height="545.6" Width="704"  HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="15*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="45*" />
-            <RowDefinition Height="110*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="42*" />
+            <RowDefinition Height="83*" />
             <RowDefinition Height="322*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,28 +30,33 @@
             <ColumnDefinition Width="245*" />
             <ColumnDefinition Width="216*" />
         </Grid.ColumnDefinitions>
-        <Image Name="Logo" Source="/SimpleTaskTracker;component/Graphics/icon.ico" Margin="4.6,7.2,0,10.4" Grid.Row="1" Grid.RowSpan="2" OpacityMask="Black" HorizontalAlignment="Left" Width="48" Grid.Column="1"/>
+        <StackPanel Visibility="Hidden" Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="4.6,0.4,0,0" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Width="385" VerticalAlignment="Top" Height="43">
+            <TextBlock Padding="0,0,0,0" FontSize="32" Foreground="#FF0E0E0E" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Thin" VerticalAlignment="Top">About</TextBlock>
+            <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
+        </StackPanel>
+
+        <Image Name="Logo" Source="/SimpleTaskTracker;component/Graphics/icon.ico" Margin="4.6,12.4,0,35" Grid.Row="3" Grid.RowSpan="2" OpacityMask="Black" HorizontalAlignment="Left" Width="53" Grid.Column="1"/>
         <TextBlock
             x:Name="Title"
-            Grid.Row="1"
+            Grid.Row="3"
             Width="205"
             Height="25"
             Padding="10,0,0,0"
-            Margin="51.6,1.2,0,0"
+            Margin="52.6,6.4,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"
             FontSize="18"
             Foreground="#FF444444"
             Text="Simple Task Tracker"
-            TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Column="1" />
+            TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.Column="1" />
 
         <TextBlock
             x:Name="Version"
-            Grid.Row="2"
+            Grid.Row="3"
             Width="101"
             Height="18"
-            Margin="51.6,8,0,0"
+            Margin="52.6,31.4,0,0"
                         Padding="10,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -59,23 +66,23 @@
             TextWrapping="Wrap" Grid.Column="1" />
         <TextBlock
             x:Name="Copyright"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.ColumnSpan="3"
             Width="273"
             Height="18"
-            Margin="51.6,25,0,0"
+            Margin="52.6,49.4,0,0"
                         Padding="10,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"
             Foreground="#FF444444"
             Text="© 2018 Marcus Beaty. All Rights Reserved."
-            TextWrapping="Wrap" Grid.Column="1" />
+            TextWrapping="Wrap" Grid.Column="1" Grid.RowSpan="2" />
 
         <Button
             x:Name="Donate_Btn"
-            Grid.Row="3"
-            Margin="4.6,1.6,0,1.2"
+            Grid.Row="4"
+            Margin="4.6,18.4,0,69.2"
                         Padding="10,0,0,0"
             HorizontalContentAlignment="Left"
             Background="#FF1E434F"
@@ -85,7 +92,7 @@
             FlowDirection="RightToLeft"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="15"
-            Foreground="White" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="199" Grid.Column="1">
+            Foreground="White" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="199" Grid.Column="1" Grid.RowSpan="2">
             <StackPanel
                 Width="178"
 Grid.ColumnSpan="4"

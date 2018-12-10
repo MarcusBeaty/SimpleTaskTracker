@@ -20,15 +20,24 @@ namespace SimpleTaskTracker.XAML
     /// </summary>
     public partial class Help_Page : Page
     {
-        public Help_Page()
+        private readonly MainWindow _mainWindow;
+
+        public Help_Page(MainWindow mainWindow)
         {
             InitializeComponent();
-            
+            _mainWindow = mainWindow;
+
             About.Content = new Help_About();
             ReleaseNotes.Content = new Help_ReleaseNotes();
             Documentation.Content = new Help_Documentation();
         }
 
-        
+        private void TabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tabCtrl = (TabControl)sender;
+            var pgName = tabCtrl.SelectedValue as TabItem;
+
+            _mainWindow.TitlePage.Text = pgName.Header.ToString();
+        }
     }
 }

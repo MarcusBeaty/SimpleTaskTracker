@@ -36,13 +36,13 @@ namespace SimpleTaskTracker.XAML
             var initialInput = taskEntry.Text;
 
             var currentDate = DateTime.Now;
-            var date = currentDate.ToString("M-d-y");
+            var date = currentDate.ToString("M-d-yyyy");
 
             // If AutoDate setting is checked - Date is appended to Name
             if (Properties.Settings.Default.AutoDate)
             {
                 currentDate = DateTime.Now;
-                date = currentDate.ToString("M-d-y");
+                date = currentDate.ToString("M-d-yyyy");
                 initialInput += ($" | {date}");
             }
             

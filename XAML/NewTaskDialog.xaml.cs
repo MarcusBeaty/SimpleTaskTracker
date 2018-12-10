@@ -42,13 +42,13 @@ namespace SimpleTaskTracker.XAML
             using (var db = new DataEntities())
             {               
                 DateTime currentDate = DateTime.Now;
-                var date = currentDate.ToString("M-d-y");
+                var date = currentDate.ToString("M-d-yyyy");
 
                 // If AutoDate setting is checked
                 if (Properties.Settings.Default.AutoDate)
                 {
                     currentDate = DateTime.Now;
-                    date = currentDate.ToString("M-d-y");
+                    date = currentDate.ToString("M-d-yyyy");
                     _tsks.TaskName = input + ($" | {date}");
                 }
 
@@ -113,7 +113,7 @@ namespace SimpleTaskTracker.XAML
             Owner.Opacity = 1;
         }
 
-        private void taskEntry_KeyDown(object sender, KeyEventArgs e)
+        private void TaskEntry_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter || e.Key == Key.Return)
             {

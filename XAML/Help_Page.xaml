@@ -28,6 +28,7 @@
         <TabControl
             x:Name="tabCtrl"
             Visibility="Visible"
+            SelectionChanged="TabCtrl_SelectionChanged"
             FocusVisualStyle="{x:Null}"
             Padding="0"
             VerticalContentAlignment="Top"

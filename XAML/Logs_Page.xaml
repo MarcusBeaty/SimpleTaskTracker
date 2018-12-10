@@ -56,11 +56,15 @@
             FontSize="14"
             Foreground="White" HorizontalAlignment="Center" Width="160" />
         <Rectangle UseLayoutRounding="True" Visibility="Hidden" Fill="#FF3D4147" Height="495" VerticalAlignment="Top" Margin="0,50,0,0"></Rectangle>
+        <StackPanel Visibility="Hidden" UseLayoutRounding="True" Margin="15,51,0,0" HorizontalAlignment="Left"  Width="385" VerticalAlignment="Top" Height="43">
+            <TextBlock Padding="0,0,0,0" FontSize="32" Foreground="#FF0E0E0E" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Thin" VerticalAlignment="Top">Reports</TextBlock>
+            <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
+        </StackPanel>
         <DataGrid
             x:Name="dataGrid"
-            Width="700"
-            Height="358"
-            Margin="0,50,0,0"
+            Width="674"
+            Height="304"
+            Margin="15,100,15,0"
             Visibility="Visible"
             UseLayoutRounding="True"
             HorizontalAlignment="Center"
@@ -71,7 +75,7 @@
             ColumnWidth="*"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             RowHeaderWidth="0"        
-            SelectionUnit="Cell" Padding="0" BorderBrush="#FFB6B6B6">
+            SelectionUnit="Cell" Padding="0" BorderBrush="#FF1A1A1A">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Command="SelectAll"></MenuItem>
@@ -111,19 +115,20 @@
                 <DataGridTextColumn
                     Binding="{Binding ClockIn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="Clock-In"
-                    IsReadOnly="True" Width="150" />
+                    IsReadOnly="True" Width="140" />
                 <DataGridTextColumn
                     Binding="{Binding ClockOut, Mode=TwoWay}"
                     Header="Clock-Out"
-                    IsReadOnly="True" Width="150" />
+                    IsReadOnly="True" Width="140" />
                 <DataGridTextColumn
                     Binding="{Binding Total, Mode=TwoWay}"
                     Header="Total (Hours)"
+                    Width="85"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Binding="{Binding LastClosed, Mode=TwoWay}"
                     Header="Last Closed"
-                    IsReadOnly="True" Width="150" />
+                    IsReadOnly="True"  />
 
 
                 <DataGridTextColumn

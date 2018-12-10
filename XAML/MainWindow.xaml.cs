@@ -42,7 +42,7 @@ namespace SimpleTaskTracker.XAML
             tk = new Tasks_Page(this);
             lgs = new Logs_Page(tk);
             set = new Settings_Page();
-            hlp = new Help_Page();
+            hlp = new Help_Page(this);
             Main.Content = tk;
         }
 
@@ -65,6 +65,7 @@ namespace SimpleTaskTracker.XAML
         private void Tasks_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = tk;
+            TitlePage.Text = "Tasks";
             var bc = new BrushConverter();
             // tasks_panel.Visibility = Visibility.Visible;
            // tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");
@@ -78,6 +79,8 @@ namespace SimpleTaskTracker.XAML
         private void Reports_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = lgs;
+            TitlePage.Text = "Reports";
+
             var bc = new BrushConverter();
             //  tasks_panel.Visibility = Visibility.Hidden;
            // tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");
@@ -91,6 +94,8 @@ namespace SimpleTaskTracker.XAML
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = set;
+            TitlePage.Text = "Settings";
+
             var bc = new BrushConverter();
             // tasks_panel.Visibility = Visibility.Hidden;
             //tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");
@@ -104,6 +109,8 @@ namespace SimpleTaskTracker.XAML
         private void Help_button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = hlp;
+            TitlePage.Text = "Documentation";
+
             var bc = new BrushConverter();
             // tasks_panel.Visibility = Visibility.Hidden;
             //tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");

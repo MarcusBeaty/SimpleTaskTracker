@@ -7,20 +7,42 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:settings="clr-namespace:SimpleTaskTracker.Properties"
     Title="Settings_Page"
-    Width="668"
-    Height="545"
-    Margin="0"
+    Width="704"
+    Height="545.6"
+    Margin="0,48,0,0"
     HorizontalAlignment="Center"
-    VerticalAlignment="Top"
     d:DesignHeight="300"
+    UseLayoutRounding="True"
     d:DesignWidth="300"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center">
-        <TextBlock
+    <Grid ShowGridLines="False" Height="545.6" Width="704"  HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="42" />
+            <RowDefinition Height="83" />
+            <RowDefinition Height="322" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="154"/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="245" />
+            <ColumnDefinition Width="216" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Visibility="Hidden" Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="4.6,0.4,0,0" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Width="385" VerticalAlignment="Top" Height="43">
+            <TextBlock Padding="0,0,0,0" FontSize="32" Foreground="#FF0E0E0E" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Thin" VerticalAlignment="Top">Settings</TextBlock>
+            <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
+        </StackPanel>
+
+            <TextBlock
             x:Name="WarningText"
             Width="505"
-            Margin="104,145,0,0"
+            Margin="28.6,21.6,0,0"
+            Grid.ColumnSpan="4"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
@@ -29,23 +51,24 @@
             Foreground="#FF444444"
             MouseUp="WarningText_MouseUp"
             Text="Display Warnings before removing Tabs or Report data"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" />
         <CheckBox
             x:Name="WarningsChk"
-            Width="31"
-            Height="18"
-            Margin="81,147,0,0"
+            Margin="5.6,24.6,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Checked="WarningsChk_Checked"
             FontSize="24"
             IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=Warnings, Mode=OneWay}"
-            Unchecked="WarningsChk_Unchecked" />
+            Unchecked="WarningsChk_Unchecked" Grid.Column="1" Grid.Row="3" />
+
         <TextBlock
             x:Name="AutoDateText"
             Width="505"
-            Margin="104,179,0,0"
+            Margin="28.6,55.6,0,0"
             HorizontalAlignment="Left"
+            Grid.ColumnSpan="4"
+            Grid.RowSpan="2"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="16"
@@ -54,24 +77,23 @@
             MouseUp="AutoDateText_MouseUp"
             Text="Automatically apply Date to Task Names"
             TextDecorations="{x:Null}"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" />
         <CheckBox
             x:Name="AutoDate"
-            Width="31"
-            Height="18"
-            Margin="81,181,0,0"
+            Margin="5.6,2.6,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Checked="AutoDate_Checked"
+            
             FontSize="24"
             IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=AutoDate, Mode=OneWay}"
-            Unchecked="AutoDate_Unchecked" />
+            Unchecked="AutoDate_Unchecked" Grid.Row="4" Grid.Column="1"  />
         <Button
             x:Name="SaveSettings"
             Width="180"
             Height="35"
             Cursor="Hand"
-            Margin="232,259,0,0"
+            Margin="35.2,77.4,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF1AC999"
@@ -79,7 +101,8 @@
             Content="Save Settings"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
+            Visibility="Hidden"
             Foreground="White"
-            IsEnabled="False" />
+            IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" />
     </Grid>
 </Page>

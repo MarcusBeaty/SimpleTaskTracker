@@ -45,27 +45,27 @@ namespace SimpleTaskTracker.XAML
                 case false: Properties.Settings.Default.AutoDate = false;
                     break;
             }
-            SaveSettings.IsEnabled = false;
+            //SaveSettings.IsEnabled = false;
         }
 
         private void WarningsChk_Checked(object sender, RoutedEventArgs e)
         {
-            if (IsLoaded) SaveSettings.IsEnabled = true;
+            if (IsLoaded) SaveSettings_Click(sender, e);
         }
 
         private void WarningsChk_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (IsLoaded) SaveSettings.IsEnabled = true;
+            if (IsLoaded) SaveSettings_Click(sender, e);
         }
 
         private void AutoDate_Checked(object sender, RoutedEventArgs e)
         {
-            if (IsLoaded) SaveSettings.IsEnabled = true;
+            if (IsLoaded) SaveSettings_Click(sender, e);
         }
 
         private void AutoDate_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (IsLoaded) SaveSettings.IsEnabled = true;
+            if (IsLoaded) SaveSettings_Click(sender, e);
         }
 
         private void AutoDateText_MouseUp(object sender, MouseButtonEventArgs e)
@@ -75,15 +75,17 @@ namespace SimpleTaskTracker.XAML
                 if (AutoDate.IsChecked == true)
                 {
                     AutoDate.IsChecked = false;
-                    SaveSettings.IsEnabled = true;
+                    SaveSettings_Click(sender,e);
+                    //SaveSettings.IsEnabled = true;
                 }
 
                 else
                 {
                     AutoDate.IsChecked = true;
-                    SaveSettings.IsEnabled = true;
+                    SaveSettings_Click(sender, e);
+                    //SaveSettings.IsEnabled = true;
                 }
-                
+
             }
         }
 
@@ -94,13 +96,15 @@ namespace SimpleTaskTracker.XAML
                 if (WarningsChk.IsChecked == true)
                 {
                     WarningsChk.IsChecked = false;
-                    SaveSettings.IsEnabled = true;
+                    SaveSettings_Click(sender, e);
+                    //SaveSettings.IsEnabled = true;
                 }
 
                 else
                 {
                     WarningsChk.IsChecked = true;
-                    SaveSettings.IsEnabled = true;
+                    SaveSettings_Click(sender, e);
+                    //SaveSettings.IsEnabled = true;
                 }
             }
         }
