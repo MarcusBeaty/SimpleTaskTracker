@@ -25,8 +25,6 @@ namespace SimpleTaskTracker.XAML
     {
         public static StringCollection list = Properties.Settings.Default.TabNames;
         public static ObservableCollection<Property> col = new ObservableCollection<Property>();
-        public string TaskName { get; set; }
-        public string ReTaskName { get; set; }
         private MainWindow _mw;
 
         public Tasks_Page(MainWindow mw)
@@ -34,11 +32,11 @@ namespace SimpleTaskTracker.XAML
             InitializeComponent();
 
             _mw = mw;
-
             addTabItm.Content = new Task_Home(this);
 
             CheckForExistingTabs();
         }
+
 
         private void CheckForExistingTabs()
         {
@@ -52,8 +50,10 @@ namespace SimpleTaskTracker.XAML
 
                     if (list.Count != 0)
                     {
-                        // No need to use await here
-                        RecreateTabs();
+                        for (var i = 0; i < list.Count; i++)
+                        {
+                            CreateNewTab(list[i],false);
+                        }
                     }
                 }
 
@@ -86,85 +86,69 @@ namespace SimpleTaskTracker.XAML
             OnPlusTabClick(sender, e);
         }
 
-        public async Task RecreateTabs()
+        public void SetLastClosed(string TabName)
         {
-            for (var i = 0; i < list.Count; i++)
+            // Using exist check for error: when clearing database but leaving tab open
+            using (var db = new DataEntities())
             {
-                ReTaskName = list[i];
+                bool exists = db.Properties.Any(x => x.Task == TabName);
 
-                // Loading StopWatch into Tab Content
-                var content = new Stopwatch(this, _mw, false);
-
-                // Creating Tab
-                var tab = new CloseableTabItem(this)
+                if (exists)
                 {
-                    TbName = list[i],
-                    Content = content,
-                    Uid = list[i]
-                };
-
-                // Creating header for Tab
-                tab.SetHeader(list[i]);
-
-                using (var db = new DataEntities())
-                {
-                    // Using exist check for error: when clearing database but leaving tab open
-                    bool exists = db.Properties.Any(x => x.Task == ReTaskName);
-
-                    if (exists)
-                    {
-                        var task = db.Properties.SingleOrDefault(x => x.Task == ReTaskName);
-                        task.LastClosed = Properties.Settings.Default.LastClosed;
-                        await db.SaveChangesAsync();
-                        RefreshObservableCollection();
-                    }
+                    var task = db.Properties.First(x => x.Task == TabName);
+                    task.LastClosed = Properties.Settings.Default.LastClosed;
+                    db.SaveChanges();
+                    RefreshObservableCollection();
                 }
-                // Adding to TabControl
-                // Inserting before (+) button
-                tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, tab);
-
-                // Focusing first tab - i < list.Count - 1 to focus last tab
-                if (i == 0)
-                    tab.Focus();
             }
         }
-
+      
         public void OnPlusTabClick(object sender, RoutedEventArgs e)
         {
             _mw.Opacity = 0.3;
-            NewTaskDialog dg = new NewTaskDialog(this) { Owner = _mw };
+            NewTaskDialog dg = new NewTaskDialog() { Owner = _mw };
             dg.ShowDialog();
 
             
             if (dg.DialogResult == true)
             {
                 // Create new Tab
-                CreateNewTab();
+                var taskName = dg.TaskName;
+                CreateNewTab(taskName,true);
             }
         }
 
-        private void CreateNewTab()
+        private void CreateNewTab(string TabName, bool IsANewTask)
         {
             // Pass arguments to Stopwatch class
-            var content = new Stopwatch(this, _mw, true);
+            var Stopwatch = new Stopwatch(TabName, _mw, IsANewTask);
 
             // Creating TabItem
-            var tab = new CloseableTabItem(this)
+            var Tab = new CloseableTabItem(this)
             {
-                TbName = TaskName,
-                Uid = TaskName,
-                Content = content
+                TbName = TabName,
+                Uid = TabName,
+                Content = Stopwatch
             };
 
             // Creating header for Tab
-            tab.SetHeader(TaskName);
+            Tab.SetHeader(TabName);
 
             // Adding to TabControl : Inserting TB before (+) button
-            tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, tab);
-            Keyboard.ClearFocus();
-            tab.Focus();
+            tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, Tab);
 
-            var newProperty = new Property() { Task = TaskName };
+            if (!IsANewTask)
+            {
+                var firstTab = (TabItem)tabCtrl.Items[0];
+                firstTab.Focus();
+                SetLastClosed(TabName);
+                return;
+            }
+
+            Keyboard.ClearFocus();
+            Tab.Focus();
+
+            var newProperty = new Property() { Task = TabName };
             PopulateCollections(newProperty);
         }
 
@@ -198,5 +182,19 @@ namespace SimpleTaskTracker.XAML
                 OnPlusTabClick(sender, e);
             }
         }
+
+        private void TabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (tabCtrl.Items.Count > 1)
+            {
+                _mw.TitleGroup.Visibility = Visibility.Hidden;
+            }
+            else if(_mw.TitlePage.Text == "Tasks")
+            {
+                _mw.TitlePage.Text = "Tasks";
+                _mw.TitleGroup.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
+

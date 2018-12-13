@@ -56,8 +56,8 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel UseLayoutRounding="True" Panel.ZIndex="5" Margin="13,51,0,0" HorizontalAlignment="Left"  Width="385" VerticalAlignment="Top" Height="43" Grid.RowSpan="4" Grid.ColumnSpan="5" Grid.Column="1">
-            <TextBlock Name="TitlePage" Text="Tasks" Padding="0,0,0,0" FontSize="32" Foreground="#FF0E0E0E" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Thin" VerticalAlignment="Top"></TextBlock>
+        <StackPanel Visibility="Visible" Name="TitleGroup" UseLayoutRounding="True" Panel.ZIndex="5" Margin="13,51,0,0" HorizontalAlignment="Left"  Width="385" VerticalAlignment="Top" Height="43" Grid.RowSpan="4" Grid.ColumnSpan="5" Grid.Column="1">
+            <TextBlock Name="TitlePage" Text="Tasks" Padding="0,0,0,0" FontSize="32" Foreground="#FF5C5F63" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" VerticalAlignment="Top"/>
             <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
         </StackPanel>
 

@@ -19,7 +19,6 @@ namespace SimpleTaskTracker.XAML
         MainWindow _mw;
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
         DispatcherTimer dpTimer = new DispatcherTimer();
-        private Tasks_Page _tsks;
         TimeSpan ts;
         string elapsedTime;
         int hours;
@@ -28,12 +27,12 @@ namespace SimpleTaskTracker.XAML
 
         bool _newTab;
 
-        public Stopwatch(Tasks_Page tsks, MainWindow mw, bool NewTab)
+        public Stopwatch(string TaskName, MainWindow mw, bool NewTab)
         {
             InitializeComponent();
             DataContext = this;
-            _tsks = tsks;
             _mw = mw;
+            _taskName = TaskName;
             _newTab = NewTab;
             this.Loaded += Stopwatch_Loaded;
             Startup();
@@ -58,16 +57,12 @@ namespace SimpleTaskTracker.XAML
 
         private void NewTabSetup()
         {
-            _taskName = _tsks.TaskName;
-
             // Using standard tick
             dpTimer.Tick += new EventHandler(Tick);
         }
 
         private void ExistingTabSetup()
         {
-            _taskName = _tsks.ReTaskName;
-
             // Using recreated tick
             dpTimer.Tick += new EventHandler(RecreatedTick);
 
@@ -81,7 +76,7 @@ namespace SimpleTaskTracker.XAML
                     var Property = db.Properties.First(x => x.Task == _taskName);
                     
                     // null handling 
-                    if(Property != null)
+                    if(Property.ClockIn != null)
                     { 
                         hours = Property.Hours.Value;
                         minutes = Property.Minutes.Value;
@@ -379,7 +374,8 @@ namespace SimpleTaskTracker.XAML
         {
             if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                _tsks.OnPlusTabClick(sender, e);
+                var test = Parent as Tasks_Page;
+                test.OnPlusTabClick(sender, e);
             }
         }
     }

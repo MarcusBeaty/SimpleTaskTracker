@@ -1,19 +1,11 @@
-﻿using SimpleTaskTracker.Database;
+﻿using Microsoft.Win32;
+using SimpleTaskTracker.Database;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -61,10 +53,6 @@ namespace SimpleTaskTracker.XAML
                             return;
                     }
                 }
-
-
-
-                //
 
                 using (var db = new DataEntities())
                 {
@@ -153,6 +141,44 @@ namespace SimpleTaskTracker.XAML
             else
             {
                 Delete_Btn.IsEnabled = false;
+            }
+        }
+
+        private string GetSpreadsheetData()
+        {
+            var Data = string.Empty;
+            var Header = "Task,Clock-In,Clock-Out,Total(Hours),Last Closed\n";
+            var dataGridValues = dataGrid.Items;
+
+            Data += Header;
+
+            foreach (Property itm in dataGridValues)
+            {
+                var rowValues = $"{itm.Task},{itm.ClockIn},{itm.ClockOut},{itm.Total},{itm.LastClosed}\n";
+                Data += rowValues;
+            }
+            return Data;
+        }
+
+
+        private void SaveSpreadsheet(object sender, RoutedEventArgs e)
+        {
+            // Configure save file dialog box
+            var saveFileDialog = new SaveFileDialog
+            {
+                FileName = $"STT_Spreadsheet{DateTime.Now}", // Default file name
+                DefaultExt = ".csv", // Default file extension
+                Filter = "CSV (Comma delimited) (.csv)|*.csv" // Filter files by extension
+            };
+
+            // Save file dialog box
+            var result = saveFileDialog.ShowDialog();
+
+            if (result is true)
+            {
+                // Saving spreadsheet to user's desired location
+                string filename = saveFileDialog.FileName;
+                File.WriteAllText(filename, GetSpreadsheetData());
             }
         }
     }

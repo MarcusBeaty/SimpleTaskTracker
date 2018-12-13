@@ -65,7 +65,17 @@ namespace SimpleTaskTracker.XAML
         private void Tasks_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = tk;
-            TitlePage.Text = "Tasks";
+
+            if (tk.tabCtrl.Items.Count > 1)
+            {
+                TitleGroup.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TitlePage.Text = "Tasks";
+                TitleGroup.Visibility = Visibility.Visible;
+            }
+
             var bc = new BrushConverter();
             // tasks_panel.Visibility = Visibility.Visible;
            // tasks_panel.Background = (Brush)bc.ConvertFrom("#FF33363B");
@@ -79,6 +89,7 @@ namespace SimpleTaskTracker.XAML
         private void Reports_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = lgs;
+            TitleGroup.Visibility = Visibility.Visible;
             TitlePage.Text = "Reports";
 
             var bc = new BrushConverter();
@@ -94,6 +105,7 @@ namespace SimpleTaskTracker.XAML
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = set;
+            TitleGroup.Visibility = Visibility.Visible;
             TitlePage.Text = "Settings";
 
             var bc = new BrushConverter();
@@ -109,7 +121,14 @@ namespace SimpleTaskTracker.XAML
         private void Help_button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = hlp;
-            TitlePage.Text = "Documentation";
+            TitleGroup.Visibility = Visibility.Visible;
+
+            var Tab = hlp.tabCtrl.SelectedValue as TabItem;
+
+            if (Tab is null)
+                TitlePage.Text = "Documentation";
+            else 
+                TitlePage.Text = Tab.Header.ToString();
 
             var bc = new BrushConverter();
             // tasks_panel.Visibility = Visibility.Hidden;

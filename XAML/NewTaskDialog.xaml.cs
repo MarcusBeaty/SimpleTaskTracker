@@ -23,14 +23,12 @@ namespace SimpleTaskTracker.XAML
     public partial class NewTaskDialog : Window
     {
         private Tasks_Page _tsks;
+        public string TaskName { get; set; }
 
-        public NewTaskDialog() { }
-
-        public NewTaskDialog(Tasks_Page tsks)
+        public NewTaskDialog()
         {
             InitializeComponent();
             
-            _tsks = tsks;
             taskEntry.Focus();
         }
 
@@ -49,12 +47,12 @@ namespace SimpleTaskTracker.XAML
                 {
                     currentDate = DateTime.Now;
                     date = currentDate.ToString("M-d-yyyy");
-                    _tsks.TaskName = input + ($" | {date}");
+                    TaskName = input + ($" | {date}");
                 }
 
                 else
                 {
-                    _tsks.TaskName = input;
+                    TaskName = input;
                 }
 
                 foreach (var prop in db.Properties)

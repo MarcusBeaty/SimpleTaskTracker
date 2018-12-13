@@ -123,7 +123,7 @@
                 </ControlTemplate>
             </TabControl.Template>
             <TabItem Name="Documentation" Header="Documentation" Width="160" Height="30" Margin="0" VerticalContentAlignment="Stretch" Padding="6,2"></TabItem>
-            <TabItem Name="ReleaseNotes" Header="Release Notes" Width="160" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Top" Padding="0" HorizontalContentAlignment="Center"></TabItem>
+            <TabItem Name="ReleaseNotes" Header="Release notes" Width="160" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Top" Padding="0" HorizontalContentAlignment="Center"></TabItem>
             <TabItem Name="About" Padding="0" Header="About" Width="160" Height="30" HorizontalContentAlignment="Center" Background="#FF217C39" VerticalContentAlignment="Top" VerticalAlignment="Top">
                 <Rectangle Visibility="Hidden" UseLayoutRounding="True" Fill="#FF3C3848" Width="704" Stretch="UniformToFill" Margin="10" HorizontalAlignment="Center"/>
             </TabItem>
