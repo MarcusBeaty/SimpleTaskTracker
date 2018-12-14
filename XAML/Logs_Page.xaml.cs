@@ -163,10 +163,12 @@ namespace SimpleTaskTracker.XAML
 
         private void SaveSpreadsheet(object sender, RoutedEventArgs e)
         {
+            
+            
             // Configure save file dialog box
             var saveFileDialog = new SaveFileDialog
             {
-                FileName = $"STT_Spreadsheet{DateTime.Now}", // Default file name
+                FileName = "STT_Reports", // Default file name
                 DefaultExt = ".csv", // Default file extension
                 Filter = "CSV (Comma delimited) (.csv)|*.csv" // Filter files by extension
             };
