@@ -172,13 +172,15 @@ namespace SimpleTaskTracker.XAML
             };
 
             // Save file dialog box
+            var Data = GetSpreadsheetData();
             var result = saveFileDialog.ShowDialog();
+            
 
             if (result is true)
             {
                 // Saving spreadsheet to user's desired location
                 string filename = saveFileDialog.FileName;
-                File.WriteAllText(filename, GetSpreadsheetData());
+                File.WriteAllText(filename, Data);
             }
         }
     }
