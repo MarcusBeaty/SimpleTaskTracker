@@ -77,8 +77,20 @@ namespace SimpleTaskTracker.XAML
                         await db.SaveChangesAsync();
 
                         // Name of the Tab to remove, removing from tab items and from re-create list
+                       
                         var nameOfTab = _tskpg.tabCtrl.Items.OfType<TabItem>()
                             .SingleOrDefault(n => n.Uid == name);
+
+                        var total = _tskpg.tabCtrl.Items.Count;
+                        var thisIndex = _tskpg.tabCtrl.SelectedIndex;
+                        var newIndex = (thisIndex - 1);
+
+                        _tskpg.SetTasksHeader();
+
+                        if (newIndex != -1)
+                        {
+                            _tskpg.tabCtrl.SelectedIndex = newIndex;
+                        }
 
                         _tskpg.tabCtrl.Items.Remove(nameOfTab);
                         list.Remove(name);
@@ -88,6 +100,7 @@ namespace SimpleTaskTracker.XAML
                     var dbSelected = db.Properties.Where(x => x.Selected == 1);
                     db.Properties.RemoveRange(dbSelected);
                     await db.SaveChangesAsync();
+                    _tskpg.SetTasksHeader();
                     Tasks_Page.RefreshObservableCollection();
                     Delete_Btn.IsEnabled = false;
                     checkBoxHeader.IsChecked = false;
@@ -163,8 +176,6 @@ namespace SimpleTaskTracker.XAML
 
         private void SaveSpreadsheet(object sender, RoutedEventArgs e)
         {
-            
-            
             // Configure save file dialog box
             var saveFileDialog = new SaveFileDialog
             {
@@ -176,7 +187,6 @@ namespace SimpleTaskTracker.XAML
             // Save file dialog box
             var Data = GetSpreadsheetData();
             var result = saveFileDialog.ShowDialog();
-            
 
             if (result is true)
             {

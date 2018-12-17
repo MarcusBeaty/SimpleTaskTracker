@@ -69,11 +69,13 @@ namespace SimpleTaskTracker.XAML
             if (tk.tabCtrl.Items.Count > 1)
             {
                 TitleGroup.Visibility = Visibility.Hidden;
+                tk.SetTasksHeader();
             }
             else
             {
                 TitlePage.Text = "Tasks";
                 TitleGroup.Visibility = Visibility.Visible;
+                tk.SetTasksHeader();
             }
 
             var bc = new BrushConverter();

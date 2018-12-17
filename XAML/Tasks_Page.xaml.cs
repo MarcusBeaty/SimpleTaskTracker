@@ -1,20 +1,10 @@
 ﻿using SimpleTaskTracker.Database;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -35,6 +25,7 @@ namespace SimpleTaskTracker.XAML
             addTabItm.Content = new Task_Home(this);
 
             CheckForExistingTabs();
+            SetTasksHeader();
         }
 
 
@@ -115,6 +106,7 @@ namespace SimpleTaskTracker.XAML
                 // Create new Tab
                 var taskName = dg.TaskName;
                 CreateNewTab(taskName,true);
+                SetTasksHeader();
             }
         }
 
@@ -183,13 +175,13 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        private void TabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void SetTasksHeader()
         {
             if (tabCtrl.Items.Count > 1 && _mw.TitlePage.Text == "Tasks")
             {
                 _mw.TitleGroup.Visibility = Visibility.Hidden;
             }
-            else if(_mw.TitlePage.Text == "Tasks")
+            else if (_mw.TitlePage.Text == "Tasks")
             {
                 _mw.TitlePage.Text = "Tasks";
                 _mw.TitleGroup.Visibility = Visibility.Visible;

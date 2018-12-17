@@ -92,12 +92,15 @@ namespace SimpleTaskTracker
             var tabControl = (TabControl)Parent;
             var total = tabControl.Items.Count;
             var thisIndex = tabControl.SelectedIndex;
+            var newIndex = (thisIndex - 1);
 
             list.Remove(TbName);
 
             tabControl.Items.Remove(this);
 
-            var newIndex = (thisIndex - 1);
+            _tp.SetTasksHeader();
+
+            
 
             if (newIndex != -1)
             {

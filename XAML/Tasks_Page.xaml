@@ -39,7 +39,6 @@
             Margin="0,-30,0,0"
             FocusVisualStyle="{x:Null}"
             Padding="0"
-            SelectionChanged="TabCtrl_SelectionChanged"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Center"
             BorderThickness="0"
