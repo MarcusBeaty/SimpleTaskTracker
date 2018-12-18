@@ -85,7 +85,6 @@ namespace SimpleTaskTracker.XAML
                         var thisIndex = _tskpg.tabCtrl.SelectedIndex;
                         var newIndex = (thisIndex - 1);
 
-                        _tskpg.SetTasksHeader();
 
                         if (newIndex != -1)
                         {
@@ -100,7 +99,6 @@ namespace SimpleTaskTracker.XAML
                     var dbSelected = db.Properties.Where(x => x.Selected == 1);
                     db.Properties.RemoveRange(dbSelected);
                     await db.SaveChangesAsync();
-                    _tskpg.SetTasksHeader();
                     Tasks_Page.RefreshObservableCollection();
                     Delete_Btn.IsEnabled = false;
                     checkBoxHeader.IsChecked = false;

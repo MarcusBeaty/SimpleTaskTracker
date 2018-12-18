@@ -1,6 +1,7 @@
 ﻿using SimpleTaskTracker.Database;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,7 +26,6 @@ namespace SimpleTaskTracker.XAML
             addTabItm.Content = new Task_Home(this);
 
             CheckForExistingTabs();
-            SetTasksHeader();
         }
 
 
@@ -33,9 +33,7 @@ namespace SimpleTaskTracker.XAML
         {
             using (var db = new DataEntities())
             { 
-                bool exists = db.Properties.Any();
-
-                if (exists)
+                if (db.Properties.Any())
                 {
                     RefreshObservableCollection();
 
@@ -47,12 +45,9 @@ namespace SimpleTaskTracker.XAML
                         }
                     }
                 }
-
                 else
                 {
                     list.Clear();
-                    Properties.Settings.Default.AutoDate = false;
-                    Properties.Settings.Default.Warnings = true;
                     RefreshObservableCollection();
                 }
             }
@@ -77,7 +72,7 @@ namespace SimpleTaskTracker.XAML
             OnPlusTabClick(sender, e);
         }
 
-        public void SetLastClosed(string TabName)
+        private void SetLastClosed(string TabName)
         {
             // Using exist check for error: when clearing database but leaving tab open
             using (var db = new DataEntities())
@@ -100,13 +95,11 @@ namespace SimpleTaskTracker.XAML
             NewTaskDialog dg = new NewTaskDialog() { Owner = _mw };
             dg.ShowDialog();
 
-            
             if (dg.DialogResult == true)
             {
                 // Create new Tab
                 var taskName = dg.TaskName;
                 CreateNewTab(taskName,true);
-                SetTasksHeader();
             }
         }
 
@@ -127,12 +120,12 @@ namespace SimpleTaskTracker.XAML
             Tab.SetHeader(TabName);
 
             // Adding to TabControl : Inserting TB before (+) button
-            tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, Tab);
+            var tabTotal = tabCtrl.Items.Count;
+            tabCtrl.Items.Insert(tabTotal - 1, Tab);
 
             if (!IsANewTask)
             {
-                var firstTab = (TabItem)tabCtrl.Items[0];
-                firstTab.Focus();
+                tabCtrl.SelectedIndex = tabTotal - 1;
                 SetLastClosed(TabName);
                 return;
             }
@@ -161,7 +154,7 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        public void AddToTabCollection(string tabName)
+        private void AddToTabCollection(string tabName)
         {
             list.Add(tabName);
         }
@@ -175,8 +168,9 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        public void SetTasksHeader()
+        private void TabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Debug.WriteLine("Event");
             if (tabCtrl.Items.Count > 1 && _mw.TitlePage.Text == "Tasks")
             {
                 _mw.TitleGroup.Visibility = Visibility.Hidden;
@@ -186,6 +180,12 @@ namespace SimpleTaskTracker.XAML
                 _mw.TitlePage.Text = "Tasks";
                 _mw.TitleGroup.Visibility = Visibility.Visible;
             }
+        }
+
+        public void TempHeaderFix()
+        {
+            _mw.TitlePage.Text = "Tasks";
+            _mw.TitleGroup.Visibility = Visibility.Visible;
         }
     }
 }

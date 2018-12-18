@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SimpleTaskTracker.XAML;
+using System;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using SimpleTaskTracker;
-using System.Windows.Media;
 using System.Windows.Input;
-using SimpleTaskTracker.XAML;
 
 namespace SimpleTaskTracker
 {
@@ -98,13 +92,14 @@ namespace SimpleTaskTracker
 
             tabControl.Items.Remove(this);
 
-            _tp.SetTasksHeader();
-
-            
-
             if (newIndex != -1)
             {
                 tabControl.SelectedIndex = newIndex;
+               
+            }
+            else
+            {
+                _tp.TempHeaderFix();
             }
         }
     }

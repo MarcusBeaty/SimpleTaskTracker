@@ -26,13 +26,13 @@
             Margin="-3,434,0,24"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
+            FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium"
             FontSize="14"
             FontWeight="Bold"
             RenderTransformOrigin="0.5,0.5"
             Text="Note: Removing an entry from the Reports Sheet will also remove the corresponding Task Tab."
             TextAlignment="Center"
-            TextDecorations="{x:Null}">
+            TextDecorations="{x:Null}" Foreground="#FF444444">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
