@@ -95,12 +95,7 @@ namespace SimpleTaskTracker.XAML
             NewTaskDialog dg = new NewTaskDialog() { Owner = _mw };
             dg.ShowDialog();
 
-            if (dg.DialogResult == true)
-            {
-                // Create new Tab
-                var taskName = dg.TaskName;
-                CreateNewTab(taskName,true);
-            }
+            if (dg.DialogResult == true) CreateNewTab(dg.TaskName, true);
         }
 
         private void CreateNewTab(string TabName, bool IsANewTask)
@@ -121,7 +116,7 @@ namespace SimpleTaskTracker.XAML
 
             // Adding to TabControl : Inserting TB before (+) button
             var tabTotal = tabCtrl.Items.Count;
-            tabCtrl.Items.Insert(tabTotal - 1, Tab);
+            tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, Tab);
 
             if (!IsANewTask)
             {

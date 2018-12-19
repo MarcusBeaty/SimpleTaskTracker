@@ -13,7 +13,7 @@
              Height="545.6"
              BorderBrush="White"
              d:DesignHeight="545.6" d:DesignWidth="704" HorizontalAlignment="Center" VerticalAlignment="Top">
-    <Grid Width="704" Margin="0,-100,0,0" HorizontalAlignment="Left" Background="White">
+    <Grid Width="704" Margin="0,-100,0,0" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="53*" />
             <RowDefinition Height="16*" />
@@ -38,18 +38,20 @@
 
                 <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">Improvements
                 </TextBlock>
-                <TextBlock Foreground="#5a5a5b" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap">●&#160;&#160;&#160;Added the ability to edit open Task names from the Tasks section.</TextBlock>
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B">●&#160;&#160;&#160;&#160;Added new page "Help" - Contains Release Notes, About, and Documentation sections.</TextBlock>
+                <TextBlock Foreground="#5a5a5b" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Margin="0">●&#160;&#160;&#160;&#160;Added the ability to save report data as an Excel spreadsheet.</TextBlock>
 
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B">●&#160;&#160;&#160;&#160;Changed the formatting of Date when applied to Task name to improve readability.</TextBlock>
+                <TextBlock Foreground="#5a5a5b" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Margin="0">●&#160;&#160;&#160;&#160;Added the ability to edit open Task names from the Tasks section.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B" Margin="0">●&#160;&#160;&#160;&#160;Added new page "Help" - Contains Release Notes, About, and Documentation sections.</TextBlock>
 
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B">●&#160;&#160;&#160;&#160;Added the ability to right click and select and copy cell(s) from the Reports section.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B" Margin="0,0,0,0">●&#160;&#160;&#160;&#160;Changed the formatting of Date when applied to Task name to improve readability.</TextBlock>
 
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B">●&#160;&#160;&#160;&#160;Added HotKeys to add (Ctrl+T) and remove (Ctrl+W) Task tabs.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B" Margin="0,0,0,0">●&#160;&#160;&#160;&#160;Added the ability to right click and select and copy cell(s) from the Reports section.</TextBlock>
 
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B">●&#160;&#160;&#160;&#160;Esc Key now closes "New Task" / "Rename Task" prompt windows.</TextBlock>
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" >●&#160;&#160;&#160;&#160;Increased Task Name character limit to 90 characters.</TextBlock>
-                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" >●&#160;&#160;&#160;&#160;Removed "Save Settings" button from Settings page. Settings are now automatically saved upon checking / unchecking a setting.<LineBreak></LineBreak></TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B" Margin="0,0,0,0">●&#160;&#160;&#160;&#160;Added HotKeys to add (Ctrl+T) and remove (Ctrl+W) Task tabs.</TextBlock>
+
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Foreground="#FF5A5A5B" Margin="0,0,0,0">●&#160;&#160;&#160;&#160;Esc Key now closes "New Task" / "Rename Task" prompt windows.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Margin="0,0,0,0" >●&#160;&#160;&#160;&#160;Increased Task Name character limit to 90 characters.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap" Margin="0,0,0,0" >●&#160;&#160;&#160;&#160;Removed "Save Settings" button from Settings page. Settings are now automatically saved upon checking / unchecking a setting.<LineBreak></LineBreak></TextBlock>
 
 
                 <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">Bug Fixes</TextBlock>
