@@ -2,6 +2,7 @@
 using SimpleTaskTracker.Database;
 using System;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -27,9 +28,7 @@ namespace SimpleTaskTracker.XAML
             dataGrid.ItemsSource = Tasks_Page.col;
         }
 
-
-
-        public async void Remove_Selected(object sender, RoutedEventArgs e)
+        public void Remove_Click(object sender, RoutedEventArgs e)
         {
             // Storing every item that is Selected ( value of 1 )
             var selected = Tasks_Page.col.Where(x => x.Selected == 1);
@@ -37,12 +36,9 @@ namespace SimpleTaskTracker.XAML
             // Do nothing if nothing is selected
             if (selected.Count() != 0)
             {
-
                 // If user has the Warning Setting enabled
-
                 if (Properties.Settings.Default.Warnings)
                 {
-
                     MessageBoxResult UserSelection = MessageBox.Show("Are you sure you would like to remove the entry/entries ?", "Simple Task Tracker", MessageBoxButton.YesNo);
                     switch (UserSelection)
                     {
@@ -53,59 +49,77 @@ namespace SimpleTaskTracker.XAML
                             return;
                     }
                 }
-
-                using (var db = new DataEntities())
-                {
-                    // Storing every item that is Selected ( value of 1 )
-                    //selected = Tasks_Page.col.Where(x => x.Selected == 1);
-
-                    // Creating a temp array to iterate from that doesn't change in size 
-                    var selectedArr = selected.ToArray();
-
-                    foreach (var x in selectedArr)
-                    {
-                        // Storing name of each selected item from observable collection
-                        var name = x.Task;
-
-                        // Selecting database row that corresponds with selected observable collection row
-                        var dbEntry = db.Properties.SingleOrDefault(i => i.Task == name);
-
-                        // Setting it to "Selected" in database
-                        dbEntry.Selected = 1;
-
-                        // Saving and repopulating
-                        await db.SaveChangesAsync();
-
-                        // Name of the Tab to remove, removing from tab items and from re-create list
-                       
-                        var nameOfTab = _tskpg.tabCtrl.Items.OfType<TabItem>()
-                            .SingleOrDefault(n => n.Uid == name);
-
-                        var total = _tskpg.tabCtrl.Items.Count;
-                        var thisIndex = _tskpg.tabCtrl.SelectedIndex;
-                        var newIndex = (thisIndex - 1);
-
-
-                        if (newIndex != -1)
-                        {
-                            _tskpg.tabCtrl.SelectedIndex = newIndex;
-                        }
-
-                        _tskpg.tabCtrl.Items.Remove(nameOfTab);
-                        list.Remove(name);
-                    }
-
-                    // code to remove entries with selected
-                    var dbSelected = db.Properties.Where(x => x.Selected == 1);
-                    db.Properties.RemoveRange(dbSelected);
-                    await db.SaveChangesAsync();
-                    Tasks_Page.RefreshObservableCollection();
-                    Delete_Btn.IsEnabled = false;
-                    checkBoxHeader.IsChecked = false;
-                }
+                // Creating a temp array to iterate from that doesn't change in size 
+                var selectedArr = selected.ToArray();
+                AssignAsSelected(selectedArr);
             }
         }
 
+        private async void AssignAsSelected(Property[] Selected)
+        {
+            using (var db = new DataEntities())
+            {
+                // Storing every item that is Selected ( value of 1 )
+                foreach (var x in Selected)
+                {
+                    // Storing name of each selected item from observable collection
+                    var name = x.Task;
+
+                    // Selecting database row that corresponds with selected observable collection row
+                    var dbEntry = db.Properties.SingleOrDefault(i => i.Task == name);
+
+                    // Setting it to "Selected" in database
+                    dbEntry.Selected = 1;
+
+                    // Saving and repopulating
+                    await db.SaveChangesAsync();
+
+                    RemoveTab(name);
+                }
+                RemoveDatabaseEntries();
+            }
+        }
+
+        private async void RemoveDatabaseEntries()
+        {
+            // Code to remove entries that are in DataGrid selected
+            using (var db = new DataEntities())
+            {
+                var dbSelected = db.Properties.Where(x => x.Selected == 1);
+                db.Properties.RemoveRange(dbSelected);
+                await db.SaveChangesAsync();
+                Tasks_Page.RefreshObservableCollection();
+                Delete_Btn.IsEnabled = false;
+                checkBoxHeader.IsChecked = false;
+            }
+        }
+
+        private void RemoveTab(string TabName)
+        {
+            // Name of the Tab to remove, removing from tab items and from re-create list
+            try
+            {
+                var nameOfTab = _tskpg.tabCtrl.Items.OfType<TabItem>()
+               .First(n => n.Uid == TabName);
+
+                var total = _tskpg.tabCtrl.Items.Count;
+                var thisIndex = _tskpg.tabCtrl.SelectedIndex;
+                var newIndex = (thisIndex - 1);
+
+                if (newIndex != -1)
+                {
+                    _tskpg.tabCtrl.SelectedIndex = newIndex;
+                }
+
+                _tskpg.tabCtrl.Items.Remove(nameOfTab);
+                list.Remove(TabName);
+            }
+
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+        }
 
         private void CheckBoxHeader_Checked(object sender, RoutedEventArgs e)
         {
@@ -122,7 +136,6 @@ namespace SimpleTaskTracker.XAML
                 prop.Selected = 0;
             }
         }
-    
 
         private void CheckBoxHeader_Loaded(object sender, RoutedEventArgs e)
         {

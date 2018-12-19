@@ -50,7 +50,7 @@
             Background="#FFE86048"
             BorderBrush="#FF707070"
              Cursor="Hand"
-            Click="Remove_Selected"
+            Click="Remove_Click"
             Content="Delete"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
