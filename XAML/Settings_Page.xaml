@@ -38,11 +38,11 @@
             <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
         </StackPanel>
 
-            <TextBlock
+        <TextBlock
             x:Name="WarningText"
-            Width="505"
+            Width="394"
             Margin="28.6,21.6,0,0"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="3"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium"
@@ -64,10 +64,10 @@
 
         <TextBlock
             x:Name="AutoDateText"
-            Width="505"
+            Width="292"
             Margin="28.6,55.6,0,0"
             HorizontalAlignment="Left"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="3"
             Grid.RowSpan="2"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium"

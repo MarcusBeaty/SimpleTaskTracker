@@ -170,7 +170,6 @@ namespace SimpleTaskTracker.XAML
 
         private void TabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Debug.WriteLine("Event");
             if (tabCtrl.Items.Count > 1 && _mw.TitlePage.Text == "Tasks")
             {
                 _mw.TitleGroup.Visibility = Visibility.Hidden;
