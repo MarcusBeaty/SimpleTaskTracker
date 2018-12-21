@@ -76,7 +76,7 @@ namespace SimpleTaskTracker.XAML
             }
 
             // If input is empty
-            if (name == "")
+            if (string.IsNullOrWhiteSpace(name))
             {
                 MessageBox.Show("Task Name is required, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
                 //taskEntry.Clear();

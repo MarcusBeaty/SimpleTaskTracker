@@ -21,23 +21,35 @@ namespace SimpleTaskTracker.XAML
     public partial class Help_Page : Page
     {
         private readonly MainWindow _mainWindow;
+        private Help_Documentation doc;
+        private Help_ReleaseNotes rn;
 
         public Help_Page(MainWindow mainWindow)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
 
+            doc = new Help_Documentation();
+            rn = new Help_ReleaseNotes();
+
             About.Content = new Help_About();
-            ReleaseNotes.Content = new Help_ReleaseNotes();
-            Documentation.Content = new Help_Documentation();
+            ReleaseNotes.Content = rn;
+            Documentation.Content = doc;
         }
 
         private void TabCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var tabCtrl = (TabControl)sender;
-            var pgName = tabCtrl.SelectedValue as TabItem;
+            var tabItem = tabCtrl.SelectedValue as TabItem;
+            if (tabItem.Header.ToString() == "Documentation")
+                doc.ScrollTop();
 
-            _mainWindow.TitlePage.Text = pgName.Header.ToString();
+            if (tabItem.Header.ToString() == "Release notes")
+                rn.ScrollTop();
+
+            _mainWindow.TitlePage.Text = tabItem.Header.ToString();
         }
+
+      
     }
 }

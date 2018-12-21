@@ -22,7 +22,6 @@ namespace SimpleTaskTracker.XAML
     /// </summary>
     public partial class NewTaskDialog : Window
     {
-        private Tasks_Page _tsks;
         public string TaskName { get; set; }
 
         public NewTaskDialog()
@@ -85,7 +84,7 @@ namespace SimpleTaskTracker.XAML
                 }
             }
                 // If input is empty
-                if (input == "")
+                if (string.IsNullOrWhiteSpace(input))
                 {
                     MessageBox.Show("Task Name is required, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
                     //taskEntry.Clear();

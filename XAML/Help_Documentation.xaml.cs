@@ -24,5 +24,10 @@ namespace SimpleTaskTracker.XAML
         {
             InitializeComponent();
         }
+
+        public void ScrollTop()
+        {
+            Viewer.ScrollToTop();
+        }
     }
 }

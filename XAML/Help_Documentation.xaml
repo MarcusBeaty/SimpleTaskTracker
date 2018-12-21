@@ -12,7 +12,7 @@
              Height="545.6"
              BorderBrush="White"
              d:DesignHeight="545.6" d:DesignWidth="704" HorizontalAlignment="Center" VerticalAlignment="Top">
-    <Grid Width="704" Margin="0,-100,0,0" HorizontalAlignment="Left">
+    <Grid Name="Root" Width="704" Margin="0,-100,0,0" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="53*" />
             <RowDefinition Height="16*" />
@@ -32,7 +32,7 @@
         <TextBlock Visibility="Hidden" FontSize="32" FontFamily="Arial" FontWeight="Bold"  Foreground="#FF4B4B4B" Grid.RowSpan="3" Grid.ColumnSpan="7" VerticalAlignment="Top" Margin="0,75,0,0" HorizontalAlignment="Center">Simple Task Tracker Documentation</TextBlock>
 
 
-        <ScrollViewer Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="3,0,3,20" VerticalAlignment="Bottom" Padding="0" PanningMode="VerticalOnly" Grid.Row="3">
+        <ScrollViewer x:Name="Viewer"  Grid.RowSpan="5" Grid.ColumnSpan="4" Margin="0,64.4,3,55.6" Padding="0" PanningMode="VerticalOnly" Grid.Row="2">
             <StackPanel Margin="15,15,15,0">
 
                 <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Tasks ] <LineBreak/>
