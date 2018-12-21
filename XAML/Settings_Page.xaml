@@ -40,9 +40,9 @@
 
         <TextBlock
             x:Name="WarningText"
-            Width="394"
+            Width="135"
             Margin="28.6,21.6,0,0"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium"
@@ -50,7 +50,7 @@
             FontWeight="SemiBold"
             Foreground="#FF444444"
             MouseUp="WarningText_MouseUp"
-            Text="Display Warnings before removing Tabs or Report data"
+            Text="Display Warnings "
             TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" />
         <CheckBox
             x:Name="WarningsChk"

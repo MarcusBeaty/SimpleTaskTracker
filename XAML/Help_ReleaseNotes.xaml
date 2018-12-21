@@ -38,6 +38,7 @@
 
                 <TextBlock FontSize="28" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF636262" Padding="0,0,0,5">Improvements
                 </TextBlock>
+                <TextBlock Foreground="#5a5a5b" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0">●&#160;&#160;&#160;&#160;If the Warnings setting is enabled, you are now warned before Clocking out.</TextBlock>
                 <TextBlock Foreground="#5a5a5b" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0">●&#160;&#160;&#160;&#160;Added the ability to save report data as an Excel spreadsheet.</TextBlock>
 
                 <TextBlock Foreground="#5a5a5b" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0">●&#160;&#160;&#160;&#160;Added the ability to edit open Task names from the Tasks section.</TextBlock>

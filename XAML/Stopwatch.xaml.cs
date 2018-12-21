@@ -182,6 +182,21 @@ namespace SimpleTaskTracker.XAML
 
         private async void ClockOut_Click(object sender, RoutedEventArgs e)
         {
+            if(Properties.Settings.Default.Warnings)
+            {
+                //Pausing Stopwatch while prompt is displayed
+                sw.Stop();
+                dpTimer.Stop();
+
+                var Result = MessageBox.Show("Are you sure you would like to Clock-Out and finalize this Task?", "Simple Task Tracker", MessageBoxButton.YesNo);
+                if (Result == MessageBoxResult.No)
+                {
+                    dpTimer.Start();
+                    sw.Start();
+                    return;
+                }
+            }
+
             Resume.IsEnabled = false;
             EndBreak.IsEnabled = false;
             StartBreak.IsEnabled = false;
@@ -206,7 +221,6 @@ namespace SimpleTaskTracker.XAML
             sw.Stop();
             dpTimer.Stop();
         }
-
 
         private async void Start_Break(object sender, RoutedEventArgs e)
         {
