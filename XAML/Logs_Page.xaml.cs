@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using SimpleTaskTracker.Database;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
@@ -51,19 +52,11 @@ namespace SimpleTaskTracker.XAML
                 }
                 // Creating a temp array to iterate from that doesn't change in size 
                 var selectedArr = selected.ToArray();
-<<<<<<< remotes/origin/GUI
-                AssignAsSelected(selectedArr);
-            }
-        }
-
-        private async void AssignAsSelected(Property[] Selected)
-=======
                 MarkSelected(selectedArr);
             }
         }
 
         private async void MarkSelected(Property[] Selected)
->>>>>>> local
         {
             using (var db = new DataEntities())
             {
@@ -123,7 +116,7 @@ namespace SimpleTaskTracker.XAML
                 list.Remove(TabName);
             }
 
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
             }
@@ -176,11 +169,7 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-<<<<<<< remotes/origin/GUI
-        private string GetSpreadsheetData()
-=======
         private string GetReports()
->>>>>>> local
         {
             var Data = string.Empty;
             var Header = "Task,Clock-In,Clock-Out,Total(Hours),Last Closed\n";
@@ -202,34 +191,18 @@ namespace SimpleTaskTracker.XAML
             // Configure save file dialog box
             var saveFileDialog = new SaveFileDialog
             {
-<<<<<<< remotes/origin/GUI
-                FileName = "STT_Reports", // Default file name
-                DefaultExt = ".csv", // Default file extension
-                Filter = "CSV (Comma delimited) (.csv)|*.csv" // Filter files by extension
-            };
-
-            // Save file dialog box
-            var Data = GetSpreadsheetData();
-=======
-                FileName = "STT_Reports", 
-                DefaultExt = ".csv", 
-                Filter = "CSV (Comma delimited) (.csv)|*.csv" 
+                FileName = "STT_Reports",
+                DefaultExt = ".csv",
+                Filter = "CSV (Comma delimited) (.csv)|*.csv"
             };
 
             // Save file dialog box
             var Data = GetReports();
->>>>>>> local
             var result = saveFileDialog.ShowDialog();
 
             if (result is true)
             {
                 // Saving spreadsheet to user's desired location
-<<<<<<< remotes/origin/GUI
-                string filename = saveFileDialog.FileName;
-                File.WriteAllText(filename, Data);
-            }
-        }
-=======
                 var filename = saveFileDialog.FileName;
                 File.WriteAllText(filename, Data);
             }
@@ -244,7 +217,7 @@ namespace SimpleTaskTracker.XAML
             };
 
             var result = openFileDialog.ShowDialog();
-            if(result is true)
+            if (result is true)
             {
                 var Data = File.ReadAllText(openFileDialog.FileName);
                 LoadSpreadsheet(Data);
@@ -254,20 +227,20 @@ namespace SimpleTaskTracker.XAML
         private void LoadSpreadsheet(string Data)
         {
             // Ignore First Line(5 elements), split data by comma
-            var splitData = Data.Split(new string[] { "\n", "," } ,StringSplitOptions.None);
+            var splitData = Data.Split(new string[] { "\n", "," }, StringSplitOptions.None);
 
             try
             {
-                var Entries = ConvertData(splitData);            
+                var Entries = ConvertData(splitData);
                 DatabaseClear();
                 ResetTabBar();
                 DatabaseAdd(Entries);
             }
 
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
-                MessageBox.Show("Load failed. Spreadsheet format is incorrect.","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Load failed. Spreadsheet format is incorrect.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -328,6 +301,5 @@ namespace SimpleTaskTracker.XAML
                 Tasks_Page.RefreshObservableCollection();
             }
         }
->>>>>>> local
     }
 }
