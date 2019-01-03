@@ -51,11 +51,19 @@ namespace SimpleTaskTracker.XAML
                 }
                 // Creating a temp array to iterate from that doesn't change in size 
                 var selectedArr = selected.ToArray();
+<<<<<<< remotes/origin/GUI
                 AssignAsSelected(selectedArr);
             }
         }
 
         private async void AssignAsSelected(Property[] Selected)
+=======
+                MarkSelected(selectedArr);
+            }
+        }
+
+        private async void MarkSelected(Property[] Selected)
+>>>>>>> local
         {
             using (var db = new DataEntities())
             {
@@ -168,7 +176,11 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
+<<<<<<< remotes/origin/GUI
         private string GetSpreadsheetData()
+=======
+        private string GetReports()
+>>>>>>> local
         {
             var Data = string.Empty;
             var Header = "Task,Clock-In,Clock-Out,Total(Hours),Last Closed\n";
@@ -190,6 +202,7 @@ namespace SimpleTaskTracker.XAML
             // Configure save file dialog box
             var saveFileDialog = new SaveFileDialog
             {
+<<<<<<< remotes/origin/GUI
                 FileName = "STT_Reports", // Default file name
                 DefaultExt = ".csv", // Default file extension
                 Filter = "CSV (Comma delimited) (.csv)|*.csv" // Filter files by extension
@@ -197,14 +210,124 @@ namespace SimpleTaskTracker.XAML
 
             // Save file dialog box
             var Data = GetSpreadsheetData();
+=======
+                FileName = "STT_Reports", 
+                DefaultExt = ".csv", 
+                Filter = "CSV (Comma delimited) (.csv)|*.csv" 
+            };
+
+            // Save file dialog box
+            var Data = GetReports();
+>>>>>>> local
             var result = saveFileDialog.ShowDialog();
 
             if (result is true)
             {
                 // Saving spreadsheet to user's desired location
+<<<<<<< remotes/origin/GUI
                 string filename = saveFileDialog.FileName;
                 File.WriteAllText(filename, Data);
             }
         }
+=======
+                var filename = saveFileDialog.FileName;
+                File.WriteAllText(filename, Data);
+            }
+        }
+
+        private void OpenSpreadsheet(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "CSV(Comma delimited)(.csv) | *.csv",
+                Title = "Select a Spreadsheet"
+            };
+
+            var result = openFileDialog.ShowDialog();
+            if(result is true)
+            {
+                var Data = File.ReadAllText(openFileDialog.FileName);
+                LoadSpreadsheet(Data);
+            }
+        }
+
+        private void LoadSpreadsheet(string Data)
+        {
+            // Ignore First Line(5 elements), split data by comma
+            var splitData = Data.Split(new string[] { "\n", "," } ,StringSplitOptions.None);
+
+            try
+            {
+                var Entries = ConvertData(splitData);            
+                DatabaseClear();
+                ResetTabBar();
+                DatabaseAdd(Entries);
+            }
+
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+                MessageBox.Show("Load failed. Spreadsheet format is incorrect.","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ResetTabBar()
+        {
+            // Code to add Default Tab Home Page
+            var tabCount = _tskpg.tabCtrl.Items.Count;
+            var main = (TabItem)_tskpg.tabCtrl.Items.GetItemAt(tabCount - 1);
+            _tskpg.tabCtrl.Items.Clear();
+            Properties.Settings.Default.TabNames.Clear();
+            _tskpg.tabCtrl.Items.Add(main);
+            main.Content = new Task_Home(_tskpg);
+            _tskpg.tabCtrl.Items.Refresh();
+        }
+
+        private List<Property> ConvertData(string[] splitData)
+        {
+            var Entries = new List<Property>();
+
+            for (var i = 5; i < splitData.Count() - 1; i += 5)
+            {
+                var csvEntry = new Property { Task = splitData[i] };
+
+                if (splitData[i + 1] != string.Empty)
+                    csvEntry.ClockIn = Convert.ToDateTime(splitData[i + 1]);
+
+                if (splitData[i + 2] != string.Empty)
+                    csvEntry.ClockOut = Convert.ToDateTime(splitData[i + 2]);
+
+                if (splitData[i + 3] != string.Empty)
+                    csvEntry.Total = Convert.ToDouble(splitData[i + 3]);
+
+                if (splitData[i + 4] != string.Empty)
+                    csvEntry.LastClosed = Convert.ToDateTime(splitData[i + 4]);
+
+                Entries.Add(csvEntry);
+            }
+            return Entries;
+        }
+
+        private void DatabaseAdd(IEnumerable<Property> Entries)
+        {
+            using (var db = new DataEntities())
+            {
+                db.Properties.AddRange(Entries);
+                db.SaveChanges();
+                Tasks_Page.RefreshObservableCollection();
+            }
+        }
+
+        private void DatabaseClear()
+        {
+            using (var db = new DataEntities())
+            {
+                var Existing = db.Properties.Select(entries => entries);
+                db.Properties.RemoveRange(Existing);
+                db.SaveChanges();
+                Tasks_Page.RefreshObservableCollection();
+            }
+        }
+>>>>>>> local
     }
 }

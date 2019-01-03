@@ -98,10 +98,17 @@ namespace SimpleTaskTracker.XAML
             if (dg.DialogResult == true) CreateNewTab(dg.TaskName, true);
         }
 
+<<<<<<< remotes/origin/GUI
         private void CreateNewTab(string TabName, bool IsANewTask)
         {
             // Pass arguments to Stopwatch class
             var Stopwatch = new Stopwatch(TabName, _mw, IsANewTask);
+=======
+        private void CreateNewTab(string TabName, bool NewTask)
+        {
+            // Pass arguments to Stopwatch class
+            var Stopwatch = new Stopwatch(TabName, _mw, NewTask);
+>>>>>>> local
 
             // Creating TabItem
             var Tab = new CloseableTabItem(this)
@@ -118,7 +125,11 @@ namespace SimpleTaskTracker.XAML
             var tabTotal = tabCtrl.Items.Count;
             tabCtrl.Items.Insert(tabCtrl.Items.Count - 1, Tab);
 
+<<<<<<< remotes/origin/GUI
             if (!IsANewTask)
+=======
+            if (!NewTask)
+>>>>>>> local
             {
                 tabCtrl.SelectedIndex = tabTotal - 1;
                 SetLastClosed(TabName);
@@ -149,9 +160,15 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
+<<<<<<< remotes/origin/GUI
         private void AddToTabCollection(string tabName)
         {
             list.Add(tabName);
+=======
+        private void AddToTabCollection(string TabName)
+        {
+            list.Add(TabName);
+>>>>>>> local
         }
 
 

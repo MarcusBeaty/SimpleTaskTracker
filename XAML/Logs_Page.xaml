@@ -23,16 +23,19 @@
         </Grid.RowDefinitions>
         <TextBlock
             Width="671"
-            Margin="-3,434,0,24"
+            Margin="15,405,18,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium"
             FontSize="14"
             FontWeight="Bold"
             RenderTransformOrigin="0.5,0.5"
-            Text="Note: Removing an entry from the Reports Sheet will also remove the corresponding Task Tab."
             TextAlignment="Center"
+<<<<<<< remotes/origin/GUI
             TextDecorations="{x:Null}" Foreground="#FF444444">
+=======
+            TextDecorations="{x:Null}" Foreground="#FF444444" Height="41">
+>>>>>>> local
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -41,12 +44,18 @@
                     <TranslateTransform X="0.633" />
                 </TransformGroup>
             </TextBlock.RenderTransform>
+            Note: Removing an entry from the Reports Sheet will also remove the corresponding Task Tab. <LineBreak/>
+Loading a new spreadsheet will replace current entries.
         </TextBlock>
         <Button
             Name="Delete_Btn"
             Grid.Row="1"
             IsEnabled="False"
+<<<<<<< remotes/origin/GUI
             Margin="185,0,0,1.667"
+=======
+            Margin="0,0,0,1.667"
+>>>>>>> local
             Background="#FFE86048"
             BorderBrush="#FF707070"
              Cursor="Hand"
@@ -141,7 +150,11 @@
         </DataGrid>
         <Button 
             Grid.Row="1"
+<<<<<<< remotes/origin/GUI
             Margin="-185,0,0,1.667"
+=======
+            Margin="375,0,0,1.667"
+>>>>>>> local
             Background="#FF37CD7F"
             BorderBrush="#FF707070"
             Cursor="Hand"
@@ -150,5 +163,19 @@
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White" HorizontalAlignment="Center" Width="160" />
+<<<<<<< remotes/origin/GUI
+=======
+        <Button 
+            Grid.Row="1"
+            Margin="-375,0,0,1.667"
+            Background="#FF76CD37"
+            BorderBrush="#FF707070"
+            Cursor="Hand"
+            Click="OpenSpreadsheet"
+            Content="Load Spreadsheet"
+            FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
+            FontSize="14"
+            Foreground="White" HorizontalAlignment="Center" Width="160" />
+>>>>>>> local
     </Grid>
 </Page>
