@@ -25,9 +25,17 @@ namespace SimpleTaskTracker.XAML
         public RenameTaskDialog(string TabName)
         {
             InitializeComponent();
-            //taskEntry.Text = TabName;
-            taskEntry.CaretIndex = TabName.Count();
+            //taskEntry.CaretIndex = TabName.Count();
             taskEntry.Focus();
+            PopulatePresets();
+        }
+
+        private void PopulatePresets()
+        {
+            foreach (var p in Properties.Settings.Default.Presets)
+            {
+                taskEntry.Items.Add(p);
+            }
         }
 
         private void Rename_Click(object sender, RoutedEventArgs e)
@@ -92,7 +100,6 @@ namespace SimpleTaskTracker.XAML
                 taskEntry.Focus();
                 return false;
             }
-
             return true;
         }
 

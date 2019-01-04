@@ -40,8 +40,8 @@
                     <TranslateTransform X="0.633" />
                 </TransformGroup>
             </TextBlock.RenderTransform>
-            Note: Removing an entry from the Reports Sheet will also remove the corresponding Task Tab. <LineBreak/>
-Loading a new spreadsheet will replace current entries.
+            <Bold FontStyle="Italic" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto" FontWeight="Bold">Note:</Bold> Removing an entry from the Reports Sheet will also <Bold Foreground="#FFFF5050">remove</Bold> the corresponding Task Tab. <LineBreak/>
+Loading a new spreadsheet will <Bold Foreground="#FFFF5050">remove</Bold> current Reports entries and <Bold Foreground="#FFFF5050">clear all</Bold> Task tabs.
         </TextBlock>
         <Button
             Name="Delete_Btn"

@@ -29,6 +29,16 @@ namespace SimpleTaskTracker.XAML
             InitializeComponent();
             
             taskEntry.Focus();
+
+            PopulatePresets();
+        }
+
+        private void PopulatePresets()
+        {
+            foreach( var p in Properties.Settings.Default.Presets)
+            {
+                taskEntry.Items.Add(p);
+            }
         }
 
         private void Submit(object sender, RoutedEventArgs e)

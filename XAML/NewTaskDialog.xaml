@@ -44,14 +44,15 @@
             Foreground="#FF212121"
             Text="Enter Task Name:"
             TextAlignment="Center" />
-        <TextBox
+        <ComboBox
             Name="taskEntry"
             Grid.Row="1"
             Grid.Column="2"
             Grid.ColumnSpan="3"
+            IsEditable="True"
             Margin="5,0,0,0"
             KeyDown="TaskEntry_KeyDown"
-            SelectionBrush="#FF252525" />
+             />
         <Button
             Grid.Row="3"
              Cursor="Hand"

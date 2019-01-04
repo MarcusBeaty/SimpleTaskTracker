@@ -104,5 +104,24 @@
             Visibility="Hidden"
             Foreground="White"
             IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" />
+        <TextBlock
+            Width="217"
+            Margin="9.6,31.6,0,0"
+            HorizontalAlignment="Left"
+            Grid.ColumnSpan="3"
+            VerticalAlignment="Top"
+            FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium"
+            FontSize="16"
+            FontWeight="SemiBold"
+            Foreground="#FF444444"
+            Text="Task Name Presets:"
+            TextDecorations="{x:Null}"
+            TextWrapping="Wrap" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" />
+        <TextBox KeyDown="ListBoxInput_KeyDown" TextChanged="ListBoxInput_TextChanged" Height="23" HorizontalAlignment="Left" Margin="9.6,14,0,0" Name="ListBoxInput" VerticalAlignment="Top" Width="169" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" />
+        <Button IsEnabled ="False" Height="23" Margin="29.2,14,0,0" Name="AddTaskPreset" VerticalAlignment="Top" HorizontalAlignment="Left" Width="85" Click="AddTaskPreset_Click" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2">Add</Button>
+        <Button IsEnabled="False" Height="23" Margin="52.8,14,0,0" Name="RemoveTaskPreset" VerticalAlignment="Top" HorizontalAlignment="Left" Width="85" Click="RemoveTaskPreset_Click" Grid.Column="3" Grid.Row="5">Remove</Button>
+        <ListBox
+            Panel.ZIndex="22" SelectionChanged="ListBox_SelectionChanged" Margin="9.6,45,0,0" Name="ListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="349" Height="125" Grid.ColumnSpan="3" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1">
+        </ListBox>
     </Grid>
 </Page>

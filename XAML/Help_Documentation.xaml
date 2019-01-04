@@ -35,8 +35,7 @@
         <ScrollViewer x:Name="Viewer"  Grid.RowSpan="5" Grid.ColumnSpan="4" Margin="0,64.4,3,55.6" Padding="0" PanningMode="VerticalOnly" Grid.Row="2">
             <StackPanel Margin="15,15,15,0">
 
-                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Tasks ] <LineBreak/>
-                </TextBlock>
+                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Tasks ]</TextBlock>
                 <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap">1.&#160;&#160;&#160;&#160;Click the “+” tab at the top-left corner of the Tasks page, or click the Create New Task button, to create a new task.</TextBlock>
                 <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap">2.&#160;&#160;&#160;&#160;Write the name of the task (you can also set today’s date to be automatically affixed to the task name in Settings).</TextBlock>
                 <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap">3.&#160;&#160;&#160;&#160;Click the Clock-In button when you are ready to start your timeclock for the selected task.</TextBlock>
@@ -51,13 +50,21 @@
                 <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Padding="0,5,5,5" FontSize="18" TextWrapping="Wrap">9.&#160;&#160;&#160;&#160;Timeclocks do not continue running when you close Simple Task Tracker. Instead, the current elapsed time displayed on each task tab you have open will be saved and restored when you reopen the program.<LineBreak/></TextBlock>
 
 
-                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Reports ]<LineBreak/></TextBlock>
-                <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" FontSize="18" Padding="0,5,5,5">Fixed validation error for Task names when Auto Date setting is enabled.</TextBlock>
-                <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" FontSize="18" Padding="0,5,5,5"> • Invalid input no longer cleared when creating / editing Task names.</TextBlock>
-                <TextBlock Foreground="#FF5A5A5B" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" FontSize="18" Padding="0,5,5,5"> • The Select All checkbox in the Reports section is now properly unchecked<LineBreak/></TextBlock>
+                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Reports ]</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- The Task column denotes the name of each individual task that you worked on in the Tasks tab.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- The Clock-In column shows the date and time that you clocked in to the task.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- The Clock-Out column shows the date and time that you clocked out of the task.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- The Total(Hours) column shows the number of hours you spent working on each task in decimal format.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- The Last Closed column shows the last date and time you closed the program while still clocked into the task.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- To delete an entry or entries, select the checkbox(es) on the left hand side of the data table that corresponding to each Task you wish to delete and click the Delete button. Clicking the checkbox in the top left-hand corner will initiate the selection of all task rows. Warning: Once you delete an entry it cannot be recovered.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- The columns in the Reports table can be sorted in ascending or descending order by clicking on the corresponding column header.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- To copy data from the table, click and drag on the cells you would like to copy to highlight them, and press Ctrl+C. Alternatively, you can right-click on your highlighted cells and select "Copy".<LineBreak/></TextBlock>
 
-                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Settings ]<LineBreak/></TextBlock>
-                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Help ]<LineBreak/></TextBlock>
+
+                <TextBlock FontSize="22" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Medium" Foreground="#FF636262">[ Settings ]</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- Display Warnings: Selecting this box will trigger a warning each time you attempt to close a task tab or a Report entry.</TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">- Automatically apply Date/Time to Task Names: This will automatically affix today's date to the task name in the format | MM-DD-YYYY.<LineBreak/></TextBlock>
+                <TextBlock FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Light" Foreground="#FF5A5A5B" Padding="0,5,5,5" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,0">* To report a problem, please contact me at MarcusCG@live.com</TextBlock>
 
 
 
