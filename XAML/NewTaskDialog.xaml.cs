@@ -30,8 +30,9 @@ namespace SimpleTaskTracker.XAML
             
             taskEntry.Focus();
 
-            PopulatePresets();
+            PopulatePresets();  
         }
+
 
         private void PopulatePresets()
         {
@@ -132,6 +133,12 @@ namespace SimpleTaskTracker.XAML
                 this.Close();
                 Owner.Opacity = 1;
             }
+        }
+
+        private void TaskEntry_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBox TxtBox = (TextBox)taskEntry.Template.FindName("PART_EditableTextBox", taskEntry);
+            TxtBox.Focus();
         }
     }
 }

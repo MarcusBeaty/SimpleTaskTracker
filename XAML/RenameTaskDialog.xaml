@@ -47,6 +47,7 @@
         <ComboBox
             Name="taskEntry"
             IsEditable="True"
+            Loaded="TaskEntry_Loaded"
             Grid.Row="1"
             Grid.Column="2"
             Grid.ColumnSpan="3"
