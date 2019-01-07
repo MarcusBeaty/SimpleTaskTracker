@@ -37,6 +37,6 @@ namespace SimpleTaskTracker.XAML
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _tsks.OnPlusTabClick(sender,e);
-        }
+        }      
     }
 }

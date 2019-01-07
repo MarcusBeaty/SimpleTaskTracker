@@ -30,10 +30,19 @@ namespace SimpleTaskTracker.XAML
 
         private void PopulateListBox()
         {
-            foreach (var x in Properties.Settings.Default.Presets)
+            try
             {
-                ListBox.Items.Add(x);
+                foreach (var x in Properties.Settings.Default.Presets)
+                {
+                    ListBox.Items.Add(x);
+                }
             }
+
+            catch(Exception e)
+            {
+                Console.WriteLine(e.InnerException);
+            }
+           
         }
 
         private void SaveSettings_Click(object sender, RoutedEventArgs e)
@@ -136,6 +145,8 @@ namespace SimpleTaskTracker.XAML
 
         private bool ValidationCheck(string presetName)
         {
+            var Presets = Properties.Settings.Default.Presets;
+
             if (string.IsNullOrWhiteSpace(presetName))
             {
                 MessageBox.Show("Task Name is required, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
@@ -150,7 +161,7 @@ namespace SimpleTaskTracker.XAML
                 return false;
             }
 
-            else if (Properties.Settings.Default.Presets.Contains(presetName))
+            else if (Presets != null && Presets.Contains(presetName))
             {
                 MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
                 return false;

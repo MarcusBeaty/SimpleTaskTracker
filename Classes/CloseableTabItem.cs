@@ -24,7 +24,7 @@ namespace SimpleTaskTracker
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 _tp.OnPlusTabClick(sender, e);
             }

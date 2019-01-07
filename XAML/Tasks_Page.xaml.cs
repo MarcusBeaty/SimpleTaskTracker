@@ -157,7 +157,7 @@ namespace SimpleTaskTracker.XAML
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 OnPlusTabClick(sender, e);
             }

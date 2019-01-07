@@ -36,10 +36,16 @@ namespace SimpleTaskTracker.XAML
 
         private void PopulatePresets()
         {
-            foreach( var p in Properties.Settings.Default.Presets)
+            var Presets = Properties.Settings.Default.Presets;
+
+            if(Presets != null)
             {
-                taskEntry.Items.Add(p);
+                foreach (var p in Properties.Settings.Default.Presets)
+                {
+                    taskEntry.Items.Add(p);
+                }
             }
+           
         }
 
         private void Submit(object sender, RoutedEventArgs e)

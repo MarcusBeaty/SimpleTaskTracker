@@ -133,7 +133,7 @@ namespace SimpleTaskTracker.XAML
         {
             if(Main.Content == tk)
             {
-                if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+                if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
                     tk.OnPlusTabClick(sender, e);
                 }

@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_06F34C69B583A0EEE3749738E07A5069"
-        "OwnerKey" = "8:_A15913A431D0441CA013CCBFDD30A29B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2FAB91F4329F6827FEAEE7845E1863D1"
         "OwnerKey" = "8:_A15913A431D0441CA013CCBFDD30A29B"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,6 +28,12 @@
         "Entry"
         {
         "MsmKey" = "8:_470A945A46857BB160B3E1E4316D5204"
+        "OwnerKey" = "8:_A15913A431D0441CA013CCBFDD30A29B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4971E1428303F07A0CEA6F43BF050BB9"
         "OwnerKey" = "8:_A15913A431D0441CA013CCBFDD30A29B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -130,7 +130,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_06F34C69B583A0EEE3749738E07A5069"
+        "OwnerKey" = "8:_4971E1428303F07A0CEA6F43BF050BB9"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -228,37 +228,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_06F34C69B583A0EEE3749738E07A5069"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_06F34C69B583A0EEE3749738E07A5069"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:514"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_DA46AC17897F4929B77FE78C5CD3FF3E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:TRUE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2FAB91F4329F6827FEAEE7845E1863D1"
             {
             "AssemblyRegister" = "3:1"
@@ -335,6 +304,37 @@
                     }
                 }
             "SourcePath" = "8:System.Data.SQLite.EF6.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DA46AC17897F4929B77FE78C5CD3FF3E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:TRUE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4971E1428303F07A0CEA6F43BF050BB9"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_4971E1428303F07A0CEA6F43BF050BB9"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:514"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DA46AC17897F4929B77FE78C5CD3FF3E"
@@ -504,7 +504,7 @@
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_FBC930485C6040FDA91DF98AA1078C73"
                             {
                             "Name" = "8:Database"
-                            "AlwaysCreate" = "11:FALSE"
+                            "AlwaysCreate" = "11:TRUE"
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_B880D92241E546EB83198BAC09B564D2"
@@ -555,7 +555,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Simple Task Tracker"
         "ProductCode" = "8:{E748ED97-CA52-4C84-A3AE-D5AE0ECB17DF}"
-        "PackageCode" = "8:{EF5BB2D3-B63C-4053-8AAF-B027DE4FC31F}"
+        "PackageCode" = "8:{BD7FBAB7-13EB-4357-8B17-C96094799F8C}"
         "UpgradeCode" = "8:{8C52A01F-8C14-4534-92DE-D8A096233D6F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
