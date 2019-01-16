@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using SimpleTaskTracker.Database;
-
+using SimpleTaskTracker_Services;
+using SimpleTaskTracker_Data;
+using Unity;
 
 namespace SimpleTaskTracker
 {

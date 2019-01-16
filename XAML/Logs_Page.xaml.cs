@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
-using SimpleTaskTracker.Database;
+using SimpleTaskTracker_Data;
+using SimpleTaskTracker_Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -17,6 +19,8 @@ namespace SimpleTaskTracker.XAML
     public partial class Logs_Page : Page
     {
         private Tasks_Page _tskpg;
+        private ObservableCollectionService collectionService;
+        private TaskService taskService;
         private CheckBox checkBoxHeader;
         private StringCollection list = Properties.Settings.Default.TabNames;
 
@@ -26,16 +30,21 @@ namespace SimpleTaskTracker.XAML
         {
             InitializeComponent();
             _tskpg = tsk_pg;
-            dataGrid.ItemsSource = Tasks_Page.col;
+
+            taskService = new TaskService();
+            collectionService = new ObservableCollectionService();
+
+            dataGrid.ItemsSource = ObservableCollectionService.Collection;
+            collectionService.Refresh();
         }
 
         public void Remove_Click(object sender, RoutedEventArgs e)
         {
             // Storing every item that is Selected ( value of 1 )
-            var selected = Tasks_Page.col.Where(x => x.Selected == 1);
+            var Selected = ObservableCollectionService.Collection.Where(x => x.Selected == 1);
 
             // Do nothing if nothing is selected
-            if (selected.Count() != 0)
+            if (Selected.Count() != 0)
             {
                 // If user has the Warning Setting enabled
                 if (Properties.Settings.Default.Warnings)
@@ -51,45 +60,63 @@ namespace SimpleTaskTracker.XAML
                     }
                 }
                 // Creating a temp array to iterate from that doesn't change in size 
-                var selectedArr = selected.ToArray();
+                var selectedArr = Selected.ToArray();
                 MarkSelected(selectedArr);
             }
         }
 
-        private async void MarkSelected(Property[] Selected)
+        private void MarkSelected(Task[] Selected)
         {
-            using (var db = new DataEntities())
+            // Storing every item that is Selected ( value of 1 )
+            var selectedItems = Selected.Select(x=> x.Id);
+
+            if (selectedItems.Count() == 1)
             {
-                // Storing every item that is Selected ( value of 1 )
-                foreach (var x in Selected)
-                {
-                    // Storing name of each selected item from observable collection
-                    var name = x.Task;
-
-                    // Selecting database row that corresponds with selected observable collection row
-                    var dbEntry = db.Properties.SingleOrDefault(i => i.Task == name);
-
-                    // Setting it to "Selected" in database
-                    dbEntry.Selected = 1;
-
-                    // Saving and repopulating
-                    await db.SaveChangesAsync();
-
-                    RemoveTab(name);
-                }
-                RemoveDatabaseEntries();
+                var Id = Convert.ToInt32(selectedItems.First());
+                taskService.Delete(Id);
             }
+            else
+            {
+                //var Ids = Convert.ToInt32(selectedItems);
+                taskService.Delete(selectedItems);
+            }
+
+            foreach (var s in Selected)
+            {
+                RemoveTab(s.TaskName);
+            }
+
+            collectionService.Refresh();
+
+            Delete_Btn.IsEnabled = false;
+            checkBoxHeader.IsChecked = false;
+            /*foreach (var x in Selected)
+            {
+                // Storing name of each selected item from observable collection
+                var name = x.TaskName;
+
+                // Selecting database row that corresponds with selected observable collection row
+                var dbEntry = _taskService.Get(name);
+                entriesToRemove.Add(dbEntry);
+               
+                
+                // Setting it to "Selected" in database
+                dbEntry.Selected = 1;
+                _taskService.Update(dbEntry);*/
+
+            // RemoveTab(name);
+            //RemoveDatabaseEntries();
         }
 
         private async void RemoveDatabaseEntries()
         {
             // Code to remove entries that are in DataGrid selected
-            using (var db = new DataEntities())
+            using (var db = new AppDBContext())
             {
-                var dbSelected = db.Properties.Where(x => x.Selected == 1);
-                db.Properties.RemoveRange(dbSelected);
+                var dbSelected = db.Tasks.Where(x => x.Selected == 1);
+                db.Tasks.RemoveRange(dbSelected);
                 await db.SaveChangesAsync();
-                Tasks_Page.RefreshObservableCollection();
+                collectionService.Refresh();
                 Delete_Btn.IsEnabled = false;
                 checkBoxHeader.IsChecked = false;
             }
@@ -124,15 +151,17 @@ namespace SimpleTaskTracker.XAML
 
         private void CheckBoxHeader_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (var prop in Tasks_Page.col)
+            foreach (var prop in ObservableCollectionService.Collection)
             {
-                prop.Selected = 1;
+                prop.Selected = 1;  
             }
         }
 
         private void CheckBoxHeader_Unchecked(object sender, RoutedEventArgs e)
         {
-            foreach (var prop in Tasks_Page.col)
+            var Collection = ObservableCollectionService.Collection;
+
+            foreach (var prop in Collection)
             {
                 prop.Selected = 0;
             }
@@ -145,7 +174,9 @@ namespace SimpleTaskTracker.XAML
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (Tasks_Page.col.Any(x => x.Selected == 1))
+            var Collection = ObservableCollectionService.Collection;
+
+            if (Collection.Any(x => x.Selected == 1))
             {
                 Delete_Btn.IsEnabled = true;
             }
@@ -158,7 +189,9 @@ namespace SimpleTaskTracker.XAML
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (Tasks_Page.col.Any(x => x.Selected == 1))
+            var Collection = ObservableCollectionService.Collection;
+
+            if (Collection.Any(x => x.Selected == 1))
             {
                 Delete_Btn.IsEnabled = true;
             }
@@ -177,9 +210,9 @@ namespace SimpleTaskTracker.XAML
 
             Data += Header;
 
-            foreach (Property itm in dataGridValues)
+            foreach (Task itm in dataGridValues)
             {
-                var rowValues = $"{itm.Task},{itm.ClockIn},{itm.ClockOut},{itm.Total},{itm.LastClosed}\n";
+                var rowValues = $"{itm.TaskName},{itm.ClockIn},{itm.ClockOut},{itm.Total},{itm.LastClosed}\n";
                 Data += rowValues;
             }
             return Data;
@@ -256,13 +289,13 @@ namespace SimpleTaskTracker.XAML
             _tskpg.tabCtrl.Items.Refresh();
         }
 
-        private List<Property> ConvertData(string[] splitData)
+        private List<Task> ConvertData(string[] splitData)
         {
-            var Entries = new List<Property>();
+            var Entries = new List<Task>();
 
             for (var i = 5; i < splitData.Count() - 1; i += 5)
             {
-                var csvEntry = new Property { Task = splitData[i] };
+                var csvEntry = new Task { TaskName = splitData[i] };
 
                 if (splitData[i + 1] != string.Empty)
                     csvEntry.ClockIn = Convert.ToDateTime(splitData[i + 1]);
@@ -281,25 +314,16 @@ namespace SimpleTaskTracker.XAML
             return Entries;
         }
 
-        private void DatabaseAdd(IEnumerable<Property> Entries)
+        private void DatabaseAdd(IEnumerable<Task> Entries)
         {
-            using (var db = new DataEntities())
-            {
-                db.Properties.AddRange(Entries);
-                db.SaveChanges();
-                Tasks_Page.RefreshObservableCollection();
-            }
+            taskService.Add(Entries);
+            collectionService.Refresh();
         }
 
         private void DatabaseClear()
         {
-            using (var db = new DataEntities())
-            {
-                var Existing = db.Properties.Select(entries => entries);
-                db.Properties.RemoveRange(Existing);
-                db.SaveChanges();
-                Tasks_Page.RefreshObservableCollection();
-            }
+            taskService.DeleteAll();
+            collectionService.Refresh();
         }
     }
 }

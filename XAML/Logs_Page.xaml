@@ -1,10 +1,13 @@
 ﻿<Page
-    x:Class="SimpleTaskTracker.XAML.Logs_Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SimpleTaskTracker.XAML"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+    xmlns:SimpleTaskTracker_Data="clr-namespace:SimpleTaskTracker_Data;assembly=SimpleTaskTracker_Data"
+    x:Class="SimpleTaskTracker.XAML.Logs_Page"
+
     Title="Logs_Page"
     Width="704"
     Height="545"
@@ -39,12 +42,9 @@
                     <RotateTransform />
                     <TranslateTransform X="0.633" />
                 </TransformGroup>
-            </TextBlock.RenderTransform>
-            <Bold FontStyle="Italic" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto" FontWeight="Bold">Note:</Bold> Removing an entry from the Reports Sheet will also <Bold Foreground="#FFFF5050">remove</Bold> the corresponding Task Tab. <LineBreak/>
-Loading a new spreadsheet will <Bold Foreground="#FFFF5050">remove</Bold> current Reports entries and <Bold Foreground="#FFFF5050">clear all</Bold> Task tabs.
-        </TextBlock>
+            </TextBlock.RenderTransform><Bold FontStyle="Italic" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto" FontWeight="Bold"><Run Text="Note:"/></Bold><Run Text=" Removing an entry from the Reports Sheet will also "/><Bold Foreground="#FFFF5050"><Run Text="remove"/></Bold><Run Text=" the corresponding Task Tab."/><LineBreak/><Run Text="Loading a new spreadsheet will "/><Bold Foreground="#FFFF5050"><Run Text="remove"/></Bold><Run Text=" current Reports entries and "/><Bold Foreground="#FFFF5050"><Run Text="clear all"/></Bold><Run Text=" Task tabs."/></TextBlock>
         <Button
-            Name="Delete_Btn"
+            x:Name="Delete_Btn"
             Grid.Row="1"
             IsEnabled="False"
             Margin="0,0,0,1.667"
@@ -56,9 +56,9 @@ Loading a new spreadsheet will <Bold Foreground="#FFFF5050">remove</Bold> curren
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             FontSize="14"
             Foreground="White" HorizontalAlignment="Center" Width="160" />
-        <Rectangle UseLayoutRounding="True" Visibility="Hidden" Fill="#FF3D4147" Height="495" VerticalAlignment="Top" Margin="0,50,0,0"></Rectangle>
+        <Rectangle UseLayoutRounding="True" Visibility="Hidden" Fill="#FF3D4147" Height="495" VerticalAlignment="Top" Margin="0,50,0,0"/>
         <StackPanel Visibility="Hidden" UseLayoutRounding="True" Margin="15,51,0,0" HorizontalAlignment="Left"  Width="385" VerticalAlignment="Top" Height="43">
-            <TextBlock Padding="0,0,0,0" FontSize="32" Foreground="#FF0E0E0E" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Thin" VerticalAlignment="Top">Reports</TextBlock>
+            <TextBlock Padding="0,0,0,0" FontSize="32" Foreground="#FF0E0E0E" Margin="0,3,0,0" FontFamily="/SimpleTaskTracker;component/Fonts/#Roboto Thin" VerticalAlignment="Top"><Run Text="Reports"/></TextBlock>
             <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
         </StackPanel>
         <DataGrid
@@ -77,10 +77,11 @@ Loading a new spreadsheet will <Bold Foreground="#FFFF5050">remove</Bold> curren
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             RowHeaderWidth="0"        
             SelectionUnit="Cell" Padding="0" BorderBrush="#FF1A1A1A" ClipboardCopyMode="IncludeHeader">
+
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="SelectAll"></MenuItem>
-                    <MenuItem Command="Copy"></MenuItem>
+                    <MenuItem Command="SelectAll"/>
+                    <MenuItem Command="Copy"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
@@ -93,7 +94,12 @@ Loading a new spreadsheet will <Bold Foreground="#FFFF5050">remove</Bold> curren
                                 x:Name="checkBoxHeader"
                                 Checked="CheckBoxHeader_Checked"
                                 IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Unchecked="CheckBoxHeader_Unchecked" />
+                                Unchecked="CheckBoxHeader_Unchecked" >
+                                <CheckBox.DataContext>
+                                    <SimpleTaskTracker_Data:Task/>
+                                </CheckBox.DataContext>
+                            </CheckBox>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
@@ -109,8 +115,11 @@ Loading a new spreadsheet will <Bold Foreground="#FFFF5050">remove</Bold> curren
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
+
+
+
                 <DataGridTextColumn
-                    Binding="{Binding Task, Mode=TwoWay}"
+                    Binding="{Binding TaskName, Mode=TwoWay}"
                     Header="Task"
                     IsReadOnly="True" Width="140" />
                 <DataGridTextColumn

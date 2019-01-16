@@ -1,17 +1,9 @@
-﻿using SimpleTaskTracker.Database;
+﻿using SimpleTaskTracker_Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using SimpleTaskTracker_Services;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -21,10 +13,12 @@ namespace SimpleTaskTracker.XAML
     public partial class RenameTaskDialog : Window
     {
         public string Input { get; set; }
+        private readonly TaskService taskService;
 
         public RenameTaskDialog(string TabName)
         {
             InitializeComponent();
+            taskService = new TaskService();
             //taskEntry.CaretIndex = TabName.Count();
             taskEntry.Focus();
             PopulatePresets();
@@ -71,20 +65,16 @@ namespace SimpleTaskTracker.XAML
         private bool ValidateName(string name)
         {
             // Checking database for existing name
-            using (var db = new DataEntities())
+            var Tasks = taskService.List();
+            foreach(var Task in Tasks)
             {
-                foreach (var prop in db.Properties)
+                var dbName = Task.TaskName;
+                if (name == dbName)
                 {
-                    // Storing each DB Task Name
-                    var dbName = prop.Task;
-
-                    if (name == dbName)
-                    {
-                        MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                        //taskEntry.Clear();
-                        taskEntry.Focus();
-                        return false;
-                    }
+                    MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
+                    //taskEntry.Clear();
+                    taskEntry.Focus();
+                    return false;
                 }
             }
 

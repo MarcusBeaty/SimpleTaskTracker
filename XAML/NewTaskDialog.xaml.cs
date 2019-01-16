@@ -1,19 +1,9 @@
-﻿using SimpleTaskTracker.Database;
-using SimpleTaskTracker.XAML;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using SimpleTaskTracker_Data;
+using SimpleTaskTracker_Services;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -23,11 +13,12 @@ namespace SimpleTaskTracker.XAML
     public partial class NewTaskDialog : Window
     {
         public string TaskName { get; set; }
+        private readonly TaskService taskService;
 
         public NewTaskDialog()
         {
             InitializeComponent();
-            
+            taskService = new TaskService();
             taskEntry.Focus();
 
             PopulatePresets();  
@@ -53,70 +44,68 @@ namespace SimpleTaskTracker.XAML
             string input = taskEntry.Text;
 
             // Checking database for existing name
-            using (var db = new DataEntities())
-            {               
-                DateTime currentDate = DateTime.Now;
-                var date = currentDate.ToString("M-d-yyyy");
+            DateTime currentDate = DateTime.Now;
+            var date = currentDate.ToString("M-d-yyyy");
 
-                // If AutoDate setting is checked
+            // If AutoDate setting is checked
+            if (Properties.Settings.Default.AutoDate)
+            {
+                currentDate = DateTime.Now;
+                date = currentDate.ToString("M-d-yyyy");
+                TaskName = input + ($" | {date}");
+            }
+
+            else
+            {
+                TaskName = input;
+            }
+
+            foreach (var task in taskService.List())
+            {
+                var name = task.TaskName;
+
+                // If input name exists
                 if (Properties.Settings.Default.AutoDate)
                 {
-                    currentDate = DateTime.Now;
-                    date = currentDate.ToString("M-d-yyyy");
-                    TaskName = input + ($" | {date}");
+                    if ((input + ($" | {date}")) == name)
+                    {
+                        MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
+                        //taskEntry.Clear();
+                        taskEntry.Focus();
+                        return;
+                    }
                 }
 
                 else
                 {
-                    TaskName = input;
+                    if (input == name)
+                    {
+                        MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
+                        //taskEntry.Clear();
+                        taskEntry.Focus();
+                        return;
+                    }
                 }
-
-                foreach (var prop in db.Properties)
-                {
-                    var name = prop.Task;
-
-                    // If input name exists
-                    if (Properties.Settings.Default.AutoDate)
-                    {
-                        if ((input + ($" | {date}")) == name)
-                        {
-                            MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                            //taskEntry.Clear();
-                            taskEntry.Focus();
-                            return;
-                        }
-                    }
-
-                    else
-                    {
-                        if (input == name)
-                        {
-                            MessageBox.Show("The entered Task Name is already in use, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                            //taskEntry.Clear();
-                            taskEntry.Focus();
-                            return;
-                        }
-                    }
                     
-                }
             }
-                // If input is empty
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    MessageBox.Show("Task Name is required, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
-                    //taskEntry.Clear();
-                    taskEntry.Focus();
-                    return;
-                }
 
-                // If input char length is longer than 90
-                else if (input.Length > 90)
-                {
-                    MessageBox.Show("Character limit of 90 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
-                    //taskEntry.Clear();
-                    taskEntry.Focus();
-                    return;
-                }
+            // If input is empty
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show("Task Name is required, please enter a valid Task Name.", "Simple Task Tracker", MessageBoxButton.OK);
+                //taskEntry.Clear();
+                taskEntry.Focus();
+                return;
+            }
+
+            // If input char length is longer than 90
+            else if (input.Length > 90)
+            {
+                MessageBox.Show("Character limit of 90 exceeded, please try again.", "Simple Task Tracker", MessageBoxButton.OK);
+                //taskEntry.Clear();
+                taskEntry.Focus();
+                return;
+            }
             DialogResult = true;
             this.Close();
         }

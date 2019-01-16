@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleTaskTracker_Services;
+using System;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,9 @@ namespace SimpleTaskTracker.XAML
         private Settings_Page set;
         private Help_Page hlp;
 
+        private ObservableCollectionService _collectionService;
+        private TaskService _taskService;
+
         public MainWindow()
         {
 
@@ -28,7 +32,7 @@ namespace SimpleTaskTracker.XAML
             System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Error;
 #endif
             InitializeComponent();
-            tk = new Tasks_Page(this);
+            tk = new Tasks_Page(this, new TaskService(),new ObservableCollectionService());
             lgs = new Logs_Page(tk);
             set = new Settings_Page();
             hlp = new Help_Page(this);

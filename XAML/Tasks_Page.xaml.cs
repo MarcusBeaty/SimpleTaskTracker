@@ -1,4 +1,6 @@
-﻿using SimpleTaskTracker.Database;
+﻿using SimpleTaskTracker_Data;
+using SimpleTaskTracker_Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -15,14 +17,20 @@ namespace SimpleTaskTracker.XAML
     public partial class Tasks_Page : Page
     {
         public static StringCollection list = Properties.Settings.Default.TabNames;
-        public static ObservableCollection<Property> col = new ObservableCollection<Property>();
         private MainWindow _mw;
+        private TaskService _taskService;
+        private ObservableCollectionService _collectionService;
 
-        public Tasks_Page(MainWindow mw)
+        public Tasks_Page(MainWindow mw, ITaskService<Task> taskService, IObservableCollectionService<Task> collectionService)
         {
             InitializeComponent();
 
             _mw = mw;
+
+            _taskService = new TaskService();
+            _collectionService = new ObservableCollectionService();
+            // Use DI to give a new instance of TaskService to ITaskService
+
             addTabItm.Content = new Task_Home(this);
 
             CheckForExistingTabs();
@@ -31,38 +39,21 @@ namespace SimpleTaskTracker.XAML
 
         private void CheckForExistingTabs()
         {
-            using (var db = new DataEntities())
-            { 
-                if (db.Properties.Any())
-                {
-                    RefreshObservableCollection();
+            if (_taskService.List().Any())
+            {
+                _collectionService.Refresh();
 
-                    if (list.Count != 0)
+                if (list.Count != 0)
+                {
+                    for (var i = 0; i < list.Count; i++)
                     {
-                        for (var i = 0; i < list.Count; i++)
-                        {
-                            CreateNewTab(list[i],false);
-                        }
+                        CreateNewTab(list[i], false);
                     }
                 }
                 else
                 {
                     list.Clear();
-                    RefreshObservableCollection();
-                }
-            }
-        }
-
-        public static void RefreshObservableCollection()
-        {
-            // This method is called whenever there is a modification to the database || Populating DataGrid from Recreated Tabs
-            using (var db = new DataEntities())
-            {
-                col.Clear();
-                // Iterating through database and adding entries to obseravable collection
-                foreach (var itm in db.Properties)
-                {
-                    col.Add(itm);
+                    _collectionService.Refresh();
                 }
             }
         }
@@ -74,21 +65,19 @@ namespace SimpleTaskTracker.XAML
 
         private void SetLastClosed(string TabName)
         {
-            // Using exist check for error: when clearing database but leaving tab open
-            using (var db = new DataEntities())
-            {
-                bool exists = db.Properties.Any(x => x.Task == TabName);
 
-                if (exists)
-                {
-                    var task = db.Properties.First(x => x.Task == TabName);
-                    task.LastClosed = Properties.Settings.Default.LastClosed;
-                    db.SaveChanges();
-                    RefreshObservableCollection();
-                }
+            // Using exist check for error: when clearing database but leaving tab open
+            bool Exists = _taskService.List().Any();
+
+            if (Exists)
+            {
+                var Task = _taskService.Get(TabName);
+                Task.LastClosed = Properties.Settings.Default.LastClosed;
+                _taskService.Update(Task);
+                _collectionService.Refresh();
             }
         }
-      
+
         public void OnPlusTabClick(object sender, RoutedEventArgs e)
         {
             _mw.Opacity = 0.3;
@@ -101,7 +90,7 @@ namespace SimpleTaskTracker.XAML
         private void CreateNewTab(string TabName, bool NewTask)
         {
             // Pass arguments to Stopwatch class
-            var Stopwatch = new Stopwatch(TabName, _mw, NewTask);
+            var Stopwatch = new Stopwatch(TabName, _mw, NewTask, _collectionService);
 
             // Creating TabItem
             var Tab = new CloseableTabItem(this)
@@ -128,32 +117,21 @@ namespace SimpleTaskTracker.XAML
             Keyboard.ClearFocus();
             Tab.Focus();
 
-            var newProperty = new Property() { Task = TabName };
+            var newProperty = new Task() { TaskName = TabName };
+            _taskService.Add(newProperty);
+            _collectionService.Refresh();
             PopulateCollections(newProperty);
         }
 
-        private void PopulateCollections(Property property)
+        private void PopulateCollections(Task property)
         {
-            AddToTabCollection(property.Task);
-            AddDatabaseEntry(property);
-        }
-
-        private async void AddDatabaseEntry(Property property)
-        {
-            // Adding new entry to Database
-            using (var db = new DataEntities())
-            {
-                db.Properties.Add(property);
-                int save = await db.SaveChangesAsync();
-                RefreshObservableCollection();
-            }
+            AddToTabCollection(property.TaskName);
         }
 
         private void AddToTabCollection(string TabName)
         {
             list.Add(TabName);
         }
-
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
@@ -183,4 +161,5 @@ namespace SimpleTaskTracker.XAML
         }
     }
 }
+
 
