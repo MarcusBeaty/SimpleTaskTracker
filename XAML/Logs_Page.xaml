@@ -76,7 +76,7 @@
             ColumnWidth="*"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             RowHeaderWidth="0"        
-            SelectionUnit="Cell" Padding="0" BorderBrush="#FF1A1A1A" ClipboardCopyMode="IncludeHeader">
+            SelectionUnit="Cell" Padding="0" BorderBrush="#FF1A1A1A">
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
