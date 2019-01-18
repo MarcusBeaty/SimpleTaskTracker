@@ -326,9 +326,11 @@ namespace SimpleTaskTracker.XAML
             collectionService.Refresh();
         }
 
-        private void Display_Today(object sender, RoutedEventArgs e)
+        private void FilterReports_Click(object sender, RoutedEventArgs e)
         {
-            collectionService.Display_Today();
+            var From = (DateTime)DatePicker_From.SelectedDate;
+            var To = (DateTime)DatePicker_To.SelectedDate;
+            collectionService.Filter(From,To);
         }
     }
 }

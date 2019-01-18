@@ -62,16 +62,17 @@
             <Rectangle Fill="#FFCBCBCB" Height="1" Width="385" HorizontalAlignment="Left" Margin="0,1,-0.2,0"/>
         </StackPanel>
         <Button
+            Name="FilterReports"
             Margin="489,381,89,69"
             Background="#FF3A2E4C"
             BorderBrush="#FF707070"
             Cursor="Hand"
-            Click="OpenSpreadsheet"
+            Click="FilterReports_Click"
             Content="Filter"
             FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic"
             Foreground="White" HorizontalAlignment="Center" Width="126" />
-        <DatePicker Panel.ZIndex="1" Margin="210,381,388,69"/>
-        <DatePicker Panel.ZIndex="1" Margin="360,381,239,69"/>
+        <DatePicker Name="DatePicker_From" Panel.ZIndex="1" Margin="210,381,388,69"/>
+        <DatePicker Name="DatePicker_To" Panel.ZIndex="1" Margin="360,381,239,69"/>
         <TextBlock Text="Reports From:" Panel.ZIndex="1" Margin="133,387,489,75" VerticalAlignment="Center" FontFamily="/SimpleTaskTracker;component/Fonts/#Century Gothic" Padding="0"/>
         <TextBlock Text="To:" Panel.ZIndex="1" Margin="340,386,344,74" VerticalAlignment="Center" FontFamily="/SimpleTaskTracker;component/Fonts/#Lucida Sans Unicode"/>
 
