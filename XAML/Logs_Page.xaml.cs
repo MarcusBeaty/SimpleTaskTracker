@@ -325,5 +325,10 @@ namespace SimpleTaskTracker.XAML
             taskService.DeleteAll();
             collectionService.Refresh();
         }
+
+        private void Display_Today(object sender, RoutedEventArgs e)
+        {
+            collectionService.Display_Today();
+        }
     }
 }
