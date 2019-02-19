@@ -53,7 +53,7 @@ namespace SimpleTaskTracker_Services
         {
             using (var db = new AppDBContext())
             {
-                var Tasks = db.Tasks.Select(t => t);
+                var Tasks = db.Tasks.ToList();
                 db.Tasks.RemoveRange(Tasks);
                 db.SaveChanges();
             }

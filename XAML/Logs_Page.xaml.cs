@@ -332,5 +332,15 @@ namespace SimpleTaskTracker.XAML
             var To = (DateTime)DatePicker_To.SelectedDate;
             collectionService.Filter(From,To);
         }
+
+        private void DatePicker_From_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DatePicker_To.DisplayDateStart = DatePicker_From.SelectedDate;
+        }
+
+        private void DatePicker_To_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DatePicker_From.DisplayDateEnd = DatePicker_To.SelectedDate;
+        }
     }
 }
