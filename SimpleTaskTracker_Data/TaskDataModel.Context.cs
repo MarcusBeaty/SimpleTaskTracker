@@ -16,7 +16,7 @@ namespace SimpleTaskTracker_Data
     public partial class AppDBContext : DbContext
     {
         public AppDBContext()
-            : base("name=mainEntities")
+            : base("name=DBTest")
         {
         }
     
