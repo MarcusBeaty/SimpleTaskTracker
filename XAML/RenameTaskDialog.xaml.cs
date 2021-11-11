@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using SimpleTaskTracker_Services;
+using System.Threading.Tasks;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -37,7 +38,7 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        private void Rename_Click(object sender, RoutedEventArgs e)
+        private async void Rename_Click(object sender, RoutedEventArgs e)
         {
             // Store user input
             var initialInput = taskEntry.Text;
@@ -52,9 +53,10 @@ namespace SimpleTaskTracker.XAML
                 date = currentDate.ToString("M-d-yyyy");
                 initialInput += ($" | {date}");
             }
-            
+
             // Validation Checks
-            if(ValidateName(initialInput))
+            var valid = await ValidateName(initialInput);
+            if (valid)
             {
                 Input = initialInput;
                 DialogResult = true;
@@ -62,11 +64,11 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        private bool ValidateName(string name)
+        private async Task<bool> ValidateName(string name)
         {
             // Checking database for existing name
-            var Tasks = taskService.List();
-            foreach(var Task in Tasks)
+            var tasks = await taskService.List();
+            foreach(var Task in tasks)
             {
                 var dbName = Task.TaskName;
                 if (name == dbName)

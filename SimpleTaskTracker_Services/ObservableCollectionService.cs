@@ -27,14 +27,15 @@ namespace SimpleTaskTracker_Services
             throw new NotImplementedException();
         }
 
-        public void Refresh()
+        public async void Refresh()
         {
             try
             {
                 // This method is called whenever there is a modification to the database || Populating DataGrid from Recreated Tabs
                 Collection.Clear();
                 // Iterating through database and adding entries to Obseravable Collection
-                foreach (var itm in taskService.List())
+                var tasks = await taskService.List();
+                foreach (var itm in tasks)
                 {
                     Collection.Add(itm);
                 }
@@ -50,11 +51,11 @@ namespace SimpleTaskTracker_Services
             throw new NotImplementedException();
         }
 
-        public void Filter(DateTime From, DateTime To)
+        public async void Filter(DateTime From, DateTime To)
         {
             Collection.Clear();
-            
-            foreach(var task in taskService.List())
+            var tasks = await taskService.List();
+            foreach (var task in tasks)
             {
                 if(task.ClockIn != null)
                 {

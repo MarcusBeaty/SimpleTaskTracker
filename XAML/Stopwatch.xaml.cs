@@ -3,12 +3,14 @@ using SimpleTaskTracker_Services;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
 using Task = SimpleTaskTracker_Data.Task;
+using Timer = System.Timers.Timer;
 
 namespace SimpleTaskTracker.XAML
 {
@@ -20,7 +22,8 @@ namespace SimpleTaskTracker.XAML
         public string _taskName { get; set; }
         MainWindow _mw;
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-        DispatcherTimer dpTimer = new DispatcherTimer();
+        //DispatcherTimer dpTimer = new DispatcherTimer();
+        Timer dpTimer;
         TimeSpan ts;
         string elapsedTime;
         int hours;
@@ -37,6 +40,9 @@ namespace SimpleTaskTracker.XAML
             _mw = mw;
             _taskName = TaskName;
             _newTab = NewTab;
+            dpTimer = new Timer();
+            dpTimer.Interval = 25;
+
 
             _collectionService = new ObservableCollectionService();
             taskService = new TaskService();
@@ -65,16 +71,16 @@ namespace SimpleTaskTracker.XAML
         private void NewTabSetup()
         {
             // Using standard tick
-            dpTimer.Tick += new EventHandler(Tick);
+            dpTimer.Elapsed += new ElapsedEventHandler(Tick);
         }
 
-        private void ExistingTabSetup()
+        private async void ExistingTabSetup()
         {
             // Using recreated tick
-            dpTimer.Tick += new EventHandler(RecreatedTick);
+            dpTimer.Elapsed += new ElapsedEventHandler(RecreatedTick);
 
             // using exist check for error: when clearing database but leaving tab open
-            var Task = taskService.Get(_taskName);
+            var Task = await taskService.Get(_taskName);
 
             if (Task != null)
             {
@@ -119,14 +125,16 @@ namespace SimpleTaskTracker.XAML
 
         void SetTime()
         {
-            dpTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             ts = new TimeSpan(hours, minutes, seconds).Add(sw.Elapsed);
 
             //Formating Display of time
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
 
             //Outputting to WPF Textbox
-            Time.Text = elapsedTime;
+            Dispatcher.Invoke(() =>
+            {
+                Time.Text = elapsedTime;
+            });
         }
 
         void Tick(object sender, EventArgs e)
@@ -137,7 +145,10 @@ namespace SimpleTaskTracker.XAML
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
 
             //Outputting Time to Textbox
-            Time.Text = elapsedTime;
+            Dispatcher.Invoke(() =>
+            {
+                Time.Text = elapsedTime;
+            });
         }
 
         void RecreatedTick(object sender, EventArgs e)
@@ -148,7 +159,10 @@ namespace SimpleTaskTracker.XAML
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
 
             //Outputting Time to Textbox
-            Time.Text = elapsedTime;
+            Dispatcher.Invoke(() =>
+            {
+                Time.Text = elapsedTime;
+            });
         }
 
         // Method to be called to prevent accidental hit of
@@ -159,7 +173,7 @@ namespace SimpleTaskTracker.XAML
             ClockOut.IsEnabled = true; 
         }
 
-        private void ClockIn_Click(object sender, RoutedEventArgs e)
+        private async void ClockIn_Click(object sender, RoutedEventArgs e)
         {
             ClockOut.Visibility = Visibility.Visible;
             ClockIn.IsEnabled = false;
@@ -168,9 +182,9 @@ namespace SimpleTaskTracker.XAML
             StartBreak.Visibility = Visibility.Visible;
 
             // Assigning value to database
-            var Task = taskService.Get(_taskName);
+            var Task = await taskService.Get(_taskName);
             Task.ClockIn = DateTime.Now;
-            taskService.Update(Task);
+            await taskService.Update(Task);
             _collectionService.Refresh();
             // Starting StopWatch
             dpTimer.Start();
@@ -179,7 +193,7 @@ namespace SimpleTaskTracker.XAML
             Delay(sender, e);  
         }
 
-        private void ClockOut_Click(object sender, RoutedEventArgs e)
+        private async void ClockOut_Click(object sender, RoutedEventArgs e)
         {
             if(Properties.Settings.Default.Warnings)
             {
@@ -202,7 +216,7 @@ namespace SimpleTaskTracker.XAML
             ClockOut.IsEnabled = false;
             Edit_Btn.IsEnabled = false;
             
-            var Task = taskService.Get(_taskName);
+            var Task = await taskService.Get(_taskName);
 
             // Assigning value to database
             Task.ClockOut = DateTime.Now;
@@ -211,7 +225,7 @@ namespace SimpleTaskTracker.XAML
             Task.Seconds = ts.Seconds;
             Task.Total = Math.Round(ts.TotalHours, 4);
 
-            taskService.Update(Task);
+            await taskService .Update(Task);
             _collectionService.Refresh();
 
             //Stoping StopWatch
@@ -219,7 +233,7 @@ namespace SimpleTaskTracker.XAML
             dpTimer.Stop();
         }
 
-        private void Start_Break(object sender, RoutedEventArgs e)
+        private async void Start_Break(object sender, RoutedEventArgs e)
         {
             StartBreak.IsEnabled = false;
             StartBreak.Visibility = Visibility.Hidden;
@@ -230,13 +244,13 @@ namespace SimpleTaskTracker.XAML
             sw.Stop();
             dpTimer.Stop();
 
-            var Task = taskService.Get(_taskName);
+            var Task = await taskService.Get(_taskName);
             Task.Hours = ts.Hours;
             Task.Minutes = ts.Minutes;
             Task.Seconds = ts.Seconds;
             Task.Total = Math.Round(ts.TotalHours, 4);
 
-            taskService.Update(Task);
+            await taskService.Update(Task);
             _collectionService.Refresh();
         }
 
@@ -265,18 +279,18 @@ namespace SimpleTaskTracker.XAML
             Delay(sender, e);
         }
 
-        public void Exiting(object sender, global::System.ComponentModel.CancelEventArgs exeception)
+        public async void Exiting(object sender, System.ComponentModel.CancelEventArgs exeception)
         {
             try
             {
-                var Task = taskService.Get(_taskName);
+                var Task = await taskService.Get(_taskName);
                 if (Task != null)
                 {
                     Task.Hours = ts.Hours;
                     Task.Minutes = ts.Minutes;
                     Task.Seconds = ts.Seconds;
                     Task.Total = Math.Round(ts.TotalHours, 4);
-                    taskService.Update(Task);
+                    await taskService.Update(Task);
                 }
             }
             catch(InvalidOperationException exception)
@@ -298,12 +312,12 @@ namespace SimpleTaskTracker.XAML
             }
         }
 
-        private void RenameTask(string NewName)
+        private async void RenameTask(string NewName)
         {
             // Changing corresponding Task Name in DB to new Task Name
-            var Task = taskService.Get(_taskName);
+            var Task = await taskService.Get(_taskName);
             Task.TaskName = NewName;
-            taskService.Update(Task);
+            await taskService.Update(Task);
             // Changing corresponding Task Name in Observable Collection to new Task Name
             UpdateObservableCollection(NewName);
 

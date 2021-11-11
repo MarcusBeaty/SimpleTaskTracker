@@ -1,74 +1,73 @@
 ﻿using SimpleTaskTracker_Data;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
+using Task = System.Threading.Tasks.Task;
+using TaskModel = SimpleTaskTracker_Data.Task;
 
 namespace SimpleTaskTracker_Services
 {
-
-    public class TaskService : ITaskService<Task>
+    public class TaskService : ITaskService<TaskModel>
     {
-        public TaskService()
-        {
-        }
-
-        public void Add(Task item)
+        public async Task Add(TaskModel item)
         {
             using (var db = new AppDBContext())
             {
                 db.Tasks.Add(item);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void Add(IEnumerable<Task> items)
+        public async Task Add(IEnumerable<TaskModel> items)
         {
             using (var db = new AppDBContext())
             {
                 db.Tasks.AddRange(items);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void Delete(long id)
+        public async Task Delete(long id)
         {
             using (var db = new AppDBContext())
             {
-                var item = db.Tasks.First(f => f.Id == id);
+                var item = await db.Tasks.SingleAsync(f => f.Id == id);
                 db.Tasks.Remove(item);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void Delete(IEnumerable<long> id)
+        public async Task Delete(IEnumerable<long> id)
         {
             using (var db = new AppDBContext())
             {
-                var Tasks = db.Tasks.Where(x => id.Contains(x.Id));
+                var tasks = await db.Tasks.Where(x => id.Contains(x.Id)).ToListAsync();
+                db.Tasks.RemoveRange(tasks);
+                await db.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteAll()
+        {
+            using (var db = new AppDBContext())
+            {
+                var Tasks = await db.Tasks.ToListAsync();
                 db.Tasks.RemoveRange(Tasks);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void DeleteAll()
+        public async Task<TaskModel> Get(string name)
         {
             using (var db = new AppDBContext())
             {
-                var Tasks = db.Tasks.ToList();
-                db.Tasks.RemoveRange(Tasks);
-                db.SaveChanges();
-            }
-        }
-
-        public Task Get(string name)
-        {
-            using (var db = new AppDBContext())
-            {
-                var Task = db.Tasks.First(t => t.TaskName == name);
+                var Task = await db.Tasks.SingleAsync(t => t.TaskName == name);
                 return Task;
             }
         }
 
-        public IEnumerable<Task> List()
+        public async Task<IEnumerable<TaskModel>> List()
         {
             using (var db = new AppDBContext())
             {
@@ -76,11 +75,11 @@ namespace SimpleTaskTracker_Services
             }
         }
 
-        public void Update(Task item)
+        public async Task Update(TaskModel item)
         {
             using (var db = new AppDBContext())
             {
-                var itemInDB = db.Tasks.First(x => x.Id == item.Id);
+                var itemInDB = await db.Tasks.SingleAsync(x => x.Id == item.Id);
 
                 itemInDB.TaskName = item.TaskName;
                 itemInDB.ClockIn = item.ClockIn;
@@ -92,7 +91,7 @@ namespace SimpleTaskTracker_Services
                 itemInDB.Minutes = item.Minutes;
                 itemInDB.Seconds = item.Seconds;
 
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
     }

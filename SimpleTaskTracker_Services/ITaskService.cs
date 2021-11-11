@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SimpleTaskTracker_Services
 {
     public interface ITaskService<T> where T : class
     {
-        IEnumerable<T> List();
+        Task<IEnumerable<T>> List();
 
-        void Update(T item);
+        Task Update(T item);
 
-        void Add(T item);
+        Task Add(T item);
 
-        void Add(IEnumerable<T> items);
+        Task Add(IEnumerable<T> items);
 
-        void Delete(long id);
+        Task Delete(long id);
 
-        void Delete(IEnumerable<long> id);
+        Task Delete(IEnumerable<long> id);
 
-        void DeleteAll();
+        Task DeleteAll();
     }
 }

@@ -37,9 +37,10 @@ namespace SimpleTaskTracker.XAML
         }
 
 
-        private void CheckForExistingTabs()
+        private async void CheckForExistingTabs()
         {
-            if (_taskService.List().Any())
+            var tasks = await _taskService.List();
+            if (tasks.Any())
             {
                 _collectionService.Refresh();
 
@@ -63,17 +64,18 @@ namespace SimpleTaskTracker.XAML
             OnPlusTabClick(sender, e);
         }
 
-        private void SetLastClosed(string TabName)
+        private async void SetLastClosed(string TabName)
         {
+            var tasks = await _taskService.List();
 
             // Using exist check for error: when clearing database but leaving tab open
-            bool Exists = _taskService.List().Any();
+            bool Exists = tasks.Any();
 
             if (Exists)
             {
-                var Task = _taskService.Get(TabName);
+                var Task = await _taskService.Get(TabName);
                 Task.LastClosed = Properties.Settings.Default.LastClosed;
-                _taskService.Update(Task);
+                await _taskService.Update(Task);
                 _collectionService.Refresh();
             }
         }
@@ -87,7 +89,7 @@ namespace SimpleTaskTracker.XAML
             if (dg.DialogResult == true) CreateNewTab(dg.TaskName, true);
         }
 
-        private void CreateNewTab(string TabName, bool NewTask)
+        private async void CreateNewTab(string TabName, bool NewTask)
         {
             // Pass arguments to Stopwatch class
             var Stopwatch = new Stopwatch(TabName, _mw, NewTask, _collectionService);
@@ -118,7 +120,7 @@ namespace SimpleTaskTracker.XAML
             Tab.Focus();
 
             var newProperty = new Task() { TaskName = TabName };
-            _taskService.Add(newProperty);
+            await _taskService.Add(newProperty);
             _collectionService.Refresh();
             PopulateCollections(newProperty);
         }

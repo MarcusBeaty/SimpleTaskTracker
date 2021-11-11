@@ -39,7 +39,7 @@ namespace SimpleTaskTracker.XAML
            
         }
 
-        private void Submit(object sender, RoutedEventArgs e)
+        private async void Submit(object sender, RoutedEventArgs e)
         {        
             string input = taskEntry.Text;
 
@@ -60,7 +60,8 @@ namespace SimpleTaskTracker.XAML
                 TaskName = input;
             }
 
-            foreach (var task in taskService.List())
+            var tasks = await taskService.List();
+            foreach (var task in tasks)
             {
                 var name = task.TaskName;
 
